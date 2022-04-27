@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace GestaoTarefas.WinApp
 {
+    [Serializable]
     public class Tarefa
     {
         private List<ItemTarefa> itens = new List<ItemTarefa>();

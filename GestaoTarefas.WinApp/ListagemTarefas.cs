@@ -8,7 +8,12 @@ namespace GestaoTarefas.WinApp
         private RepositorioTarefa repositorioTarefa;
         public ListagemTarefas()
         {
-            repositorioTarefa = new RepositorioTarefa();
+            //SerializadorTarefasEmBinario serializador = new SerializadorTarefasEmBinario();
+
+            SerializadorTarefasEmXml serializador = new SerializadorTarefasEmXml();
+
+            repositorioTarefa = new RepositorioTarefa(serializador);
+
             InitializeComponent();
             CarregarTarefas();
         }

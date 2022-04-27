@@ -37,6 +37,7 @@
             // 
             // listItensTarefa
             // 
+            this.listItensTarefa.CheckOnClick = true;
             this.listItensTarefa.FormattingEnabled = true;
             this.listItensTarefa.Location = new System.Drawing.Point(18, 53);
             this.listItensTarefa.Name = "listItensTarefa";
