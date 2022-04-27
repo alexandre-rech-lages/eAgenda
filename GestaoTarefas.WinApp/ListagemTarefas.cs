@@ -124,7 +124,9 @@ namespace GestaoTarefas.WinApp
             {
                 List<ItemTarefa> itensConcluidos = tela.ItensConcluidos;
 
-                repositorioTarefa.AtualizarItens(tarefaSelecionada, itensConcluidos);
+                List<ItemTarefa> itensPendentes = tela.ItensPendentes;
+
+                repositorioTarefa.AtualizarItens(tarefaSelecionada, itensConcluidos, itensPendentes);
                 CarregarTarefas();
             }
         }

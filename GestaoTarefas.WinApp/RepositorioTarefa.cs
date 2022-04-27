@@ -43,11 +43,17 @@ namespace GestaoTarefas.WinApp
             }
         }
 
-        public void AtualizarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itensConcluidos)
+        public void AtualizarItens(Tarefa tarefaSelecionada, 
+            List<ItemTarefa> itensConcluidos, List<ItemTarefa> itensPendentes)
         {
             foreach (var item in itensConcluidos)
             {
                 tarefaSelecionada.ConcluirItem(item);
+            }
+
+            foreach (var item in itensPendentes)
+            {
+                tarefaSelecionada.MarcarPendente(item);
             }
         }
     }

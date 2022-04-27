@@ -21,16 +21,21 @@ namespace GestaoTarefas.WinApp
 
             labelTituloTarefa.Text = tarefa.Titulo;
 
+            CarregarItensTarefa(tarefa);
+        }
+
+        private void CarregarItensTarefa(Tarefa tarefa)
+        {
             int i = 0;
             foreach (var item in tarefa.Itens)
             {
-                listItensTarefa.Items.Add(item);    
+                listItensTarefa.Items.Add(item);
 
                 if (item.Concluido)
                     listItensTarefa.SetItemChecked(i, true);
 
                 i++;
-            }            
+            }
         }
 
         public List<ItemTarefa> ItensConcluidos
@@ -39,6 +44,17 @@ namespace GestaoTarefas.WinApp
             {
                 return listItensTarefa.CheckedItems
                     .Cast<ItemTarefa>()
+                    .ToList();
+            }
+        }
+
+        public List<ItemTarefa> ItensPendentes
+        {
+            get
+            {                
+                return listItensTarefa.Items
+                    .Cast<ItemTarefa>()
+                    .Except(ItensConcluidos)
                     .ToList();
             }
         }

@@ -17,5 +17,10 @@ namespace GestaoTarefas.WinApp
         {
             Concluido = true;
         }
+
+        internal void MarcarPendente()
+        {
+            Concluido = false;
+        }
     }
 }

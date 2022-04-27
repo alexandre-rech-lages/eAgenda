@@ -39,9 +39,19 @@ namespace GestaoTarefas.WinApp
 
         public void ConcluirItem(ItemTarefa item)
         {
+
             ItemTarefa itemTarefa = itens.Find(x => x.Equals(item));
 
-            itemTarefa.Concluir();
+            if (itemTarefa != null)
+                itemTarefa.Concluir();
+
+        }
+
+        public void MarcarPendente(ItemTarefa item)
+        {
+            ItemTarefa itemTarefa = itens.Find(x => x.Equals(item));
+
+            itemTarefa.MarcarPendente();
         }
 
         public decimal CalcularPercentualConcluido()
@@ -55,5 +65,7 @@ namespace GestaoTarefas.WinApp
 
             return Math.Round(percentualConcluido, 2);
         }
+
+
     }
 }
