@@ -74,6 +74,7 @@
             this.btnCadastrarItens.TabIndex = 3;
             this.btnCadastrarItens.Text = "Cadastrar Itens";
             this.btnCadastrarItens.UseVisualStyleBackColor = true;
+            this.btnCadastrarItens.Click += new System.EventHandler(this.btnCadastrarItens_Click);
             // 
             // btnAtualizarItens
             // 

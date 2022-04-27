@@ -83,5 +83,28 @@ namespace GestaoTarefas.WinApp
                 CarregarTarefas();
             }
         }
+
+        private void btnCadastrarItens_Click(object sender, System.EventArgs e)
+        {
+            Tarefa tarefaSelecionada = (Tarefa)listTarefas.SelectedItem;
+
+            if (tarefaSelecionada == null)
+            {
+                MessageBox.Show("Selecione uma tarefa primeiro",
+                "Edição de Tarefas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            CadastroItensTarefa tela = new CadastroItensTarefa(tarefaSelecionada);
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                List<ItemTarefa> itens = tela.ItensAdicionados;
+
+                repositorioTarefa.AdicionarItens(tarefaSelecionada, itens);
+
+                CarregarTarefas();
+            }
+        }
     }
 }
