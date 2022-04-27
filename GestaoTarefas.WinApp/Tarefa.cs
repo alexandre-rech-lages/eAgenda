@@ -17,18 +17,26 @@ namespace GestaoTarefas.WinApp
         {
             Numero = n;
             Titulo = t;
+            DataConclusao = null;
         }
 
         public int Numero { get; set; }
         public string Titulo { get; set; }
         public DateTime DataCriacao { get; set; }
+        public DateTime? DataConclusao { get; set; }
         public List<ItemTarefa> Itens { get { return itens; } }
 
         public override string ToString()
         {
             var percentual = CalcularPercentualConcluido();
 
-            return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual} ";
+            if (DataConclusao.HasValue)
+            {
+                return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual}, " +
+                    $"Concluída: {DataConclusao.Value.ToShortDateString()}";
+            }
+
+            return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual}";
         }
 
         public void AdicionarItem(ItemTarefa item)
@@ -39,19 +47,21 @@ namespace GestaoTarefas.WinApp
 
         public void ConcluirItem(ItemTarefa item)
         {
-
             ItemTarefa itemTarefa = itens.Find(x => x.Equals(item));
 
-            if (itemTarefa != null)
-                itemTarefa.Concluir();
+            itemTarefa?.Concluir();
 
+            var percentual = CalcularPercentualConcluido();
+
+            if (percentual == 100)
+                DataConclusao = DateTime.Now;
         }
 
         public void MarcarPendente(ItemTarefa item)
         {
             ItemTarefa itemTarefa = itens.Find(x => x.Equals(item));
 
-            itemTarefa.MarcarPendente();
+            itemTarefa?.MarcarPendente();
         }
 
         public decimal CalcularPercentualConcluido()
