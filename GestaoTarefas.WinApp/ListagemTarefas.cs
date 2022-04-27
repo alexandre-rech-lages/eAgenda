@@ -8,7 +8,7 @@ namespace GestaoTarefas.WinApp
         private RepositorioTarefa repositorioTarefa;
         public ListagemTarefas()
         {
-            repositorioTarefa = new RepositorioTarefa();      
+            repositorioTarefa = new RepositorioTarefa();
             InitializeComponent();
             CarregarTarefas();
         }
@@ -16,7 +16,7 @@ namespace GestaoTarefas.WinApp
         private void CarregarTarefas()
         {
             List<Tarefa> tarefas = repositorioTarefa.SelecionarTodos();
-            
+
             listTarefas.Items.Clear();
 
             foreach (Tarefa t in tarefas)
@@ -42,7 +42,7 @@ namespace GestaoTarefas.WinApp
         private void btnEditar_Click(object sender, System.EventArgs e)
         {
             Tarefa tarefaSelecionada = (Tarefa)listTarefas.SelectedItem;
-            
+
             if (tarefaSelecionada == null)
             {
                 MessageBox.Show("Selecione uma tarefa primeiro",
@@ -76,7 +76,7 @@ namespace GestaoTarefas.WinApp
 
             DialogResult resultado = MessageBox.Show("Deseja realmente excluir a tarefa?",
                 "Exclusão de Tarefas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                
+
             if (resultado == DialogResult.OK)
             {
                 repositorioTarefa.Excluir(tarefaSelecionada);
@@ -103,6 +103,28 @@ namespace GestaoTarefas.WinApp
 
                 repositorioTarefa.AdicionarItens(tarefaSelecionada, itens);
 
+                CarregarTarefas();
+            }
+        }
+
+        private void btnAtualizarItens_Click(object sender, System.EventArgs e)
+        {
+            Tarefa tarefaSelecionada = (Tarefa)listTarefas.SelectedItem;
+
+            if (tarefaSelecionada == null)
+            {
+                MessageBox.Show("Selecione uma tarefa primeiro",
+                "Edição de Tarefas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            AtualizacaoItensTarefa tela = new AtualizacaoItensTarefa(tarefaSelecionada);
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                List<ItemTarefa> itensConcluidos = tela.ItensConcluidos;
+
+                repositorioTarefa.AtualizarItens(tarefaSelecionada, itensConcluidos);
                 CarregarTarefas();
             }
         }

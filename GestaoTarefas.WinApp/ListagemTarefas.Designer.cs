@@ -84,6 +84,7 @@
             this.btnAtualizarItens.TabIndex = 4;
             this.btnAtualizarItens.Text = "Atualizar Itens";
             this.btnAtualizarItens.UseVisualStyleBackColor = true;
+            this.btnAtualizarItens.Click += new System.EventHandler(this.btnAtualizarItens_Click);
             // 
             // listTarefas
             // 

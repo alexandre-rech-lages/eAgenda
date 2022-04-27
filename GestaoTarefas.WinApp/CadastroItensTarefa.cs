@@ -12,16 +12,20 @@ namespace GestaoTarefas.WinApp
 {
     public partial class CadastroItensTarefa : Form
     {
+        private readonly Tarefa tarefa;
+
         public CadastroItensTarefa(Tarefa tarefa)
         {
             InitializeComponent();
+            
+            this.tarefa = tarefa;
 
             labelTituloTarefa.Text = tarefa.Titulo;
 
             foreach (ItemTarefa item in tarefa.Itens)
             {
                 listItensTarefa.Items.Add(item);
-            }
+            }            
         }
 
         public List<ItemTarefa> ItensAdicionados 
@@ -33,12 +37,17 @@ namespace GestaoTarefas.WinApp
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
-        {
-            ItemTarefa itemTarefa = new ItemTarefa();
+        {            
+            List<string> titulos = ItensAdicionados.Select(x => x.Titulo).ToList();
 
-            itemTarefa.Titulo = txtTituloItem.Text;
+            if (titulos.Count == 0 || titulos.Contains(txtTituloItem.Text) == false)
+            {
+                ItemTarefa itemTarefa = new ItemTarefa();
 
-            listItensTarefa.Items.Add(itemTarefa);
+                itemTarefa.Titulo = txtTituloItem.Text;
+
+                listItensTarefa.Items.Add(itemTarefa);
+            }
         }
     }
 }
