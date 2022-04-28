@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GestaoTarefas.WinApp
+namespace GestaoTarefas.Dominio
 {
     [Serializable]
     public class Tarefa

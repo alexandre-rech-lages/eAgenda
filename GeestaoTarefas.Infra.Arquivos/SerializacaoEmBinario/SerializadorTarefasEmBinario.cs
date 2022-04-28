@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestaoTarefas.Dominio;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GestaoTarefas.WinApp
+namespace GestaoTarefas.Infra.Arquivos
 {
     public class SerializadorTarefasEmBinario : ISerializadorTarefas
     {

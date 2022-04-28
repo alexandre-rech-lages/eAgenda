@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GestaoTarefas.WinApp
+namespace GestaoTarefas.Dominio
 {
     [Serializable]
     public class ItemTarefa

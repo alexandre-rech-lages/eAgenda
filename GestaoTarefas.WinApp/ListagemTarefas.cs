@@ -1,18 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using GestaoTarefas.Dominio;
+using GestaoTarefas.Infra.Arquivos;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace GestaoTarefas.WinApp
 {
     public partial class ListagemTarefas : Form
     {
-        private RepositorioTarefa repositorioTarefa;
+        private IRepositorioTarefa repositorioTarefa;
+
         public ListagemTarefas()
         {
             //SerializadorTarefasEmBinario serializador = new SerializadorTarefasEmBinario();
 
-            SerializadorTarefasEmXml serializador = new SerializadorTarefasEmXml();
+            //SerializadorTarefasEmXml serializador = new SerializadorTarefasEmXml();
 
-            repositorioTarefa = new RepositorioTarefa(serializador);
+            //SerializadorTarefasEmJson serializador = new SerializadorTarefasEmJson();
+
+            SerializadorTarefasEmJsonDotnet serializador = new SerializadorTarefasEmJsonDotnet();
+
+            repositorioTarefa = new RepositorioTarefaEmArquivo(serializador);
 
             InitializeComponent();
             CarregarTarefas();

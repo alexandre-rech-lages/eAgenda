@@ -1,27 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using GestaoTarefas.Dominio;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace GestaoTarefas.WinApp
+namespace GestaoTarefas.Infra.Arquivos
 {
-    public class RepositorioTarefa
+    public class RepositorioTarefaEmArquivo : IRepositorioTarefa
     {
-        
+
         private readonly ISerializadorTarefas serializador;
         List<Tarefa> tarefas;
-        private int contador=0;
+        private int contador = 0;
 
-        public RepositorioTarefa(ISerializadorTarefas serializador)
+        public RepositorioTarefaEmArquivo(ISerializadorTarefas serializador)
         {
             this.serializador = serializador;
 
             tarefas = serializador.CarregarTarefasDoArquivo();
 
             if (tarefas.Count > 0)
-                contador = tarefas.Max(x => x.Numero);            
+                contador = tarefas.Max(x => x.Numero);
         }
 
         public List<Tarefa> SelecionarTodos()
-        {            
+        {
             return tarefas;
         }
 
@@ -64,7 +65,7 @@ namespace GestaoTarefas.WinApp
             serializador.GravarTarefasEmArquivo(tarefas);
         }
 
-        public void AtualizarItens(Tarefa tarefaSelecionada, 
+        public void AtualizarItens(Tarefa tarefaSelecionada,
             List<ItemTarefa> itensConcluidos, List<ItemTarefa> itensPendentes)
         {
             foreach (var item in itensConcluidos)
@@ -81,6 +82,6 @@ namespace GestaoTarefas.WinApp
         }
 
 
-        
+
     }
 }
