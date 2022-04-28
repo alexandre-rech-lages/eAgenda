@@ -81,7 +81,14 @@ namespace GestaoTarefas.Infra.Arquivos
             serializador.GravarTarefasEmArquivo(tarefas);
         }
 
+        public List<Tarefa> SelecionarTarefasConcluidas()
+        {
+            return tarefas.Where(x => x.CalcularPercentualConcluido() == 100).ToList();
+        }
 
-
+        public List<Tarefa> SelecionarTarefasPendentes()
+        {
+            return tarefas.Where(x => x.CalcularPercentualConcluido() < 100).ToList();
+        }
     }
 }

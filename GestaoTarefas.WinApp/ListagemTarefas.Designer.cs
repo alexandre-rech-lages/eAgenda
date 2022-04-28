@@ -33,7 +33,14 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnCadastrarItens = new System.Windows.Forms.Button();
             this.btnAtualizarItens = new System.Windows.Forms.Button();
-            this.listTarefas = new System.Windows.Forms.ListBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listTarefasPendentes = new System.Windows.Forms.ListBox();
+            this.listTarefasConcluidas = new System.Windows.Forms.ListBox();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnInserir
@@ -86,21 +93,62 @@
             this.btnAtualizarItens.UseVisualStyleBackColor = true;
             this.btnAtualizarItens.Click += new System.EventHandler(this.btnAtualizarItens_Click);
             // 
-            // listTarefas
+            // tabControl1
             // 
-            this.listTarefas.FormattingEnabled = true;
-            this.listTarefas.ItemHeight = 15;
-            this.listTarefas.Location = new System.Drawing.Point(14, 70);
-            this.listTarefas.Name = "listTarefas";
-            this.listTarefas.Size = new System.Drawing.Size(564, 274);
-            this.listTarefas.TabIndex = 5;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(14, 67);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(537, 256);
+            this.tabControl1.TabIndex = 6;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.listTarefasPendentes);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(529, 228);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Tarefas Pendentes";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.listTarefasConcluidas);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(529, 228);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Tarefas Concluídas";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // listTarefasPendentes
+            // 
+            this.listTarefasPendentes.FormattingEnabled = true;
+            this.listTarefasPendentes.ItemHeight = 15;
+            this.listTarefasPendentes.Location = new System.Drawing.Point(6, 15);
+            this.listTarefasPendentes.Name = "listTarefasPendentes";
+            this.listTarefasPendentes.Size = new System.Drawing.Size(508, 199);
+            this.listTarefasPendentes.TabIndex = 6;
+            // 
+            // listTarefasConcluidas
+            // 
+            this.listTarefasConcluidas.FormattingEnabled = true;
+            this.listTarefasConcluidas.ItemHeight = 15;
+            this.listTarefasConcluidas.Location = new System.Drawing.Point(10, 15);
+            this.listTarefasConcluidas.Name = "listTarefasConcluidas";
+            this.listTarefasConcluidas.Size = new System.Drawing.Size(508, 199);
+            this.listTarefasConcluidas.TabIndex = 7;
             // 
             // ListagemTarefas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 365);
-            this.Controls.Add(this.listTarefas);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnAtualizarItens);
             this.Controls.Add(this.btnCadastrarItens);
             this.Controls.Add(this.btnExcluir);
@@ -111,6 +159,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão de Tarefas 1.0";
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -122,6 +173,10 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnCadastrarItens;
         private System.Windows.Forms.Button btnAtualizarItens;
-        private System.Windows.Forms.ListBox listTarefas;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.ListBox listTarefasPendentes;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListBox listTarefasConcluidas;
     }
 }

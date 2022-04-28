@@ -11,5 +11,9 @@ namespace GestaoTarefas.Dominio
         void Inserir(Tarefa novaTarefa);
         List<Tarefa> SelecionarTodos();
 
+        List<Tarefa> SelecionarTarefasConcluidas();
+
+        List<Tarefa> SelecionarTarefasPendentes();
+
     }
 }

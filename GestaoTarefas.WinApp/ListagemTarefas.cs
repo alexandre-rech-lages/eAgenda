@@ -27,13 +27,22 @@ namespace GestaoTarefas.WinApp
 
         private void CarregarTarefas()
         {
-            List<Tarefa> tarefas = repositorioTarefa.SelecionarTodos();
+            List<Tarefa> tarefasConcluidas = repositorioTarefa.SelecionarTarefasConcluidas();
 
-            listTarefas.Items.Clear();
+            listTarefasConcluidas.Items.Clear();
 
-            foreach (Tarefa t in tarefas)
+            foreach (Tarefa t in tarefasConcluidas)
             {
-                listTarefas.Items.Add(t);
+                listTarefasConcluidas.Items.Add(t);
+            }
+
+            List<Tarefa> tarefasPendentes = repositorioTarefa.SelecionarTarefasPendentes();
+
+            listTarefasPendentes.Items.Clear();
+
+            foreach (Tarefa t in tarefasPendentes)
+            {
+                listTarefasPendentes.Items.Add(t);
             }
         }
 
@@ -53,7 +62,8 @@ namespace GestaoTarefas.WinApp
 
         private void btnEditar_Click(object sender, System.EventArgs e)
         {
-            Tarefa tarefaSelecionada = (Tarefa)listTarefas.SelectedItem;
+
+            Tarefa tarefaSelecionada = (Tarefa)listTarefasPendentes.SelectedItem;
 
             if (tarefaSelecionada == null)
             {
@@ -77,7 +87,7 @@ namespace GestaoTarefas.WinApp
 
         private void btnExcluir_Click(object sender, System.EventArgs e)
         {
-            Tarefa tarefaSelecionada = (Tarefa)listTarefas.SelectedItem;
+            Tarefa tarefaSelecionada = (Tarefa)listTarefasPendentes.SelectedItem;
 
             if (tarefaSelecionada == null)
             {
@@ -98,7 +108,7 @@ namespace GestaoTarefas.WinApp
 
         private void btnCadastrarItens_Click(object sender, System.EventArgs e)
         {
-            Tarefa tarefaSelecionada = (Tarefa)listTarefas.SelectedItem;
+            Tarefa tarefaSelecionada = (Tarefa)listTarefasPendentes.SelectedItem;
 
             if (tarefaSelecionada == null)
             {
@@ -121,7 +131,7 @@ namespace GestaoTarefas.WinApp
 
         private void btnAtualizarItens_Click(object sender, System.EventArgs e)
         {
-            Tarefa tarefaSelecionada = (Tarefa)listTarefas.SelectedItem;
+            Tarefa tarefaSelecionada = (Tarefa)listTarefasPendentes.SelectedItem;
 
             if (tarefaSelecionada == null)
             {
