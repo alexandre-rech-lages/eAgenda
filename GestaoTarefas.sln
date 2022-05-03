@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoTarefas.ConsoleApp", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoTarefas.Dominio", "GestaoTarefas.Dominio\GestaoTarefas.Dominio.csproj", "{F2FB27A4-016E-4FFB-AB03-7D06502A1F33}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresetação", "1 - Apresetação", "{0677DC2E-0311-4DA6-88B9-65F0A5C2F9EB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresentação", "1 - Apresentação", "{0677DC2E-0311-4DA6-88B9-65F0A5C2F9EB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Dominio", "2 - Dominio", "{CEC6F850-DA8A-488D-A220-CED861879666}"
 EndProject
