@@ -9,13 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp
+namespace GestaoTarefas.WinApp.ModuloTarefas
 {
-    public partial class AtualizacaoItensTarefa : Form
+    public partial class TelaAtualizacaoItensTarefaForm : Form
     {
         private readonly Tarefa tarefa;
 
-        public AtualizacaoItensTarefa(Tarefa tarefa)
+        public TelaAtualizacaoItensTarefaForm(Tarefa tarefa)
         {
             InitializeComponent();
             this.tarefa = tarefa;

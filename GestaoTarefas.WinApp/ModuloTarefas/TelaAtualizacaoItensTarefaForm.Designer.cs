@@ -1,6 +1,6 @@
-﻿namespace GestaoTarefas.WinApp
+﻿namespace GestaoTarefas.WinApp.ModuloTarefas
 {
-    partial class AtualizacaoItensTarefa
+    partial class TelaAtualizacaoItensTarefaForm
     {
         /// <summary>
         /// Required designer variable.

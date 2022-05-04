@@ -1,6 +1,6 @@
-﻿namespace GestaoTarefas.WinApp
+﻿namespace GestaoTarefas.WinApp.ModuloTarefas
 {
-    partial class CadastroItensTarefa
+    partial class TelaCadastroItensTarefaForm
     {
         /// <summary>
         /// Required designer variable.

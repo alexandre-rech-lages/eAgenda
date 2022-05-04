@@ -5,7 +5,7 @@ using System.Linq;
 namespace GestaoTarefas.Dominio
 {
     [Serializable]
-    public class Tarefa
+    public class Tarefa //Model
     {
         private List<ItemTarefa> itens = new List<ItemTarefa>();
 

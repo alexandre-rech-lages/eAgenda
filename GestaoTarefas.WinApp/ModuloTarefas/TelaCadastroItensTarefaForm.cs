@@ -9,13 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp
+namespace GestaoTarefas.WinApp.ModuloTarefas
 {
-    public partial class CadastroItensTarefa : Form
+    public partial class TelaCadastroItensTarefaForm : Form
     {
         private readonly Tarefa tarefa;
 
-        public CadastroItensTarefa(Tarefa tarefa)
+        public TelaCadastroItensTarefaForm(Tarefa tarefa)
         {
             InitializeComponent();
             

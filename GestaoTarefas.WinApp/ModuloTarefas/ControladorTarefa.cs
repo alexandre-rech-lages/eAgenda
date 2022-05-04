@@ -1,54 +1,27 @@
 ﻿using GestaoTarefas.Dominio;
-using GestaoTarefas.Infra.Arquivos;
+using GestaoTarefas.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp
+namespace GestaoTarefas.WinApp.ModuloTarefas
 {
-    public partial class ListagemTarefas : Form
+    public class ControladorTarefa : ControladorBase
     {
         private IRepositorioTarefa repositorioTarefa;
+        private ListagemTarefasControl listagemTarefas;
 
-        public ListagemTarefas()
+        public ControladorTarefa(IRepositorioTarefa repositorioTarefa, ListagemTarefasControl listagemTarefas)
         {
-            //SerializadorTarefasEmBinario serializador = new SerializadorTarefasEmBinario();
-
-            //SerializadorTarefasEmXml serializador = new SerializadorTarefasEmXml();
-
-            //SerializadorTarefasEmJson serializador = new SerializadorTarefasEmJson();
-
-            SerializadorTarefasEmJsonDotnet serializador = new SerializadorTarefasEmJsonDotnet();
-
-            repositorioTarefa = new RepositorioTarefaEmArquivo(serializador);
-
-            InitializeComponent();
-            CarregarTarefas();
+            this.repositorioTarefa = repositorioTarefa;
+            this.listagemTarefas = listagemTarefas;
         }
-
-        private void CarregarTarefas()
+        public override void Inserir()
         {
-            List<Tarefa> tarefasConcluidas = repositorioTarefa.SelecionarTarefasConcluidas();
-
-            listTarefasConcluidas.Items.Clear();
-
-            foreach (Tarefa t in tarefasConcluidas)
-            {
-                listTarefasConcluidas.Items.Add(t);
-            }
-
-            List<Tarefa> tarefasPendentes = repositorioTarefa.SelecionarTarefasPendentes();
-
-            listTarefasPendentes.Items.Clear();
-
-            foreach (Tarefa t in tarefasPendentes)
-            {
-                listTarefasPendentes.Items.Add(t);
-            }
-        }
-
-        private void btnInserir_Click(object sender, System.EventArgs e)
-        {
-            CadastroTarefas tela = new CadastroTarefas();
+            TelaCadastroTarefasForm tela = new TelaCadastroTarefasForm();
             tela.Tarefa = new Tarefa();
 
             DialogResult resultado = tela.ShowDialog();
@@ -56,14 +29,13 @@ namespace GestaoTarefas.WinApp
             if (resultado == DialogResult.OK)
             {
                 repositorioTarefa.Inserir(tela.Tarefa);
+
                 CarregarTarefas();
             }
         }
-
-        private void btnEditar_Click(object sender, System.EventArgs e)
+        public override void Editar()
         {
-
-            Tarefa tarefaSelecionada = (Tarefa)listTarefasPendentes.SelectedItem;
+            Tarefa tarefaSelecionada = listagemTarefas.ObtemTarefaSelecionada();
 
             if (tarefaSelecionada == null)
             {
@@ -72,7 +44,7 @@ namespace GestaoTarefas.WinApp
                 return;
             }
 
-            CadastroTarefas tela = new CadastroTarefas();
+            TelaCadastroTarefasForm tela = new TelaCadastroTarefasForm();
 
             tela.Tarefa = tarefaSelecionada;
 
@@ -83,11 +55,10 @@ namespace GestaoTarefas.WinApp
                 repositorioTarefa.Editar(tela.Tarefa);
                 CarregarTarefas();
             }
-        }
-
-        private void btnExcluir_Click(object sender, System.EventArgs e)
+        }        
+        public override void Excluir()
         {
-            Tarefa tarefaSelecionada = (Tarefa)listTarefasPendentes.SelectedItem;
+            Tarefa tarefaSelecionada = listagemTarefas.ObtemTarefaSelecionada();
 
             if (tarefaSelecionada == null)
             {
@@ -106,9 +77,9 @@ namespace GestaoTarefas.WinApp
             }
         }
 
-        private void btnCadastrarItens_Click(object sender, System.EventArgs e)
+        public override void AdicionarItens()
         {
-            Tarefa tarefaSelecionada = (Tarefa)listTarefasPendentes.SelectedItem;
+            Tarefa tarefaSelecionada = listagemTarefas.ObtemTarefaSelecionada();
 
             if (tarefaSelecionada == null)
             {
@@ -117,7 +88,7 @@ namespace GestaoTarefas.WinApp
                 return;
             }
 
-            CadastroItensTarefa tela = new CadastroItensTarefa(tarefaSelecionada);
+            TelaCadastroItensTarefaForm tela = new TelaCadastroItensTarefaForm(tarefaSelecionada);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -129,9 +100,9 @@ namespace GestaoTarefas.WinApp
             }
         }
 
-        private void btnAtualizarItens_Click(object sender, System.EventArgs e)
+        public override void AtualizarItens()
         {
-            Tarefa tarefaSelecionada = (Tarefa)listTarefasPendentes.SelectedItem;
+            Tarefa tarefaSelecionada = listagemTarefas.ObtemTarefaSelecionada();
 
             if (tarefaSelecionada == null)
             {
@@ -140,7 +111,7 @@ namespace GestaoTarefas.WinApp
                 return;
             }
 
-            AtualizacaoItensTarefa tela = new AtualizacaoItensTarefa(tarefaSelecionada);
+            TelaAtualizacaoItensTarefaForm tela = new TelaAtualizacaoItensTarefaForm(tarefaSelecionada);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -152,5 +123,15 @@ namespace GestaoTarefas.WinApp
                 CarregarTarefas();
             }
         }
+
+        private void CarregarTarefas()
+        {
+            var tarefasPendentes = repositorioTarefa.SelecionarTarefasPendentes();
+
+            var tarefasConcluidas = repositorioTarefa.SelecionarTarefasConcluidas();
+
+            listagemTarefas.AtualizarRegistros(tarefasPendentes, tarefasConcluidas);
+        }
+
     }
 }
