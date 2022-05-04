@@ -1,4 +1,5 @@
-﻿using GestaoTarefas.Dominio;
+﻿using GeestaoTarefas.Infra.Arquivos;
+using GestaoTarefas.Dominio;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,36 +8,39 @@ namespace GestaoTarefas.Infra.Arquivos
     public class RepositorioTarefaEmArquivo : IRepositorioTarefa
     {
 
-        private readonly ISerializadorTarefas serializador;
-        List<Tarefa> tarefas;
+        private readonly ISerializador serializador;
+        private readonly DataContext dataContext;
+        //List<Tarefa> tarefas;
         private int contador = 0;
 
-        public RepositorioTarefaEmArquivo(ISerializadorTarefas serializador)
+
+        public RepositorioTarefaEmArquivo(ISerializador serializador, DataContext dataContext)
         {
             this.serializador = serializador;
+            this.dataContext = dataContext;
 
-            tarefas = serializador.CarregarTarefasDoArquivo();
+            dataContext.Tarefas.AddRange( serializador.CarregarDadosDoArquivo().Tarefas);
 
-            if (tarefas.Count > 0)
-                contador = tarefas.Max(x => x.Numero);
+            //if (tarefas.Count > 0)
+            //    contador = tarefas.Max(x => x.Numero);            
         }
 
         public List<Tarefa> SelecionarTodos()
         {
-            return tarefas;
+            return dataContext.Tarefas;
         }
 
         public void Inserir(Tarefa novaTarefa)
         {
             novaTarefa.Numero = ++contador;
-            tarefas.Add(novaTarefa);
+            dataContext.Tarefas.Add(novaTarefa);
 
-            serializador.GravarTarefasEmArquivo(tarefas);
+            serializador.GravarDadosEmArquivo(dataContext);
         }
 
         public void Editar(Tarefa tarefa)
         {
-            foreach (var item in tarefas)
+            foreach (var item in dataContext.Tarefas)
             {
                 if (item.Numero == tarefa.Numero)
                 {
@@ -45,14 +49,14 @@ namespace GestaoTarefas.Infra.Arquivos
                 }
             }
 
-            serializador.GravarTarefasEmArquivo(tarefas);
+            serializador.GravarDadosEmArquivo(dataContext);
         }
 
         public void Excluir(Tarefa tarefa)
         {
-            tarefas.Remove(tarefa);
+            dataContext.Tarefas.Remove(tarefa);
 
-            serializador.GravarTarefasEmArquivo(tarefas);
+            serializador.GravarDadosEmArquivo(dataContext);
         }
 
         public void AdicionarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itens)
@@ -62,7 +66,7 @@ namespace GestaoTarefas.Infra.Arquivos
                 tarefaSelecionada.AdicionarItem(item);
             }
 
-            serializador.GravarTarefasEmArquivo(tarefas);
+            serializador.GravarDadosEmArquivo(dataContext);
         }
 
         public void AtualizarItens(Tarefa tarefaSelecionada,
@@ -78,17 +82,17 @@ namespace GestaoTarefas.Infra.Arquivos
                 tarefaSelecionada.MarcarPendente(item);
             }
 
-            serializador.GravarTarefasEmArquivo(tarefas);
+            serializador.GravarDadosEmArquivo(dataContext);
         }
 
         public List<Tarefa> SelecionarTarefasConcluidas()
         {
-            return tarefas.Where(x => x.CalcularPercentualConcluido() == 100).ToList();
+            return dataContext.Tarefas.Where(x => x.CalcularPercentualConcluido() == 100).ToList();
         }
 
         public List<Tarefa> SelecionarTarefasPendentes()
         {
-            return tarefas.Where(x => x.CalcularPercentualConcluido() < 100).ToList();
+            return dataContext.Tarefas.Where(x => x.CalcularPercentualConcluido() < 100).ToList();
         }
     }
 }

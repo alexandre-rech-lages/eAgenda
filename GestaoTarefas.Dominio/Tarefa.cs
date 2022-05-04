@@ -10,6 +10,9 @@ namespace GestaoTarefas.Dominio
     {
         private List<ItemTarefa> itens = new List<ItemTarefa>();
 
+        public Contato ContatoSelecionado { get; set; }
+
+
         public Tarefa()
         {
             DataCriacao = DateTime.Now;

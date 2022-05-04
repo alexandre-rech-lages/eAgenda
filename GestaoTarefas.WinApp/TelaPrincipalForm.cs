@@ -12,12 +12,15 @@ using System.Windows.Forms;
 using GestaoTarefas.Dominio;
 using GestaoTarefas.Infra.Arquivos;
 using GestaoTarefas.WinApp.Compartilhado;
+using GeestaoTarefas.Infra.Arquivos;
+using GeestaoTarefas.Infra.Arquivos.SerializacaoEmJson;
 
 namespace GestaoTarefas.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {
         private IRepositorioTarefa repositorioTarefa;
+        private IRepositorioContato repositorioContato;
 
         private ControladorBase controlador;
 
@@ -25,8 +28,13 @@ namespace GestaoTarefas.WinApp
         {
             InitializeComponent();
 
-            ISerializadorTarefas serializador = new SerializadorTarefasEmJsonDotnet();
-            repositorioTarefa = new RepositorioTarefaEmArquivo(serializador);
+            ISerializador serializador = new SerializadorDadosEmJsonDotnet();
+
+            DataContext contextoDados = new DataContext();    
+
+            repositorioTarefa = new RepositorioTarefaEmArquivo(serializador, contextoDados);
+
+            repositorioContato = new RepositorioContatoEmArquivo(serializador, contextoDados);
         }
 
         private void tarefasMenuItem_Click(object sender, EventArgs e)
