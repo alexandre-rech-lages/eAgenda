@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace GestaoTarefas.Dominio
 {
@@ -77,6 +78,21 @@ namespace GestaoTarefas.Dominio
             return Math.Round(percentualConcluido, 2);
         }
 
+        public string Validar()
+        {
+            StringBuilder resultadoValidacao = new StringBuilder();
+
+            if (string.IsNullOrEmpty(Titulo))
+                resultadoValidacao.AppendLine("O campo Título é obrigatório");
+
+            if (DataCriacao == DateTime.MinValue)
+                resultadoValidacao.AppendLine("O campo Data de Criação é obrigatório");
+
+            if (resultadoValidacao.Length == 0)
+                resultadoValidacao.AppendLine("ESTA_VALIDO");
+
+            return resultadoValidacao.ToString();
+        }
 
     }
 }

@@ -40,31 +40,6 @@ namespace GestaoTarefas.WinApp
             CarregarListagemTarefas(listagem);
         }
 
-        private void ConfigurarToolbox(ConfiguracaoToolboxBase configuracao)
-        {
-            ConfigurandoTooltips(configuracao);
-
-            ConfigurandoBotoes(configuracao);
-        }
-
-        private void ConfigurandoBotoes(ConfiguracaoToolboxBase configuracao)
-        {
-            btnInserir.Enabled = configuracao.InserirHabilitado;
-            btnEditar.Enabled = configuracao.EditarHabilitado;
-            btnExcluir.Enabled = configuracao.ExcluirHabilitado;
-            btnAdicionarItens.Enabled = configuracao.AdicionarItensHabilitado;
-            btnAtualizarItens.Enabled = configuracao.AtualizarItensHabilitado;
-        }
-
-        private void ConfigurandoTooltips(ConfiguracaoToolboxBase configuracao)
-        {
-            btnInserir.ToolTipText = configuracao.TooltipInserir;
-            btnEditar.ToolTipText = configuracao.TooltipEditar;
-            btnExcluir.ToolTipText = configuracao.TooltipExcluir;
-            btnAdicionarItens.ToolTipText = configuracao.TooltipAdicionarItens;
-            btnAtualizarItens.ToolTipText = configuracao.TooltipAtualizarItens;
-        }
-
         private void contatosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarToolbox(new ConfiguracaoToolboxContato());
@@ -80,29 +55,9 @@ namespace GestaoTarefas.WinApp
             panelRegistros.Controls.Add(listagem);
         }
 
-        private void compromissosMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();
-        }
-
-
-        private void CarregarListagemTarefas(ListagemTarefasControl listagem)
-        {
-            var tarefasPendentes = repositorioTarefa.SelecionarTarefasPendentes();
-
-            var tarefasConcluidas = repositorioTarefa.SelecionarTarefasConcluidas();
-
-            listagem.AtualizarRegistros(tarefasPendentes, tarefasConcluidas);
-
-            listagem.Dock = DockStyle.Fill;
-
-            panelRegistros.Controls.Clear();
-            panelRegistros.Controls.Add(listagem);
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -123,6 +78,45 @@ namespace GestaoTarefas.WinApp
         private void btnAtualizarItens_Click(object sender, EventArgs e)
         {
             controlador.AtualizarItens();
+        }
+
+        private void ConfigurarToolbox(ConfiguracaoToolboxBase configuracao)
+        {
+            ConfigurandoTooltips(configuracao);
+
+            ConfigurandoBotoes(configuracao);
+        }
+        
+        private void ConfigurandoBotoes(ConfiguracaoToolboxBase configuracao)
+        {
+            btnInserir.Enabled = configuracao.InserirHabilitado;
+            btnEditar.Enabled = configuracao.EditarHabilitado;
+            btnExcluir.Enabled = configuracao.ExcluirHabilitado;
+            btnAdicionarItens.Enabled = configuracao.AdicionarItensHabilitado;
+            btnAtualizarItens.Enabled = configuracao.AtualizarItensHabilitado;
+        }
+        
+        private void ConfigurandoTooltips(ConfiguracaoToolboxBase configuracao)
+        {
+            btnInserir.ToolTipText = configuracao.TooltipInserir;
+            btnEditar.ToolTipText = configuracao.TooltipEditar;
+            btnExcluir.ToolTipText = configuracao.TooltipExcluir;
+            btnAdicionarItens.ToolTipText = configuracao.TooltipAdicionarItens;
+            btnAtualizarItens.ToolTipText = configuracao.TooltipAtualizarItens;
+        }
+        
+        private void CarregarListagemTarefas(ListagemTarefasControl listagem)
+        {
+            var tarefasPendentes = repositorioTarefa.SelecionarTarefasPendentes();
+
+            var tarefasConcluidas = repositorioTarefa.SelecionarTarefasConcluidas();
+
+            listagem.AtualizarRegistros(tarefasPendentes, tarefasConcluidas);
+
+            listagem.Dock = DockStyle.Fill;
+
+            panelRegistros.Controls.Clear();
+            panelRegistros.Controls.Add(listagem);
         }
     }
 }

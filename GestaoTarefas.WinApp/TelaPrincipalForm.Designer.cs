@@ -87,7 +87,6 @@
             this.compromissosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
             this.compromissosMenuItem.Size = new System.Drawing.Size(173, 22);
             this.compromissosMenuItem.Text = "Compromissos";
-            this.compromissosMenuItem.Click += new System.EventHandler(this.compromissosMenuItem_Click);
             // 
             // toolStrip1
             // 
