@@ -1,35 +1,30 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GeestaoTarefas.Infra.Arquivos;
+using GestaoTarefas.Infra.Arquivos;
+using GestaoTarefas.WinApp.Compartilhado;
+using GestaoTarefas.WinApp.ModuloCompromisso;
 using GestaoTarefas.WinApp.ModuloContatos;
 using GestaoTarefas.WinApp.ModuloTarefas;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using GestaoTarefas.Dominio;
-using GestaoTarefas.Infra.Arquivos;
-using GestaoTarefas.WinApp.Compartilhado;
-using GeestaoTarefas.Infra.Arquivos;
-using GeestaoTarefas.Infra.Arquivos.SerializacaoEmJson;
-using GestaoTarefas.WinApp.ModuloCompromisso;
 
 namespace GestaoTarefas.WinApp
 {
     public partial class TelaPrincipalForm : Form
-    {        
+    {
         private ControladorBase controlador;
         private Dictionary<string, ControladorBase> controladores;
-        
-        public TelaPrincipalForm()
+        private DataContext contextoDados;
+
+        public TelaPrincipalForm(DataContext contextoDados)
         {
             InitializeComponent();
 
+            this.contextoDados = contextoDados;
+
             InicializarControladores();
         }
-       
+
 
         private void tarefasMenuItem_Click(object sender, EventArgs e)
         {
@@ -95,7 +90,7 @@ namespace GestaoTarefas.WinApp
 
             ConfigurandoBotoes(configuracao);
         }
-        
+
         private void ConfigurandoBotoes(ConfiguracaoToolboxBase configuracao)
         {
             btnInserir.Enabled = configuracao.InserirHabilitado;
@@ -104,7 +99,7 @@ namespace GestaoTarefas.WinApp
             btnAdicionarItens.Enabled = configuracao.AdicionarItensHabilitado;
             btnAtualizarItens.Enabled = configuracao.AtualizarItensHabilitado;
         }
-        
+
         private void ConfigurandoTooltips(ConfiguracaoToolboxBase configuracao)
         {
             btnInserir.ToolTipText = configuracao.TooltipInserir;
@@ -115,7 +110,7 @@ namespace GestaoTarefas.WinApp
         }
 
         private void CarregarListagem()
-        {            
+        {
             var listagemControl = controlador.ObtemListagem();
 
             panelRegistros.Controls.Clear();
@@ -133,22 +128,18 @@ namespace GestaoTarefas.WinApp
         }
 
         private void InicializarControladores()
-        {           
+        {
+            var repositorioTarefa = new RepositorioTarefaEmArquivo(contextoDados);
+            var repositorioContato = new RepositorioContatoEmArquivo(contextoDados);
+
             controladores = new Dictionary<string, ControladorBase>();
-
-            var serializador = new SerializadorDadosEmJsonDotnet();
-
-            var contextoDados = new DataContext();
-
-            var repositorioTarefa = new RepositorioTarefaEmArquivo(serializador, contextoDados);
-
             controladores.Add("Tarefas", new ControladorTarefa(repositorioTarefa));
-
-            var repositorioContato = new RepositorioContatoEmArquivo(serializador, contextoDados);
-
             controladores.Add("Contatos", new ControladorContato(repositorioContato));
         }
 
-       
+        private void praDarPauToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

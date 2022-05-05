@@ -1,10 +1,6 @@
 ﻿using GestaoTarefas.Dominio;
 using GestaoTarefas.WinApp.Compartilhado;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GestaoTarefas.WinApp.ModuloTarefas
@@ -16,9 +12,9 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
 
         public ControladorTarefa(IRepositorioTarefa repositorioTarefa)
         {
-            this.repositorioTarefa = repositorioTarefa;            
+            this.repositorioTarefa = repositorioTarefa;
         }
-        
+
         public override void Inserir()
         {
             TelaCadastroTarefasForm tela = new TelaCadastroTarefasForm();
@@ -56,7 +52,7 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
                 repositorioTarefa.Editar(tela.Tarefa);
                 CarregarTarefas();
             }
-        }        
+        }
         public override void Excluir()
         {
             Tarefa tarefaSelecionada = listagemTarefas.ObtemTarefaSelecionada();
@@ -124,11 +120,13 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
                 CarregarTarefas();
             }
         }
-      
+
         public override UserControl ObtemListagem()
         {
             if (listagemTarefas == null)
                 listagemTarefas = new ListagemTarefasControl();
+
+            CarregarTarefas();
 
             return listagemTarefas;
         }

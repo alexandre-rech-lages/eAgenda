@@ -1,9 +1,4 @@
 ﻿using GestaoTarefas.WinApp.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GestaoTarefas.WinApp.ModuloContatos
@@ -29,7 +24,7 @@ namespace GestaoTarefas.WinApp.ModuloContatos
             TelaCadastroContatoForm tela = new TelaCadastroContatoForm();
 
             tela.ShowDialog();
-        }        
+        }
         public override void Excluir()
         {
             System.Windows.Forms.MessageBox.Show("Não implmenentado");

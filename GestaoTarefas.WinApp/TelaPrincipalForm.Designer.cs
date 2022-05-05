@@ -41,6 +41,7 @@
             this.btnAtualizarItens = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.praDarPauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +61,8 @@
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tarefasMenuItem,
             this.contatosMenuItem,
-            this.compromissosMenuItem});
+            this.compromissosMenuItem,
+            this.praDarPauToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -177,6 +179,13 @@
             this.panelRegistros.Size = new System.Drawing.Size(544, 312);
             this.panelRegistros.TabIndex = 3;
             // 
+            // praDarPauToolStripMenuItem
+            // 
+            this.praDarPauToolStripMenuItem.Name = "praDarPauToolStripMenuItem";
+            this.praDarPauToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.praDarPauToolStripMenuItem.Text = "Pra dar pau";
+            this.praDarPauToolStripMenuItem.Click += new System.EventHandler(this.praDarPauToolStripMenuItem_Click);
+            // 
             // TelaPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -217,5 +226,6 @@
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripButton btnAdicionarItens;
         private System.Windows.Forms.ToolStripButton btnAtualizarItens;
+        private System.Windows.Forms.ToolStripMenuItem praDarPauToolStripMenuItem;
     }
 }

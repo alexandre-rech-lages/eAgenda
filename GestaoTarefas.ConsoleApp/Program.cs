@@ -9,7 +9,7 @@ namespace GestaoTarefas.ConsoleApp
         {
             Tarefa tarefa = new Tarefa();
 
-            
+
             Console.WriteLine("Hello World!");
         }
     }

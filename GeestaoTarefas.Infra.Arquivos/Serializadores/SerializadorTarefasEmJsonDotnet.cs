@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using GestaoTarefas.Dominio;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using GestaoTarefas.Dominio;
 
 namespace GestaoTarefas.Infra.Arquivos
 {

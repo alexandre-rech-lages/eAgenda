@@ -1,18 +1,14 @@
 ﻿using GestaoTarefas.Dominio;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestaoTarefas.Infra.Arquivos
 {
     public class SerializadorTarefasEmBinario : ISerializadorTarefas
     {
         private const string arquivoTarefas = @"C:\temp\tarefas.bin";
-        
+
         public void GravarTarefasEmArquivo(List<Tarefa> tarefas)
         {
             BinaryFormatter serializador = new BinaryFormatter();

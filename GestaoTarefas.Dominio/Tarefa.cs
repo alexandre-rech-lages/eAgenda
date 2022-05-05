@@ -6,7 +6,7 @@ using System.Text;
 namespace GestaoTarefas.Dominio
 {
     [Serializable]
-    public class Tarefa //Model
+    public class Tarefa : EntidadeBase<Tarefa>
     {
         private List<ItemTarefa> itens = new List<ItemTarefa>();
 
@@ -25,7 +25,6 @@ namespace GestaoTarefas.Dominio
             DataConclusao = null;
         }
 
-        public int Numero { get; set; }
         public string Titulo { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime? DataConclusao { get; set; }
@@ -97,5 +96,9 @@ namespace GestaoTarefas.Dominio
             return resultadoValidacao.ToString();
         }
 
+        public override void Atualizar(Tarefa registro)
+        {
+
+        }
     }
 }

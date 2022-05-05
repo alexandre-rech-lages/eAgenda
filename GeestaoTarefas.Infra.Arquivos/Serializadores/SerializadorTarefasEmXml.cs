@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using GestaoTarefas.Dominio;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using GestaoTarefas.Dominio;
 
 namespace GestaoTarefas.Infra.Arquivos
 {

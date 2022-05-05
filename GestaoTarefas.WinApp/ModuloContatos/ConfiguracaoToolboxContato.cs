@@ -1,9 +1,4 @@
 ﻿using GestaoTarefas.WinApp.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestaoTarefas.WinApp.ModuloContatos
 {
@@ -14,6 +9,6 @@ namespace GestaoTarefas.WinApp.ModuloContatos
         public override string TooltipEditar { get { return "Editar um contato existente"; } }
 
         public override string TooltipExcluir { get { return "Excluir um contato existente"; } }
-        
+
     }
 }

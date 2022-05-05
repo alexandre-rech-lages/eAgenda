@@ -8,7 +8,7 @@
 
         public abstract string TooltipExcluir { get; }
 
-        public virtual string TooltipAdicionarItens { get;}
+        public virtual string TooltipAdicionarItens { get; }
 
         public virtual string TooltipAtualizarItens { get; }
 
