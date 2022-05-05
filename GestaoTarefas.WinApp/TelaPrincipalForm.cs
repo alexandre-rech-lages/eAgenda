@@ -14,53 +14,54 @@ using GestaoTarefas.Infra.Arquivos;
 using GestaoTarefas.WinApp.Compartilhado;
 using GeestaoTarefas.Infra.Arquivos;
 using GeestaoTarefas.Infra.Arquivos.SerializacaoEmJson;
+using GestaoTarefas.WinApp.ModuloCompromisso;
 
 namespace GestaoTarefas.WinApp
 {
     public partial class TelaPrincipalForm : Form
-    {
-        private IRepositorioTarefa repositorioTarefa;
-        private IRepositorioContato repositorioContato;
-
+    {        
         private ControladorBase controlador;
-
+        private Dictionary<string, ControladorBase> controladores;
+        
         public TelaPrincipalForm()
         {
             InitializeComponent();
 
-            ISerializador serializador = new SerializadorDadosEmJsonDotnet();
-
-            DataContext contextoDados = new DataContext();    
-
-            repositorioTarefa = new RepositorioTarefaEmArquivo(serializador, contextoDados);
-
-            repositorioContato = new RepositorioContatoEmArquivo(serializador, contextoDados);
+            InicializarControladores();
         }
+       
 
         private void tarefasMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarToolbox(new ConfiguracaoToolboxTarefa());
 
-            ListagemTarefasControl listagem = new ListagemTarefasControl();
+            var opcaoSelecionada = (ToolStripMenuItem)sender;
 
-            controlador = new ControladorTarefa(repositorioTarefa, listagem);
+            SelecionarControlador(opcaoSelecionada);
 
-            CarregarListagemTarefas(listagem);
+            CarregarListagem();
         }
 
         private void contatosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarToolbox(new ConfiguracaoToolboxContato());
 
-            ListagemContatosControl listagem = new ListagemContatosControl();
+            var opcaoSelecionada = (ToolStripMenuItem)sender;
 
-            controlador = new ControladorContato();
+            SelecionarControlador(opcaoSelecionada);
 
-            panelRegistros.Controls.Clear();
+            CarregarListagem();
+        }
 
-            listagem.Dock = DockStyle.Fill;
+        private void compromissosMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarToolbox(new ConfiguracaoToolboxCompromisso());
 
-            panelRegistros.Controls.Add(listagem);
+            var opcaoSelecionada = (ToolStripMenuItem)sender;
+
+            SelecionarControlador(opcaoSelecionada);
+
+            CarregarListagem();
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
@@ -112,19 +113,42 @@ namespace GestaoTarefas.WinApp
             btnAdicionarItens.ToolTipText = configuracao.TooltipAdicionarItens;
             btnAtualizarItens.ToolTipText = configuracao.TooltipAtualizarItens;
         }
-        
-        private void CarregarListagemTarefas(ListagemTarefasControl listagem)
-        {
-            var tarefasPendentes = repositorioTarefa.SelecionarTarefasPendentes();
 
-            var tarefasConcluidas = repositorioTarefa.SelecionarTarefasConcluidas();
-
-            listagem.AtualizarRegistros(tarefasPendentes, tarefasConcluidas);
-
-            listagem.Dock = DockStyle.Fill;
+        private void CarregarListagem()
+        {            
+            var listagemControl = controlador.ObtemListagem();
 
             panelRegistros.Controls.Clear();
-            panelRegistros.Controls.Add(listagem);
+
+            listagemControl.Dock = DockStyle.Fill;
+
+            panelRegistros.Controls.Add(listagemControl);
         }
+
+        private void SelecionarControlador(ToolStripMenuItem opcaoSelecionada)
+        {
+            var tipo = opcaoSelecionada.Text;
+
+            controlador = controladores[tipo];
+        }
+
+        private void InicializarControladores()
+        {           
+            controladores = new Dictionary<string, ControladorBase>();
+
+            var serializador = new SerializadorDadosEmJsonDotnet();
+
+            var contextoDados = new DataContext();
+
+            var repositorioTarefa = new RepositorioTarefaEmArquivo(serializador, contextoDados);
+
+            controladores.Add("Tarefas", new ControladorTarefa(repositorioTarefa));
+
+            var repositorioContato = new RepositorioContatoEmArquivo(serializador, contextoDados);
+
+            controladores.Add("Contatos", new ControladorContato(repositorioContato));
+        }
+
+       
     }
 }

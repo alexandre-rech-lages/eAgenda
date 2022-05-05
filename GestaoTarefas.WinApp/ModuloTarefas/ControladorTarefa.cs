@@ -14,11 +14,11 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
         private IRepositorioTarefa repositorioTarefa;
         private ListagemTarefasControl listagemTarefas;
 
-        public ControladorTarefa(IRepositorioTarefa repositorioTarefa, ListagemTarefasControl listagemTarefas)
+        public ControladorTarefa(IRepositorioTarefa repositorioTarefa)
         {
-            this.repositorioTarefa = repositorioTarefa;
-            this.listagemTarefas = listagemTarefas;
+            this.repositorioTarefa = repositorioTarefa;            
         }
+        
         public override void Inserir()
         {
             TelaCadastroTarefasForm tela = new TelaCadastroTarefasForm();
@@ -33,6 +33,7 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
                 CarregarTarefas();
             }
         }
+
         public override void Editar()
         {
             Tarefa tarefaSelecionada = listagemTarefas.ObtemTarefaSelecionada();
@@ -123,6 +124,14 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
                 CarregarTarefas();
             }
         }
+      
+        public override UserControl ObtemListagem()
+        {
+            if (listagemTarefas == null)
+                listagemTarefas = new ListagemTarefasControl();
+
+            return listagemTarefas;
+        }
 
         private void CarregarTarefas()
         {
@@ -132,6 +141,5 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
 
             listagemTarefas.AtualizarRegistros(tarefasPendentes, tarefasConcluidas);
         }
-
     }
 }

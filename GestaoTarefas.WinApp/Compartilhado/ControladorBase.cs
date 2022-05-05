@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GestaoTarefas.WinApp.Compartilhado
 {
@@ -15,5 +16,7 @@ namespace GestaoTarefas.WinApp.Compartilhado
         public virtual void AdicionarItens() { }
 
         public virtual void AtualizarItens() { }
+
+        public abstract UserControl ObtemListagem();
     }
 }

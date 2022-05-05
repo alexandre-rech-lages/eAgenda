@@ -4,11 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GestaoTarefas.WinApp.ModuloContatos
 {
     internal class ControladorContato : ControladorBase
     {
+        private ListagemContatosControl listagemContatos;
+
+        public ControladorContato(Dominio.IRepositorioContato repositorioContato)
+        {
+
+        }
+
         public override void Inserir()
         {
             TelaCadastroContatoForm tela = new TelaCadastroContatoForm();
@@ -25,6 +33,14 @@ namespace GestaoTarefas.WinApp.ModuloContatos
         public override void Excluir()
         {
             System.Windows.Forms.MessageBox.Show("Não implmenentado");
+        }
+
+        public override UserControl ObtemListagem()
+        {
+            if (listagemContatos == null)
+                listagemContatos = new ListagemContatosControl();
+
+            return listagemContatos;
         }
     }
 }

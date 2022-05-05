@@ -69,7 +69,7 @@
             // 
             this.tarefasMenuItem.Name = "tarefasMenuItem";
             this.tarefasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.tarefasMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.tarefasMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tarefasMenuItem.Text = "Tarefas";
             this.tarefasMenuItem.Click += new System.EventHandler(this.tarefasMenuItem_Click);
             // 
@@ -77,7 +77,7 @@
             // 
             this.contatosMenuItem.Name = "contatosMenuItem";
             this.contatosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.contatosMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.contatosMenuItem.Size = new System.Drawing.Size(180, 22);
             this.contatosMenuItem.Text = "Contatos";
             this.contatosMenuItem.Click += new System.EventHandler(this.contatosMenuItem_Click);
             // 
@@ -85,8 +85,9 @@
             // 
             this.compromissosMenuItem.Name = "compromissosMenuItem";
             this.compromissosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.compromissosMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.compromissosMenuItem.Size = new System.Drawing.Size(180, 22);
             this.compromissosMenuItem.Text = "Compromissos";
+            this.compromissosMenuItem.Click += new System.EventHandler(this.compromissosMenuItem_Click);
             // 
             // toolStrip1
             // 
