@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GeestaoTarefas.Infra.Arquivos
+namespace GestaoTarefas.Infra.Arquivos
 {
     [Serializable]
     public class DataContext //Container

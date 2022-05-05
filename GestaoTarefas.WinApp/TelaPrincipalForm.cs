@@ -1,5 +1,4 @@
-﻿using GeestaoTarefas.Infra.Arquivos;
-using GestaoTarefas.Infra.Arquivos;
+﻿using GestaoTarefas.Infra.Arquivos;
 using GestaoTarefas.WinApp.Compartilhado;
 using GestaoTarefas.WinApp.ModuloCompromisso;
 using GestaoTarefas.WinApp.ModuloContatos;

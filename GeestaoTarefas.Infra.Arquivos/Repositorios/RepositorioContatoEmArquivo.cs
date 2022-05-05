@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GeestaoTarefas.Infra.Arquivos
+namespace GestaoTarefas.Infra.Arquivos
 {
     public class RepositorioContatoEmArquivo : RepositorioEmArquivoBase<Contato>, IRepositorioContato
     {

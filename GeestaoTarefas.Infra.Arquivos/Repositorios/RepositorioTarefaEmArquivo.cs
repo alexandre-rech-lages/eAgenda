@@ -1,5 +1,4 @@
-﻿using GeestaoTarefas.Infra.Arquivos;
-using GestaoTarefas.Dominio;
+﻿using GestaoTarefas.Dominio;
 using System.Collections.Generic;
 using System.Linq;
 

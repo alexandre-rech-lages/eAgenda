@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace GeestaoTarefas.Infra.Arquivos.SerializacaoEmJson
+namespace GestaoTarefas.Infra.Arquivos
 {
     public class SerializadorDadosEmJsonDotnet : ISerializador
     {

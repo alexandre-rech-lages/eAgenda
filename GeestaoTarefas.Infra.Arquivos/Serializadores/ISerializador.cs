@@ -1,4 +1,4 @@
-﻿namespace GeestaoTarefas.Infra.Arquivos
+﻿namespace GestaoTarefas.Infra.Arquivos
 {
     public interface ISerializador
     {

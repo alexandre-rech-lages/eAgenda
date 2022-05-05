@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Dominio", "2 - Dominio"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{7E7222A1-CC80-44F3-B735-77E1F570E5BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeestaoTarefas.Infra.Arquivos", "GeestaoTarefas.Infra.Arquivos\GeestaoTarefas.Infra.Arquivos.csproj", "{CD70F02F-DC93-406C-91A1-2E23C65A02E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoTarefas.Infra.Arquivos", "GeestaoTarefas.Infra.Arquivos\GestaoTarefas.Infra.Arquivos.csproj", "{CD70F02F-DC93-406C-91A1-2E23C65A02E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arquivos", "Arquivos", "{316E5A44-544B-41B7-B495-C4B6AF215590}"
 EndProject

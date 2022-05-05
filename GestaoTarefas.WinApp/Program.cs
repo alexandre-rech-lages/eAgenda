@@ -1,5 +1,4 @@
-using GeestaoTarefas.Infra.Arquivos;
-using GeestaoTarefas.Infra.Arquivos.SerializacaoEmJson;
+using GestaoTarefas.Infra.Arquivos;
 using System;
 using System.Windows.Forms;
 

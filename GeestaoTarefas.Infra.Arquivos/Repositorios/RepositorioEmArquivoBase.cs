@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GeestaoTarefas.Infra.Arquivos
+namespace GestaoTarefas.Infra.Arquivos
 {
     public abstract class RepositorioEmArquivoBase<T> where T : EntidadeBase<T>
     {
