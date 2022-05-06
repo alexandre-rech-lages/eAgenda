@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GestaoTarefas.Dominio
+namespace eAgenda.Dominio
 {
     [Serializable]
     public class ItemTarefa

@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeestaoTarefas.Infra.Arquivos\GestaoTarefas.Infra.Arquivos.csproj" />
-    <ProjectReference Include="..\GestaoTarefas.Dominio\GestaoTarefas.Dominio.csproj" />
+    <ProjectReference Include="..\GeestaoTarefas.Infra.Arquivos\eAgenda.Infra.Arquivos.csproj" />
+    <ProjectReference Include="..\GestaoTarefas.Dominio\eAgenda.Dominio.csproj" />
   </ItemGroup>
 
   <ItemGroup>

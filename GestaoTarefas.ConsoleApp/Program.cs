@@ -1,7 +1,7 @@
-﻿using GestaoTarefas.Dominio;
+﻿using eAgenda.Dominio;
 using System;
 
-namespace GestaoTarefas.ConsoleApp
+namespace eAgenda.ConsoleApp
 {
     internal class Program
     {

@@ -1,8 +1,8 @@
-﻿using GestaoTarefas.Dominio;
+﻿using eAgenda.Dominio;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GestaoTarefas.Infra.Arquivos
+namespace eAgenda.Infra.Arquivos
 {
     public abstract class RepositorioEmArquivoBase<T> where T : EntidadeBase<T>
     {
@@ -17,13 +17,15 @@ namespace GestaoTarefas.Infra.Arquivos
 
         public abstract List<T> ObterRegistros();
 
-        public virtual void Inserir(T novoRegistro)
-        {
+        public virtual string Inserir(T novoRegistro)
+        {            
             novoRegistro.Numero = ++contador;
 
             var registros = ObterRegistros();
 
             registros.Add(novoRegistro);
+
+            return "ESTA_VALIDO";
         }
 
         public virtual void Editar(T registro)

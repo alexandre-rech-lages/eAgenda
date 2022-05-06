@@ -1,8 +1,8 @@
-﻿using GestaoTarefas.Dominio;
+﻿using eAgenda.Dominio;
 using System;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp.ModuloTarefas
+namespace eAgenda.WinApp.ModuloTarefas
 {
     public partial class TelaCadastroTarefasForm : Form // View
     {
@@ -12,6 +12,8 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
         {
             InitializeComponent();
         }
+
+        public Func<Tarefa, string> OperacaoGravar { get; set; }    
 
         public Tarefa Tarefa
         {
@@ -28,8 +30,20 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
-        {
+        {            
             tarefa.Titulo = txtTitulo.Text;
+
+            string resultado = tarefa.Validar();                                
+
+            if (resultado == "ESTA_VALIDO")
+            {
+                resultado = OperacaoGravar(tarefa);
+
+                if (resultado != "ESTA_VALIDO")
+                {
+                    DialogResult = DialogResult.None;
+                }
+            }
         }
     }
 }

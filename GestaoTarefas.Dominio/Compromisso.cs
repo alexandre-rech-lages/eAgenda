@@ -1,4 +1,4 @@
-﻿namespace GestaoTarefas.Dominio
+﻿namespace eAgenda.Dominio
 {
     public class Compromisso : EntidadeBase<Compromisso>
     {

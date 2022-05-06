@@ -1,4 +1,4 @@
-﻿namespace GestaoTarefas.WinApp.Compartilhado
+﻿namespace eAgenda.WinApp.Compartilhado
 {
     public abstract class ConfiguracaoToolboxBase
     {

@@ -1,10 +1,10 @@
-﻿using GestaoTarefas.Dominio;
+﻿using eAgenda.Dominio;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp.ModuloTarefas
+namespace eAgenda.WinApp.ModuloTarefas
 {
     public partial class TelaAtualizacaoItensTarefaForm : Form
     {

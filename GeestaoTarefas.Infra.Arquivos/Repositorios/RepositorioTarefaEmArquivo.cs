@@ -1,8 +1,8 @@
-﻿using GestaoTarefas.Dominio;
+﻿using eAgenda.Dominio;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GestaoTarefas.Infra.Arquivos
+namespace eAgenda.Infra.Arquivos
 {
     public class RepositorioTarefaEmArquivo : RepositorioEmArquivoBase<Tarefa>, IRepositorioTarefa
     {
@@ -11,6 +11,24 @@ namespace GestaoTarefas.Infra.Arquivos
             if (dataContext.Tarefas.Count > 0)
                 contador = dataContext.Tarefas.Max(x => x.Numero);
         }
+
+        public override string Inserir(Tarefa novoRegistro)
+        {
+            var nomeEncontrado = ObterRegistros()
+                .Select(x => x.Titulo)
+                .Contains(novoRegistro.Titulo);
+
+            if (nomeEncontrado)
+                return "Nome já está cadastrado";
+
+            novoRegistro.Numero = ++contador;
+
+            var registros = ObterRegistros();
+
+            registros.Add(novoRegistro);
+
+            return "ESTA_VALIDO";
+        } 
 
         public override List<Tarefa> ObterRegistros()
         {

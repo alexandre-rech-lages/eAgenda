@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp.ModuloContatos
+namespace eAgenda.WinApp.ModuloContatos
 {
     public partial class TelaCadastroContatoForm : Form
     {

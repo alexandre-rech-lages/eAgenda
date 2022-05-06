@@ -1,8 +1,8 @@
-using GestaoTarefas.Infra.Arquivos;
+using eAgenda.Infra.Arquivos;
 using System;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp
+namespace eAgenda.WinApp
 {
     internal static class Program
     {

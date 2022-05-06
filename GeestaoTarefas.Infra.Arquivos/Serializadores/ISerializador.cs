@@ -1,4 +1,4 @@
-﻿namespace GestaoTarefas.Infra.Arquivos
+﻿namespace eAgenda.Infra.Arquivos
 {
     public interface ISerializador
     {

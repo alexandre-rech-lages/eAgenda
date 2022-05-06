@@ -1,6 +1,6 @@
-﻿using GestaoTarefas.WinApp.Compartilhado;
+﻿using eAgenda.WinApp.Compartilhado;
 
-namespace GestaoTarefas.WinApp.ModuloTarefas
+namespace eAgenda.WinApp.ModuloTarefas
 {
     public class ConfiguracaoToolboxTarefa : ConfiguracaoToolboxBase
     {

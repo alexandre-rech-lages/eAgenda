@@ -1,7 +1,7 @@
-﻿using GestaoTarefas.WinApp.Compartilhado;
+﻿using eAgenda.WinApp.Compartilhado;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp.ModuloContatos
+namespace eAgenda.WinApp.ModuloContatos
 {
     internal class ControladorContato : ControladorBase
     {

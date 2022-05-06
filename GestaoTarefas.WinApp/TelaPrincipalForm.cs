@@ -1,13 +1,13 @@
-﻿using GestaoTarefas.Infra.Arquivos;
-using GestaoTarefas.WinApp.Compartilhado;
-using GestaoTarefas.WinApp.ModuloCompromisso;
-using GestaoTarefas.WinApp.ModuloContatos;
-using GestaoTarefas.WinApp.ModuloTarefas;
+﻿using eAgenda.Infra.Arquivos;
+using eAgenda.WinApp.Compartilhado;
+using eAgenda.WinApp.ModuloCompromisso;
+using eAgenda.WinApp.ModuloContatos;
+using eAgenda.WinApp.ModuloTarefas;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp
+namespace eAgenda.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {

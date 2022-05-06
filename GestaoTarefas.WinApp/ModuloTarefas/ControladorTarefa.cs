@@ -1,9 +1,9 @@
-﻿using GestaoTarefas.Dominio;
-using GestaoTarefas.WinApp.Compartilhado;
+﻿using eAgenda.Dominio;
+using eAgenda.WinApp.Compartilhado;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp.ModuloTarefas
+namespace eAgenda.WinApp.ModuloTarefas
 {
     public class ControladorTarefa : ControladorBase
     {
@@ -20,15 +20,19 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
             TelaCadastroTarefasForm tela = new TelaCadastroTarefasForm();
             tela.Tarefa = new Tarefa();
 
+            tela.OperacaoGravar = repositorioTarefa.Inserir;
+
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                repositorioTarefa.Inserir(tela.Tarefa);
+                //repositorioTarefa.Inserir(tela.Tarefa);
 
                 CarregarTarefas();
             }
         }
+
+        
 
         public override void Editar()
         {
@@ -49,7 +53,6 @@ namespace GestaoTarefas.WinApp.ModuloTarefas
 
             if (resultado == DialogResult.OK)
             {
-                repositorioTarefa.Editar(tela.Tarefa);
                 CarregarTarefas();
             }
         }

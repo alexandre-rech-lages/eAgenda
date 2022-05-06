@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GestaoTarefas.Dominio
+namespace eAgenda.Dominio
 {
     [Serializable]
     public class Tarefa : EntidadeBase<Tarefa>
@@ -91,7 +91,7 @@ namespace GestaoTarefas.Dominio
                 resultadoValidacao.AppendLine("O campo Data de Criação é obrigatório");
 
             if (resultadoValidacao.Length == 0)
-                resultadoValidacao.AppendLine("ESTA_VALIDO");
+                resultadoValidacao.Append("ESTA_VALIDO");
 
             return resultadoValidacao.ToString();
         }

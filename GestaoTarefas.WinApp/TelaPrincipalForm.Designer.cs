@@ -1,4 +1,4 @@
-﻿namespace GestaoTarefas.WinApp
+﻿namespace eAgenda.WinApp
 {
     partial class TelaPrincipalForm
     {
@@ -108,7 +108,7 @@
             // btnInserir
             // 
             this.btnInserir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnInserir.Image = global::GestaoTarefas.WinApp.Properties.Resources.outline_add_circle_outline_black_24dp;
+            this.btnInserir.Image = global::eAgenda.WinApp.Properties.Resources.outline_add_circle_outline_black_24dp;
             this.btnInserir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnInserir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnInserir.Name = "btnInserir";
@@ -120,7 +120,7 @@
             // btnEditar
             // 
             this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEditar.Image = global::GestaoTarefas.WinApp.Properties.Resources.outline_mode_edit_black_24dp;
+            this.btnEditar.Image = global::eAgenda.WinApp.Properties.Resources.outline_mode_edit_black_24dp;
             this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditar.Name = "btnEditar";
@@ -132,7 +132,7 @@
             // btnExcluir
             // 
             this.btnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExcluir.Image = global::GestaoTarefas.WinApp.Properties.Resources.outline_delete_black_24dp;
+            this.btnExcluir.Image = global::eAgenda.WinApp.Properties.Resources.outline_delete_black_24dp;
             this.btnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcluir.Name = "btnExcluir";
@@ -144,7 +144,7 @@
             // btnAdicionarItens
             // 
             this.btnAdicionarItens.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAdicionarItens.Image = global::GestaoTarefas.WinApp.Properties.Resources.outline_list_alt_black_24dp;
+            this.btnAdicionarItens.Image = global::eAgenda.WinApp.Properties.Resources.outline_list_alt_black_24dp;
             this.btnAdicionarItens.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAdicionarItens.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAdicionarItens.Name = "btnAdicionarItens";
@@ -155,7 +155,7 @@
             // btnAtualizarItens
             // 
             this.btnAtualizarItens.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAtualizarItens.Image = global::GestaoTarefas.WinApp.Properties.Resources.outline_list_alt_black_24dp;
+            this.btnAtualizarItens.Image = global::eAgenda.WinApp.Properties.Resources.outline_list_alt_black_24dp;
             this.btnAtualizarItens.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAtualizarItens.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAtualizarItens.Name = "btnAtualizarItens";

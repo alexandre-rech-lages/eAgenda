@@ -1,4 +1,4 @@
-﻿namespace GestaoTarefas.WinApp.ModuloContatos
+﻿namespace eAgenda.WinApp.ModuloContatos
 {
     partial class TelaCadastroContatoForm
     {

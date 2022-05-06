@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text.Json;
 
-namespace GestaoTarefas.Infra.Arquivos
+namespace eAgenda.Infra.Arquivos
 {
     internal class SerializadorDadosEmJson : ISerializador
     {

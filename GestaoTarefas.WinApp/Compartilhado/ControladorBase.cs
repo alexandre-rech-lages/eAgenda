@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp.Compartilhado
+namespace eAgenda.WinApp.Compartilhado
 {
     public abstract class ControladorBase
     {

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace GestaoTarefas.Infra.Arquivos
+namespace eAgenda.Infra.Arquivos
 {
     public class SerializadorDadosEmBinario : ISerializador
     {

@@ -1,8 +1,8 @@
-﻿using GestaoTarefas.Dominio;
+﻿using eAgenda.Dominio;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GestaoTarefas.Infra.Arquivos
+namespace eAgenda.Infra.Arquivos
 {
     public class RepositorioContatoEmArquivo : RepositorioEmArquivoBase<Contato>, IRepositorioContato
     {

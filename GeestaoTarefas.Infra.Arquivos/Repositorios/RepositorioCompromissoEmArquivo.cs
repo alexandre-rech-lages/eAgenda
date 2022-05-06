@@ -1,7 +1,7 @@
-﻿using GestaoTarefas.Dominio;
+﻿using eAgenda.Dominio;
 using System.Collections.Generic;
 
-namespace GestaoTarefas.Infra.Arquivos
+namespace eAgenda.Infra.Arquivos
 {
     public class RepositorioCompromissoEmArquivo : RepositorioEmArquivoBase<Compromisso>
     {

@@ -1,4 +1,4 @@
-﻿namespace GestaoTarefas.WinApp.ModuloTarefas
+﻿namespace eAgenda.WinApp.ModuloTarefas
 {
     partial class TelaCadastroItensTarefaForm
     {

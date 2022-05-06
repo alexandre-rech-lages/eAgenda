@@ -3,16 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoTarefas.WinApp", "GestaoTarefas.WinApp\GestaoTarefas.WinApp.csproj", "{9409F482-B729-4199-95A3-BDB8564DCA72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eAgenda.WinApp", "GestaoTarefas.WinApp\eAgenda.WinApp.csproj", "{9409F482-B729-4199-95A3-BDB8564DCA72}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60501138-B82A-40DE-99B4-594A7F566053}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoTarefas.ConsoleApp", "GestaoTarefas.ConsoleApp\GestaoTarefas.ConsoleApp.csproj", "{9459C6E8-9F94-4D05-AC7A-AB112FC6C0F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eAgenda.ConsoleApp", "GestaoTarefas.ConsoleApp\eAgenda.ConsoleApp.csproj", "{9459C6E8-9F94-4D05-AC7A-AB112FC6C0F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoTarefas.Dominio", "GestaoTarefas.Dominio\GestaoTarefas.Dominio.csproj", "{F2FB27A4-016E-4FFB-AB03-7D06502A1F33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eAgenda.Dominio", "GestaoTarefas.Dominio\eAgenda.Dominio.csproj", "{F2FB27A4-016E-4FFB-AB03-7D06502A1F33}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresentação", "1 - Apresentação", "{0677DC2E-0311-4DA6-88B9-65F0A5C2F9EB}"
 EndProject
@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Dominio", "2 - Dominio"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{7E7222A1-CC80-44F3-B735-77E1F570E5BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoTarefas.Infra.Arquivos", "GeestaoTarefas.Infra.Arquivos\GestaoTarefas.Infra.Arquivos.csproj", "{CD70F02F-DC93-406C-91A1-2E23C65A02E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eAgenda.Infra.Arquivos", "GeestaoTarefas.Infra.Arquivos\eAgenda.Infra.Arquivos.csproj", "{CD70F02F-DC93-406C-91A1-2E23C65A02E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arquivos", "Arquivos", "{316E5A44-544B-41B7-B495-C4B6AF215590}"
 EndProject

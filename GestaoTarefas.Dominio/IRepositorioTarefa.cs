@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GestaoTarefas.Dominio
+namespace eAgenda.Dominio
 {
     public interface IRepositorioTarefa
     {
@@ -8,7 +8,7 @@ namespace GestaoTarefas.Dominio
         void AtualizarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itensConcluidos, List<ItemTarefa> itensPendentes);
         void Editar(Tarefa tarefa);
         void Excluir(Tarefa tarefa);
-        void Inserir(Tarefa novaTarefa);
+        string Inserir(Tarefa novaTarefa);
         List<Tarefa> SelecionarTodos();
 
         List<Tarefa> SelecionarTarefasConcluidas();

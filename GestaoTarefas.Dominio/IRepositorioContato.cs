@@ -1,7 +1,7 @@
-﻿namespace GestaoTarefas.Dominio
+﻿namespace eAgenda.Dominio
 {
     public interface IRepositorioContato
     {
-        void Inserir(Contato contato);
+        string Inserir(Contato contato);
     }
 }

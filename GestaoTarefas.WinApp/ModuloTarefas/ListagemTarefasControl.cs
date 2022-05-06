@@ -1,8 +1,8 @@
-﻿using GestaoTarefas.Dominio;
+﻿using eAgenda.Dominio;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace GestaoTarefas.WinApp.ModuloTarefas
+namespace eAgenda.WinApp.ModuloTarefas
 {
     public partial class ListagemTarefasControl : UserControl
     {
