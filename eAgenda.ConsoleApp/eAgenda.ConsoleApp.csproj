@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GestaoTarefas.Dominio\eAgenda.Dominio.csproj" />
+    <ProjectReference Include="..\eAgenda.Dominio\eAgenda.Dominio.csproj" />
+    <ProjectReference Include="..\eAgenda.Infra.Arquivos\eAgenda.Infra.Arquivos.csproj" />
   </ItemGroup>
 
 </Project>
