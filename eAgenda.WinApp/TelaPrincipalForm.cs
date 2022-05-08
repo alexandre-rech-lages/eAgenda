@@ -1,8 +1,10 @@
 ﻿using eAgenda.Infra.Arquivos;
+using eAgenda.Infra.Arquivos.ModuloContato;
+using eAgenda.Infra.Arquivos.ModuloTarefa;
 using eAgenda.WinApp.Compartilhado;
 using eAgenda.WinApp.ModuloCompromisso;
-using eAgenda.WinApp.ModuloContatos;
-using eAgenda.WinApp.ModuloTarefas;
+using eAgenda.WinApp.ModuloContato;
+using eAgenda.WinApp.ModuloTarefa;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -24,38 +26,19 @@ namespace eAgenda.WinApp
             InicializarControladores();
         }
 
-
         private void tarefasMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarToolbox(new ConfiguracaoToolboxTarefa());
-
-            var opcaoSelecionada = (ToolStripMenuItem)sender;
-
-            SelecionarControlador(opcaoSelecionada);
-
-            CarregarListagem();
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
         private void contatosMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigurarToolbox(new ConfiguracaoToolboxContato());
-
-            var opcaoSelecionada = (ToolStripMenuItem)sender;
-
-            SelecionarControlador(opcaoSelecionada);
-
-            CarregarListagem();
+        {            
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
         private void compromissosMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarToolbox(new ConfiguracaoToolboxCompromisso());
-
-            var opcaoSelecionada = (ToolStripMenuItem)sender;
-
-            SelecionarControlador(opcaoSelecionada);
-
-            CarregarListagem();
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
@@ -83,14 +66,28 @@ namespace eAgenda.WinApp
             controlador.AtualizarItens();
         }
 
-        private void ConfigurarToolbox(ConfiguracaoToolboxBase configuracao)
+        private void ConfigurarToolbox(string tipo)
         {
-            ConfigurandoTooltips(configuracao);
+            ConfiguracaoToolboxBase configuracao = null;
 
-            ConfigurandoBotoes(configuracao);
+            if (tipo == "Tarefas")
+                configuracao = new ConfiguracaoToolboxTarefa();
+
+            else if (tipo == "Contatos")
+                configuracao = new ConfiguracaoToolboxContato();
+
+            else if (tipo == "Compromissos")
+                configuracao = new ConfiguracaoToolboxCompromisso();
+
+            if (configuracao != null)
+            {
+                ConfigurarTooltips(configuracao);
+
+                ConfigurarBotoes(configuracao);
+            }
         }
 
-        private void ConfigurandoBotoes(ConfiguracaoToolboxBase configuracao)
+        private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
         {
             btnInserir.Enabled = configuracao.InserirHabilitado;
             btnEditar.Enabled = configuracao.EditarHabilitado;
@@ -99,7 +96,7 @@ namespace eAgenda.WinApp
             btnAtualizarItens.Enabled = configuracao.AtualizarItensHabilitado;
         }
 
-        private void ConfigurandoTooltips(ConfiguracaoToolboxBase configuracao)
+        private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
         {
             btnInserir.ToolTipText = configuracao.TooltipInserir;
             btnEditar.ToolTipText = configuracao.TooltipEditar;
@@ -108,8 +105,24 @@ namespace eAgenda.WinApp
             btnAtualizarItens.ToolTipText = configuracao.TooltipAtualizarItens;
         }
 
-        private void CarregarListagem()
+        private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
         {
+            var tipo = opcaoSelecionada.Text;
+
+            SelecionarControlador(tipo);
+
+            ConfigurarToolbox(tipo);           
+
+            ConfigurarListagem();
+        }
+
+        private void SelecionarControlador(string tipo)
+        {
+            controlador = controladores[tipo];
+        }
+
+        private void ConfigurarListagem()
+        {            
             var listagemControl = controlador.ObtemListagem();
 
             panelRegistros.Controls.Clear();
@@ -117,13 +130,6 @@ namespace eAgenda.WinApp
             listagemControl.Dock = DockStyle.Fill;
 
             panelRegistros.Controls.Add(listagemControl);
-        }
-
-        private void SelecionarControlador(ToolStripMenuItem opcaoSelecionada)
-        {
-            var tipo = opcaoSelecionada.Text;
-
-            controlador = controladores[tipo];
         }
 
         private void InicializarControladores()
@@ -134,11 +140,6 @@ namespace eAgenda.WinApp
             controladores = new Dictionary<string, ControladorBase>();
             controladores.Add("Tarefas", new ControladorTarefa(repositorioTarefa));
             controladores.Add("Contatos", new ControladorContato(repositorioContato));
-        }
-
-        private void praDarPauToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

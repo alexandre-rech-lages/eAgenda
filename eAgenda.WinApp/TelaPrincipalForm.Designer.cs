@@ -184,7 +184,6 @@
             this.praDarPauToolStripMenuItem.Name = "praDarPauToolStripMenuItem";
             this.praDarPauToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.praDarPauToolStripMenuItem.Text = "Pra dar pau";
-            this.praDarPauToolStripMenuItem.Click += new System.EventHandler(this.praDarPauToolStripMenuItem_Click);
             // 
             // TelaPrincipalForm
             // 

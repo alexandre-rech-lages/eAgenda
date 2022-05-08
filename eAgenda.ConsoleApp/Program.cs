@@ -1,4 +1,4 @@
-﻿using eAgenda.Dominio;
+﻿using eAgenda.Dominio.ModuloTarefa;
 using System;
 
 namespace eAgenda.ConsoleApp
