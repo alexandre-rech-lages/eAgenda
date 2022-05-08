@@ -76,27 +76,11 @@ namespace eAgenda.Dominio.ModuloTarefa
             var percentualConcluido = (qtdConcluidas / (decimal)itens.Count()) * 100;
 
             return Math.Round(percentualConcluido, 2);
-        }
-
-        public string Validar()
-        {
-            StringBuilder resultadoValidacao = new StringBuilder();
-
-            if (string.IsNullOrEmpty(Titulo))
-                resultadoValidacao.AppendLine("O campo Título é obrigatório");
-
-            if (DataCriacao == DateTime.MinValue)
-                resultadoValidacao.AppendLine("O campo Data de Criação é obrigatório");
-
-            if (resultadoValidacao.Length == 0)
-                resultadoValidacao.Append("ESTA_VALIDO");
-
-            return resultadoValidacao.ToString();
-        }
+        }       
 
         public override void Atualizar(Tarefa registro)
         {
-
+            this.Titulo = registro.Titulo;
         }
     }
 }
