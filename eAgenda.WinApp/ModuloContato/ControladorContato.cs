@@ -38,5 +38,10 @@ namespace eAgenda.WinApp.ModuloContato
 
             return listagemContatos;
         }
+
+        internal override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
+        {
+            return new ConfiguracaoToolboxContato();
+        }
     }
 }

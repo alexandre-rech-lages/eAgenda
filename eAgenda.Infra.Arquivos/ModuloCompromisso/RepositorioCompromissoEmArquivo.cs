@@ -1,4 +1,5 @@
 ﻿using eAgenda.Dominio.ModuloCompromisso;
+using FluentValidation;
 using System.Collections.Generic;
 
 namespace eAgenda.Infra.Arquivos.ModuloCompromisso
@@ -13,6 +14,11 @@ namespace eAgenda.Infra.Arquivos.ModuloCompromisso
         public override List<Compromisso> ObterRegistros()
         {
             return dataContext.Compromissos;
+        }
+
+        public override AbstractValidator<Compromisso> ObterValidador()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

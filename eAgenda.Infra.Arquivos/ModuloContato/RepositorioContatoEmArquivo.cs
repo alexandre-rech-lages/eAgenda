@@ -1,4 +1,5 @@
 ﻿using eAgenda.Dominio.ModuloContato;
+using FluentValidation;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +16,11 @@ namespace eAgenda.Infra.Arquivos.ModuloContato
         public override List<Contato> ObterRegistros()
         {
             return dataContext.Contatos;
+        }
+
+        public override AbstractValidator<Contato> ObterValidador()
+        {
+            return new ValidadorContato();
         }
     }
 }

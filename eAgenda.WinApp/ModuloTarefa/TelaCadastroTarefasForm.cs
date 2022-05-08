@@ -1,5 +1,7 @@
 ﻿using eAgenda.Dominio.ModuloTarefa;
+using FluentValidation.Results;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloTarefa
@@ -13,7 +15,7 @@ namespace eAgenda.WinApp.ModuloTarefa
             InitializeComponent();
         }
 
-        public Func<Tarefa, string> OperacaoGravar { get; set; }    
+        public Func<Tarefa, ValidationResult> GravarRegistro { get; set; }
 
         public Tarefa Tarefa
         {
@@ -31,18 +33,17 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         private void btnGravar_Click(object sender, EventArgs e)
         {            
-            tarefa.Titulo = txtTitulo.Text;
+            tarefa.Titulo = txtTitulo.Text;            
 
-            string resultado = tarefa.Validar();                                
+            var resultadoValidacao = GravarRegistro(tarefa);
 
-            if (resultado == "ESTA_VALIDO")
+            if (resultadoValidacao.IsValid == false)
             {
-                resultado = OperacaoGravar(tarefa);
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
-                if (resultado != "ESTA_VALIDO")
-                {
-                    DialogResult = DialogResult.None;
-                }
+                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
             }
         }
     }

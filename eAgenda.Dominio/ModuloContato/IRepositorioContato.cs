@@ -1,7 +1,9 @@
-﻿namespace eAgenda.Dominio.ModuloContato
+﻿using eAgenda.Dominio.Compartilhado;
+using System.ComponentModel.DataAnnotations;
+
+namespace eAgenda.Dominio.ModuloContato
 {
-    public interface IRepositorioContato
+    public interface IRepositorioContato : IRepositorio<Contato>
     {
-        string Inserir(Contato contato);
     }
 }

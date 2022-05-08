@@ -1,4 +1,7 @@
 ﻿using eAgenda.Dominio.Compartilhado;
+using FluentValidation;
+using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,36 +20,59 @@ namespace eAgenda.Infra.Arquivos
 
         public abstract List<T> ObterRegistros();
 
-        public virtual string Inserir(T novoRegistro)
-        {            
-            novoRegistro.Numero = ++contador;
+        public abstract AbstractValidator<T> ObterValidador();
 
-            var registros = ObterRegistros();
+        public virtual ValidationResult Inserir(T novoRegistro)
+        {
+            var validator = ObterValidador();
 
-            registros.Add(novoRegistro);
+            var resultadoValidacao = validator.Validate(novoRegistro);
 
-            return "ESTA_VALIDO";
+            if (resultadoValidacao.IsValid)
+            {
+                novoRegistro.Numero = ++contador;
+
+                var registros = ObterRegistros();
+
+                registros.Add(novoRegistro);
+            }
+
+            return resultadoValidacao;
         }
 
-        public virtual void Editar(T registro)
+        public virtual ValidationResult Editar(T registro)
         {
-            var registros = ObterRegistros();
+            var validator = ObterValidador();
 
-            foreach (var item in registros)
+            var resultadoValidacao = validator.Validate(registro);
+
+            if (resultadoValidacao.IsValid)
             {
-                if (item.Numero == registro.Numero)
+                var registros = ObterRegistros();
+
+                foreach (var item in registros)
                 {
-                    item.Atualizar(registro);
-                    break;
+                    if (item.Numero == registro.Numero)
+                    {
+                        item.Atualizar(registro);
+                        break;
+                    }
                 }
             }
+
+            return resultadoValidacao;
         }
 
-        public void Excluir(T registro)
+        public ValidationResult Excluir(T registro)
         {
+            var resultadoValidacao = new ValidationResult();
+
             var registros = ObterRegistros();
 
-            registros.Remove(registro);
+            if (registros.Remove(registro) == false)
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não foi possível remover o registro"));
+            
+            return resultadoValidacao;
         }
 
         public List<T> SelecionarTodos()

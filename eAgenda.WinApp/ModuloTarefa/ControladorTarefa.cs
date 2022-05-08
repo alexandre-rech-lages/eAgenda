@@ -20,7 +20,7 @@ namespace eAgenda.WinApp.ModuloTarefa
             TelaCadastroTarefasForm tela = new TelaCadastroTarefasForm();
             tela.Tarefa = new Tarefa();
 
-            tela.OperacaoGravar = repositorioTarefa.Inserir;
+            tela.GravarRegistro = repositorioTarefa.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -48,6 +48,8 @@ namespace eAgenda.WinApp.ModuloTarefa
             TelaCadastroTarefasForm tela = new TelaCadastroTarefasForm();
 
             tela.Tarefa = tarefaSelecionada;
+
+            tela.GravarRegistro = repositorioTarefa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -127,7 +129,7 @@ namespace eAgenda.WinApp.ModuloTarefa
         public override UserControl ObtemListagem()
         {
             if (listagemTarefas == null)
-                listagemTarefas = new ListagemTarefasControl();
+                listagemTarefas = new ListagemTarefasControl(repositorioTarefa);
 
             CarregarTarefas();
 
@@ -141,6 +143,11 @@ namespace eAgenda.WinApp.ModuloTarefa
             var tarefasConcluidas = repositorioTarefa.SelecionarTarefasConcluidas();
 
             listagemTarefas.AtualizarRegistros(tarefasPendentes, tarefasConcluidas);
+        }
+
+        internal override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
+        {
+            return new ConfiguracaoToolboxTarefa();
         }
     }
 }

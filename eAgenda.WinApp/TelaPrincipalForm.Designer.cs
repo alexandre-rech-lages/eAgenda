@@ -33,6 +33,7 @@
             this.tarefasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contatosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compromissosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.praDarPauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
@@ -41,9 +42,10 @@
             this.btnAtualizarItens = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panelRegistros = new System.Windows.Forms.Panel();
-            this.praDarPauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolbox.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolbox
@@ -71,7 +73,7 @@
             // 
             this.tarefasMenuItem.Name = "tarefasMenuItem";
             this.tarefasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.tarefasMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tarefasMenuItem.Size = new System.Drawing.Size(173, 22);
             this.tarefasMenuItem.Text = "Tarefas";
             this.tarefasMenuItem.Click += new System.EventHandler(this.tarefasMenuItem_Click);
             // 
@@ -79,7 +81,7 @@
             // 
             this.contatosMenuItem.Name = "contatosMenuItem";
             this.contatosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.contatosMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contatosMenuItem.Size = new System.Drawing.Size(173, 22);
             this.contatosMenuItem.Text = "Contatos";
             this.contatosMenuItem.Click += new System.EventHandler(this.contatosMenuItem_Click);
             // 
@@ -87,9 +89,15 @@
             // 
             this.compromissosMenuItem.Name = "compromissosMenuItem";
             this.compromissosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.compromissosMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.compromissosMenuItem.Size = new System.Drawing.Size(173, 22);
             this.compromissosMenuItem.Text = "Compromissos";
             this.compromissosMenuItem.Click += new System.EventHandler(this.compromissosMenuItem_Click);
+            // 
+            // praDarPauToolStripMenuItem
+            // 
+            this.praDarPauToolStripMenuItem.Name = "praDarPauToolStripMenuItem";
+            this.praDarPauToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.praDarPauToolStripMenuItem.Text = "Pra dar pau";
             // 
             // toolStrip1
             // 
@@ -165,6 +173,8 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelRodape});
             this.statusStrip1.Location = new System.Drawing.Point(0, 377);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(544, 22);
@@ -179,11 +189,11 @@
             this.panelRegistros.Size = new System.Drawing.Size(544, 312);
             this.panelRegistros.TabIndex = 3;
             // 
-            // praDarPauToolStripMenuItem
+            // labelRodape
             // 
-            this.praDarPauToolStripMenuItem.Name = "praDarPauToolStripMenuItem";
-            this.praDarPauToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.praDarPauToolStripMenuItem.Text = "Pra dar pau";
+            this.labelRodape.Name = "labelRodape";
+            this.labelRodape.Size = new System.Drawing.Size(52, 17);
+            this.labelRodape.Text = "[rodapé]";
             // 
             // TelaPrincipalForm
             // 
@@ -205,6 +215,8 @@
             this.toolbox.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,5 +238,6 @@
         private System.Windows.Forms.ToolStripButton btnAdicionarItens;
         private System.Windows.Forms.ToolStripButton btnAtualizarItens;
         private System.Windows.Forms.ToolStripMenuItem praDarPauToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel labelRodape;
     }
 }

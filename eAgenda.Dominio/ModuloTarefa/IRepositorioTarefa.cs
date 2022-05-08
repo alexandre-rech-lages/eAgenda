@@ -1,19 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using eAgenda.Dominio.Compartilhado;
+using System.Collections.Generic;
 
 namespace eAgenda.Dominio.ModuloTarefa
 {
-    public interface IRepositorioTarefa
+    public interface IRepositorioTarefa : IRepositorio<Tarefa>
     {
         void AdicionarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itens);
-        void AtualizarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itensConcluidos, List<ItemTarefa> itensPendentes);
-        void Editar(Tarefa tarefa);
-        void Excluir(Tarefa tarefa);
-        string Inserir(Tarefa novaTarefa);
-        List<Tarefa> SelecionarTodos();
 
+        void AtualizarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itensConcluidos, List<ItemTarefa> itensPendentes);
+       
         List<Tarefa> SelecionarTarefasConcluidas();
 
         List<Tarefa> SelecionarTarefasPendentes();
-
     }
 }

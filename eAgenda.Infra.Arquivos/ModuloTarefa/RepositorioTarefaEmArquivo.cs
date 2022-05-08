@@ -1,4 +1,6 @@
 ﻿using eAgenda.Dominio.ModuloTarefa;
+using FluentValidation;
+using FluentValidation.Results;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,23 +14,61 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
                 contador = dataContext.Tarefas.Max(x => x.Numero);
         }
 
-        public override string Inserir(Tarefa novoRegistro)
+        public override ValidationResult Inserir(Tarefa novoRegistro)
         {
+            var resultadoValidacao = Validar(novoRegistro);
+
+            if (resultadoValidacao.IsValid)
+            {
+                novoRegistro.Numero = ++contador;
+
+                var registros = ObterRegistros();
+
+                registros.Add(novoRegistro);
+            }
+
+            return resultadoValidacao;
+        }
+
+        public override ValidationResult Editar(Tarefa registro)
+        {
+            var resultadoValidacao = Validar(registro);
+
+            if (resultadoValidacao.IsValid)
+            {
+                var registros = ObterRegistros();
+
+                foreach (var item in registros)
+                {
+                    if (item.Numero == registro.Numero)
+                    {
+                        item.Atualizar(registro);
+                        break;
+                    }
+                }
+            }
+
+            return resultadoValidacao;
+        }
+
+        private ValidationResult Validar(Tarefa registro)
+        {
+            var validator = ObterValidador();
+
+            var resultadoValidacao = validator.Validate(registro);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
+
             var nomeEncontrado = ObterRegistros()
-                .Select(x => x.Titulo)
-                .Contains(novoRegistro.Titulo);
+               .Select(x => x.Titulo)
+               .Contains(registro.Titulo);
 
-            if (nomeEncontrado)
-                return "Nome já está cadastrado";
+            if (nomeEncontrado)            
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Nome já está cadastrado"));
 
-            novoRegistro.Numero = ++contador;
-
-            var registros = ObterRegistros();
-
-            registros.Add(novoRegistro);
-
-            return "ESTA_VALIDO";
-        } 
+            return resultadoValidacao;
+        }
 
         public override List<Tarefa> ObterRegistros()
         {
@@ -66,6 +106,11 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
         public List<Tarefa> SelecionarTarefasPendentes()
         {
             return dataContext.Tarefas.Where(x => x.CalcularPercentualConcluido() < 100).ToList();
+        }
+
+        public override AbstractValidator<Tarefa> ObterValidador()
+        {
+            return new ValidadorTarefa();
         }
     }
 }

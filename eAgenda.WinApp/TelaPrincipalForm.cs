@@ -21,9 +21,23 @@ namespace eAgenda.WinApp
         {
             InitializeComponent();
 
+            Instancia = this;
+
+            labelRodape.Text = "";
+
             this.contextoDados = contextoDados;
 
             InicializarControladores();
+        }
+
+        public static TelaPrincipalForm Instancia
+        {
+            get;set;
+        }
+
+        public void AtualizarRodape(string mensagem)
+        {
+            labelRodape.Text = mensagem;
         }
 
         private void tarefasMenuItem_Click(object sender, EventArgs e)
@@ -65,28 +79,7 @@ namespace eAgenda.WinApp
         {
             controlador.AtualizarItens();
         }
-
-        private void ConfigurarToolbox(string tipo)
-        {
-            ConfiguracaoToolboxBase configuracao = null;
-
-            if (tipo == "Tarefas")
-                configuracao = new ConfiguracaoToolboxTarefa();
-
-            else if (tipo == "Contatos")
-                configuracao = new ConfiguracaoToolboxContato();
-
-            else if (tipo == "Compromissos")
-                configuracao = new ConfiguracaoToolboxCompromisso();
-
-            if (configuracao != null)
-            {
-                ConfigurarTooltips(configuracao);
-
-                ConfigurarBotoes(configuracao);
-            }
-        }
-
+        
         private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
         {
             btnInserir.Enabled = configuracao.InserirHabilitado;
@@ -109,16 +102,23 @@ namespace eAgenda.WinApp
         {
             var tipo = opcaoSelecionada.Text;
 
-            SelecionarControlador(tipo);
+            controlador = controladores[tipo];
 
-            ConfigurarToolbox(tipo);           
+            ConfigurarToolbox();
 
             ConfigurarListagem();
         }
 
-        private void SelecionarControlador(string tipo)
+        private void ConfigurarToolbox()
         {
-            controlador = controladores[tipo];
+            ConfiguracaoToolboxBase configuracao = controlador.ObtemConfiguracaoToolbox();
+
+            if (configuracao != null)
+            {
+                ConfigurarTooltips(configuracao);
+
+                ConfigurarBotoes(configuracao);
+            }
         }
 
         private void ConfigurarListagem()
