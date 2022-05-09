@@ -79,7 +79,12 @@ namespace eAgenda.WinApp
         {
             controlador.AtualizarItens();
         }
-        
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            controlador.Filtrar();
+        }
+
         private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
         {
             btnInserir.Enabled = configuracao.InserirHabilitado;
@@ -87,6 +92,7 @@ namespace eAgenda.WinApp
             btnExcluir.Enabled = configuracao.ExcluirHabilitado;
             btnAdicionarItens.Enabled = configuracao.AdicionarItensHabilitado;
             btnAtualizarItens.Enabled = configuracao.AtualizarItensHabilitado;
+            btnFiltrar.Enabled = configuracao.FiltrarHabilitado;
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
@@ -96,6 +102,7 @@ namespace eAgenda.WinApp
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
             btnAdicionarItens.ToolTipText = configuracao.TooltipAdicionarItens;
             btnAtualizarItens.ToolTipText = configuracao.TooltipAtualizarItens;
+            btnFiltrar.ToolTipText = configuracao.TooltipFiltrar;
         }
 
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
@@ -115,6 +122,8 @@ namespace eAgenda.WinApp
 
             if (configuracao != null)
             {
+                toolbox.Enabled = true;
+                
                 ConfigurarTooltips(configuracao);
 
                 ConfigurarBotoes(configuracao);
@@ -140,6 +149,9 @@ namespace eAgenda.WinApp
             controladores = new Dictionary<string, ControladorBase>();
             controladores.Add("Tarefas", new ControladorTarefa(repositorioTarefa));
             controladores.Add("Contatos", new ControladorContato(repositorioContato));
+            controladores.Add("Compromissos", new ControladorCompromisso());
         }
+
+        
     }
 }

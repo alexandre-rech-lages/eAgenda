@@ -12,8 +12,10 @@ namespace eAgenda.WinApp.Compartilhado
 
         public virtual void AtualizarItens() { }
 
+        public virtual void Filtrar() { }
+
         public abstract UserControl ObtemListagem();
 
-        internal abstract ConfiguracaoToolboxBase ObtemConfiguracaoToolbox();
+        public abstract ConfiguracaoToolboxBase ObtemConfiguracaoToolbox();
     }
 }

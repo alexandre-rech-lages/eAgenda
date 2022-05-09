@@ -63,7 +63,7 @@ namespace eAgenda.Infra.Arquivos
             return resultadoValidacao;
         }
 
-        public ValidationResult Excluir(T registro)
+        public virtual ValidationResult Excluir(T registro)
         {
             var resultadoValidacao = new ValidationResult();
 
@@ -75,11 +75,15 @@ namespace eAgenda.Infra.Arquivos
             return resultadoValidacao;
         }
 
-        public List<T> SelecionarTodos()
+        public virtual List<T> SelecionarTodos()
         {
             return ObterRegistros().ToList();
         }
 
-
+        public virtual T SelecionarPorNumero(int numero)
+        {
+            return ObterRegistros()
+                .FirstOrDefault(x => x.Numero == numero);
+        }
     }
 }

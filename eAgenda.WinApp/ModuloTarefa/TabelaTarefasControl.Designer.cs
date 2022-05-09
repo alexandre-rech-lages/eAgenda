@@ -1,6 +1,6 @@
 ﻿namespace eAgenda.WinApp.ModuloTarefa
 {
-    partial class ListagemTarefasControl
+    partial class TabelaTarefasControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,32 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listTarefas = new System.Windows.Forms.ListBox();
+            this.gridTarefas = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTarefas)).BeginInit();
             this.SuspendLayout();
             // 
-            // listTarefas
+            // gridTarefas
             // 
-            this.listTarefas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listTarefas.FormattingEnabled = true;
-            this.listTarefas.ItemHeight = 15;
-            this.listTarefas.Location = new System.Drawing.Point(0, 0);
-            this.listTarefas.Name = "listTarefas";
-            this.listTarefas.Size = new System.Drawing.Size(534, 425);
-            this.listTarefas.TabIndex = 1;
+            this.gridTarefas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridTarefas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridTarefas.Location = new System.Drawing.Point(0, 0);
+            this.gridTarefas.Name = "gridTarefas";
+            this.gridTarefas.RowTemplate.Height = 25;
+            this.gridTarefas.Size = new System.Drawing.Size(476, 411);
+            this.gridTarefas.TabIndex = 0;
             // 
-            // ListagemTarefasControl
+            // TabelaTarefasControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listTarefas);
-            this.Name = "ListagemTarefasControl";
-            this.Size = new System.Drawing.Size(534, 425);
+            this.Controls.Add(this.gridTarefas);
+            this.Name = "TabelaTarefasControl";
+            this.Size = new System.Drawing.Size(476, 411);
+            ((System.ComponentModel.ISupportInitialize)(this.gridTarefas)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listTarefas;
+        private System.Windows.Forms.DataGridView gridTarefas;
     }
 }

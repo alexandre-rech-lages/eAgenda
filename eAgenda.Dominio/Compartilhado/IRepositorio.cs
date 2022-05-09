@@ -5,13 +5,14 @@ namespace eAgenda.Dominio.Compartilhado
 {
     public interface IRepositorio<T> where T : EntidadeBase<T>
     {
-        ValidationResult Inserir(T novaTarefa);
+        ValidationResult Inserir(T novoRegistro);
 
-        ValidationResult Editar(T tarefa);
+        ValidationResult Editar(T registro);
 
-        ValidationResult Excluir(T tarefa);
+        ValidationResult Excluir(T registro);
         
         List<T> SelecionarTodos();
 
+        T SelecionarPorNumero(int numero);
     }
 }

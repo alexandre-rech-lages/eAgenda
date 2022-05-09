@@ -10,6 +10,8 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         public override string TooltipExcluir { get { return "Excluir uma tarefa existente"; } }
 
+        public override string TooltipFiltrar { get { return "Filtrar Tarefas por Status"; } }
+
         public override string TooltipAdicionarItens => "Adicionar itens para uma tarefa";
 
         public override string TooltipAtualizarItens => "Atualizar itens da tarefa";
@@ -17,5 +19,7 @@ namespace eAgenda.WinApp.ModuloTarefa
         public override bool AdicionarItensHabilitado => true;
 
         public override bool AtualizarItensHabilitado => true;
+
+        public override bool FiltrarHabilitado => true;
     }
 }

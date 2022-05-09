@@ -13,6 +13,7 @@ namespace eAgenda.Dominio.ModuloTarefa
 
         public Tarefa()
         {
+            Prioridade = PrioridadeTarefaEnum.Baixa;
             DataCriacao = DateTime.Now;
         }
 
@@ -24,21 +25,38 @@ namespace eAgenda.Dominio.ModuloTarefa
         }
 
         public string Titulo { get; set; }
+
+        public PrioridadeTarefaEnum Prioridade { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime? DataConclusao { get; set; }
         public List<ItemTarefa> Itens { get { return itens; } }
 
+        public decimal PercentualConcluido
+        {
+            get
+            {
+                if (itens.Count == 0)
+                    return 0;
+
+                int qtdConcluidas = itens.Count(x => x.Concluido);
+
+                var percentualConcluido = (qtdConcluidas / (decimal)itens.Count()) * 100;
+
+                return Math.Round(percentualConcluido, 2);
+            }
+        }
+
         public override string ToString()
         {
-            var percentual = CalcularPercentualConcluido();
+            var percentual = PercentualConcluido;
 
             if (DataConclusao.HasValue)
             {
-                return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual}, " +
+                return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual}, Prioridade: {Prioridade} " +
                     $"Concluída: {DataConclusao.Value.ToShortDateString()}";
             }
 
-            return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual}";
+            return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual}, Prioridade: {Prioridade}";
         }
 
         public void AdicionarItem(ItemTarefa item)
@@ -53,9 +71,7 @@ namespace eAgenda.Dominio.ModuloTarefa
 
             itemTarefa?.Concluir();
 
-            var percentual = CalcularPercentualConcluido();
-
-            if (percentual == 100)
+            if (PercentualConcluido == 100)
                 DataConclusao = DateTime.Now;
         }
 
@@ -64,18 +80,6 @@ namespace eAgenda.Dominio.ModuloTarefa
             ItemTarefa itemTarefa = itens.Find(x => x.Equals(item));
 
             itemTarefa?.MarcarPendente();
-        }
-
-        public decimal CalcularPercentualConcluido()
-        {
-            if (itens.Count == 0)
-                return 0;
-
-            int qtdConcluidas = itens.Count(x => x.Concluido);
-
-            var percentualConcluido = (qtdConcluidas / (decimal)itens.Count()) * 100;
-
-            return Math.Round(percentualConcluido, 2);
         }       
 
         public override void Atualizar(Tarefa registro)

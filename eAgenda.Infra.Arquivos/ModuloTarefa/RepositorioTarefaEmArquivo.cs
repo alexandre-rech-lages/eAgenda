@@ -64,7 +64,7 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
                .Select(x => x.Titulo)
                .Contains(registro.Titulo);
 
-            if (nomeEncontrado)            
+            if (nomeEncontrado && registro.Numero == 0)            
                 resultadoValidacao.Errors.Add(new ValidationFailure("", "Nome já está cadastrado"));
 
             return resultadoValidacao;
@@ -98,14 +98,41 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
 
         }
 
-        public List<Tarefa> SelecionarTarefasConcluidas()
+        public List<Tarefa> SelecionarTodos(StatusTarefaEnum status)
         {
-            return dataContext.Tarefas.Where(x => x.CalcularPercentualConcluido() == 100).ToList();
+            switch (status)
+            {
+                case StatusTarefaEnum.Todos: return SelecionarTodos();
+
+                case StatusTarefaEnum.Pendentes: return SelecionarTarefasPendentes();                   
+
+                case StatusTarefaEnum.Concluidas: return SelecionarTarefasConcluidas();
+
+                default: return SelecionarTodos();
+            }
         }
 
-        public List<Tarefa> SelecionarTarefasPendentes()
+        public override List<Tarefa> SelecionarTodos()
         {
-            return dataContext.Tarefas.Where(x => x.CalcularPercentualConcluido() < 100).ToList();
+            return base.SelecionarTodos()
+                .OrderByDescending(x => x.Prioridade)
+                .ToList();
+        }
+
+        private List<Tarefa> SelecionarTarefasConcluidas()
+        {
+            return dataContext.Tarefas
+                .Where(x => x.PercentualConcluido == 100)
+                .OrderByDescending(x => x.Prioridade)
+                .ToList();
+        }
+
+        private List<Tarefa> SelecionarTarefasPendentes()
+        {
+            return dataContext.Tarefas
+                .Where(x => x.PercentualConcluido < 100)
+                .OrderByDescending(x => x.Prioridade)
+                .ToList();
         }
 
         public override AbstractValidator<Tarefa> ObterValidador()

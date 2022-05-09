@@ -6,43 +6,28 @@ namespace eAgenda.WinApp.ModuloTarefa
 {
     public partial class ListagemTarefasControl : UserControl
     {
-        private readonly IRepositorioTarefa repositorioTarefa;
-
-        public ListagemTarefasControl(IRepositorioTarefa repositorioTarefa)
+        public ListagemTarefasControl()
         {
             InitializeComponent();
-            this.repositorioTarefa = repositorioTarefa;
         }
 
-        public void AtualizarRegistros(List<Tarefa> tarefasPendentes, List<Tarefa> tarefasConcluidas)
+        public void AtualizarRegistros(List<Tarefa> tarefas)
         {
-            CarregarTarefasPendentes(tarefasPendentes);
-
-            CarregarTarefasConcluidas(tarefasConcluidas);
+            CarregarTarefas(tarefas);
         }
 
         public Tarefa ObtemTarefaSelecionada()
         {
-            return (Tarefa)repositorioTarefa.SelecionarPorNumero();
+            return (Tarefa)listTarefas.SelectedItem;
         }
-
-        private void CarregarTarefasConcluidas(List<Tarefa> tarefasConcluidas)
+      
+        private void CarregarTarefas(List<Tarefa> tarefas)
         {
-            listTarefasConcluidas.Items.Clear();
+            listTarefas.Items.Clear();
 
-            foreach (Tarefa t in tarefasConcluidas)
+            foreach (Tarefa t in tarefas)
             {
-                listTarefasConcluidas.Items.Add(t);
-            }
-        }
-
-        private void CarregarTarefasPendentes(List<Tarefa> tarefasPendentes)
-        {
-            listTarefasPendentes.Items.Clear();
-
-            foreach (Tarefa t in tarefasPendentes)
-            {
-                listTarefasPendentes.Items.Add(t);
+                listTarefas.Items.Add(t);
             }
         }
     }

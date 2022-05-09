@@ -8,9 +8,8 @@ namespace eAgenda.Dominio.ModuloTarefa
         void AdicionarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itens);
 
         void AtualizarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itensConcluidos, List<ItemTarefa> itensPendentes);
-       
-        List<Tarefa> SelecionarTarefasConcluidas();
 
-        List<Tarefa> SelecionarTarefasPendentes();
+        List<Tarefa> SelecionarTodos(StatusTarefaEnum status);
+        
     }
 }

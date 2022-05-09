@@ -13,6 +13,20 @@ namespace eAgenda.WinApp.ModuloTarefa
         public TelaCadastroTarefasForm()
         {
             InitializeComponent();
+
+            CarregarPrioridades();
+        }
+
+        private void CarregarPrioridades()
+        {
+            var prioridades = Enum.GetValues(typeof(PrioridadeTarefaEnum));
+
+            foreach (var item in prioridades)
+            {
+                cmbPrioridades.Items.Add(item);
+            }
+
+            cmbPrioridades.SelectedItem = PrioridadeTarefaEnum.Baixa;
         }
 
         public Func<Tarefa, ValidationResult> GravarRegistro { get; set; }
@@ -28,12 +42,15 @@ namespace eAgenda.WinApp.ModuloTarefa
                 tarefa = value;
                 txtNumero.Text = tarefa.Numero.ToString();
                 txtTitulo.Text = tarefa.Titulo;
+                cmbPrioridades.SelectedItem = tarefa.Prioridade;
             }
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {            
-            tarefa.Titulo = txtTitulo.Text;            
+            tarefa.Titulo = txtTitulo.Text;
+
+            tarefa.Prioridade = (PrioridadeTarefaEnum)cmbPrioridades.SelectedItem;
 
             var resultadoValidacao = GravarRegistro(tarefa);
 
@@ -45,6 +62,11 @@ namespace eAgenda.WinApp.ModuloTarefa
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private void TelaCadastroTarefasForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
         }
     }
 }
