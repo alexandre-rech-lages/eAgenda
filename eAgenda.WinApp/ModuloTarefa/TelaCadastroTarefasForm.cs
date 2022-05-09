@@ -1,7 +1,6 @@
 ﻿using eAgenda.Dominio.ModuloTarefa;
 using FluentValidation.Results;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloTarefa
@@ -47,7 +46,7 @@ namespace eAgenda.WinApp.ModuloTarefa
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
-        {            
+        {
             tarefa.Titulo = txtTitulo.Text;
 
             tarefa.Prioridade = (PrioridadeTarefaEnum)cmbPrioridades.SelectedItem;
@@ -65,6 +64,11 @@ namespace eAgenda.WinApp.ModuloTarefa
         }
 
         private void TelaCadastroTarefasForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+        private void TelaCadastroTarefasForm_Load(object sender, EventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
         }

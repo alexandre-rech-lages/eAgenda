@@ -132,6 +132,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Tarefas";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroTarefasForm_FormClosing);
+            this.Load += new System.EventHandler(this.TelaCadastroTarefasForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

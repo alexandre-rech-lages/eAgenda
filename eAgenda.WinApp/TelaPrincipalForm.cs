@@ -32,7 +32,7 @@ namespace eAgenda.WinApp
 
         public static TelaPrincipalForm Instancia
         {
-            get;set;
+            get; set;
         }
 
         public void AtualizarRodape(string mensagem)
@@ -46,7 +46,7 @@ namespace eAgenda.WinApp
         }
 
         private void contatosMenuItem_Click(object sender, EventArgs e)
-        {            
+        {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
@@ -123,7 +123,7 @@ namespace eAgenda.WinApp
             if (configuracao != null)
             {
                 toolbox.Enabled = true;
-                
+
                 ConfigurarTooltips(configuracao);
 
                 ConfigurarBotoes(configuracao);
@@ -131,7 +131,7 @@ namespace eAgenda.WinApp
         }
 
         private void ConfigurarListagem()
-        {            
+        {
             var listagemControl = controlador.ObtemListagem();
 
             panelRegistros.Controls.Clear();
@@ -144,14 +144,14 @@ namespace eAgenda.WinApp
         private void InicializarControladores()
         {
             var repositorioTarefa = new RepositorioTarefaEmArquivo(contextoDados);
-            var repositorioContato = new RepositorioContatoEmArquivo(contextoDados);
 
             controladores = new Dictionary<string, ControladorBase>();
+
             controladores.Add("Tarefas", new ControladorTarefa(repositorioTarefa));
-            controladores.Add("Contatos", new ControladorContato(repositorioContato));
+            controladores.Add("Contatos", new ControladorContato());
             controladores.Add("Compromissos", new ControladorCompromisso());
         }
 
-        
+
     }
 }

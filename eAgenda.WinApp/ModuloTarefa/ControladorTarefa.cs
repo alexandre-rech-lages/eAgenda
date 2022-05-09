@@ -10,6 +10,8 @@ namespace eAgenda.WinApp.ModuloTarefa
         private IRepositorioTarefa repositorioTarefa;
         private TabelaTarefasControl tabelaTarefas;
 
+        public StatusTarefaEnum StatusSelecioando { get; private set; }
+
         public ControladorTarefa(IRepositorioTarefa repositorioTarefa)
         {
             this.repositorioTarefa = repositorioTarefa;
@@ -78,13 +80,6 @@ namespace eAgenda.WinApp.ModuloTarefa
             }
         }
 
-        private Tarefa ObtemTarefaSelecionada()
-        {
-            var numero = tabelaTarefas.ObtemNumeroTarefaSelecionado();
-
-            return repositorioTarefa.SelecionarPorNumero(numero);
-        }
-
         public override void AdicionarItens()
         {
             Tarefa tarefaSelecionada = ObtemTarefaSelecionada();
@@ -138,23 +133,9 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             if (telaFiltro.ShowDialog() == DialogResult.OK)
             {
-                var status = telaFiltro.StatusSelecionado;
+                StatusSelecioando = telaFiltro.StatusSelecionado;
 
-                List<Tarefa> tarefas = repositorioTarefa.SelecionarTodos(status);
-
-                string tipoTarefa;
-
-                switch (status)
-                {
-                    case StatusTarefaEnum.Pendentes: tipoTarefa = "pendente(s)"; break;
-
-                    case StatusTarefaEnum.Concluidas: tipoTarefa = "concluída(s)"; break;
-
-                    default: tipoTarefa = ""; break;
-                }
-
-                tabelaTarefas.AtualizarRegistros(tarefas);
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {tarefas.Count} tarefa(s) {tipoTarefa}");
+                CarregarTarefas();
             }
         }
 
@@ -168,16 +149,35 @@ namespace eAgenda.WinApp.ModuloTarefa
             return tabelaTarefas;
         }
 
-        private void CarregarTarefas()
-        {
-            var tarefas = repositorioTarefa.SelecionarTodos();
-
-            tabelaTarefas.AtualizarRegistros(tarefas);
-        }
-
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolboxTarefa();
+        }
+
+        private void CarregarTarefas()
+        {
+            List<Tarefa> tarefas = repositorioTarefa.SelecionarTodos(StatusSelecioando);
+
+            string tipoTarefa;
+
+            switch (StatusSelecioando)
+            {
+                case StatusTarefaEnum.Pendentes: tipoTarefa = "pendente(s)"; break;
+
+                case StatusTarefaEnum.Concluidas: tipoTarefa = "concluída(s)"; break;
+
+                default: tipoTarefa = ""; break;
+            }
+
+            tabelaTarefas.AtualizarRegistros(tarefas);
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {tarefas.Count} tarefa(s) {tipoTarefa}");
+        }
+
+        private Tarefa ObtemTarefaSelecionada()
+        {
+            var numero = tabelaTarefas.ObtemNumeroTarefaSelecionado();
+
+            return repositorioTarefa.SelecionarPorNumero(numero);
         }
     }
 }

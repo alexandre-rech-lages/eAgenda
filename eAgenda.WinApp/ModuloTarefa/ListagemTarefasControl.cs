@@ -20,7 +20,7 @@ namespace eAgenda.WinApp.ModuloTarefa
         {
             return (Tarefa)listTarefas.SelectedItem;
         }
-      
+
         private void CarregarTarefas(List<Tarefa> tarefas)
         {
             listTarefas.Items.Clear();

@@ -10,7 +10,7 @@ namespace eAgenda.Dominio.Compartilhado
         ValidationResult Editar(T registro);
 
         ValidationResult Excluir(T registro);
-        
+
         List<T> SelecionarTodos();
 
         T SelecionarPorNumero(int numero);

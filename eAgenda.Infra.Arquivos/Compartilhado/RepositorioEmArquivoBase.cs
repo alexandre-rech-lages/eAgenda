@@ -1,7 +1,6 @@
 ﻿using eAgenda.Dominio.Compartilhado;
 using FluentValidation;
 using FluentValidation.Results;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -71,7 +70,7 @@ namespace eAgenda.Infra.Arquivos
 
             if (registros.Remove(registro) == false)
                 resultadoValidacao.Errors.Add(new ValidationFailure("", "Não foi possível remover o registro"));
-            
+
             return resultadoValidacao;
         }
 

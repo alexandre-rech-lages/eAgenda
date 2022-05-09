@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace eAgenda.Dominio.ModuloTarefa
 {
@@ -80,7 +79,7 @@ namespace eAgenda.Dominio.ModuloTarefa
             ItemTarefa itemTarefa = itens.Find(x => x.Equals(item));
 
             itemTarefa?.MarcarPendente();
-        }       
+        }
 
         public override void Atualizar(Tarefa registro)
         {

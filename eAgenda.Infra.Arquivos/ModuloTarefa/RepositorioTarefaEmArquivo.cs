@@ -64,7 +64,7 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
                .Select(x => x.Titulo)
                .Contains(registro.Titulo);
 
-            if (nomeEncontrado && registro.Numero == 0)            
+            if (nomeEncontrado && registro.Numero == 0)
                 resultadoValidacao.Errors.Add(new ValidationFailure("", "Nome já está cadastrado"));
 
             return resultadoValidacao;
@@ -104,7 +104,7 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
             {
                 case StatusTarefaEnum.Todos: return SelecionarTodos();
 
-                case StatusTarefaEnum.Pendentes: return SelecionarTarefasPendentes();                   
+                case StatusTarefaEnum.Pendentes: return SelecionarTarefasPendentes();
 
                 case StatusTarefaEnum.Concluidas: return SelecionarTarefasConcluidas();
 

@@ -10,6 +10,6 @@ namespace eAgenda.Dominio.ModuloTarefa
         void AtualizarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itensConcluidos, List<ItemTarefa> itensPendentes);
 
         List<Tarefa> SelecionarTodos(StatusTarefaEnum status);
-        
+
     }
 }
