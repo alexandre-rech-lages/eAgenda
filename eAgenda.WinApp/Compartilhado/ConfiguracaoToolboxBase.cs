@@ -2,6 +2,8 @@
 {
     public abstract class ConfiguracaoToolboxBase
     {
+        public abstract string TipoCadastro { get; }
+
         public abstract string TooltipInserir { get; }
 
         public abstract string TooltipEditar { get; }

@@ -23,7 +23,8 @@ namespace eAgenda.WinApp
 
             Instancia = this;
 
-            labelRodape.Text = "";
+            labelRodape.Text = string.Empty;
+            labelTipoCadastro.Text = string.Empty;
 
             this.contextoDados = contextoDados;
 
@@ -123,6 +124,8 @@ namespace eAgenda.WinApp
             if (configuracao != null)
             {
                 toolbox.Enabled = true;
+
+                labelTipoCadastro.Text = configuracao.TipoCadastro;
 
                 ConfigurarTooltips(configuracao);
 

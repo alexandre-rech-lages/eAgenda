@@ -4,6 +4,8 @@ namespace eAgenda.WinApp.ModuloTarefa
 {
     public class ConfiguracaoToolboxTarefa : ConfiguracaoToolboxBase
     {
+        public override string TipoCadastro => "Controle de Tarefas";
+
         public override string TooltipInserir { get { return "Inserir uma nova tarefa"; } }
 
         public override string TooltipEditar { get { return "Editar uma tarefa existente"; } }

@@ -4,6 +4,8 @@ namespace eAgenda.WinApp.ModuloContato
 {
     public class ConfiguracaoToolboxContato : ConfiguracaoToolboxBase
     {
+        public override string TipoCadastro => "Cadastro de Contatos";
+
         public override string TooltipInserir { get { return "Inserir um novo contato"; } }
 
         public override string TooltipEditar { get { return "Editar um contato existente"; } }
