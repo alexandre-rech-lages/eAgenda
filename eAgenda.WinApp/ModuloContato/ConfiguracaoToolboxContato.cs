@@ -12,5 +12,9 @@ namespace eAgenda.WinApp.ModuloContato
 
         public override string TooltipExcluir { get { return "Excluir um contato existente"; } }
 
+        public override string TooltipAgrupar { get { return "Agrupar contatos"; } }
+
+        public override bool AgruparHabilitado { get { return true; } }
+
     }
 }

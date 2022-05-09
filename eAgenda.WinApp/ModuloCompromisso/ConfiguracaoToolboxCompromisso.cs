@@ -12,6 +12,8 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         public override string TooltipExcluir => "Excluir um compromisso existente";
 
-        
+        public override string TooltipFiltrar { get { return "Filtrar Compromisso por Status"; } }
+
+        public override bool FiltrarHabilitado => true;
     }
 }

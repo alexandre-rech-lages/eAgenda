@@ -10,9 +10,9 @@ namespace eAgenda.WinApp.ModuloTarefa
         public TabelaTarefasControl()
         {
             InitializeComponent();
-            gridTarefas.ConfigurarGridZebrado();
-            gridTarefas.ConfigurarGridSomenteLeitura();
-            gridTarefas.Columns.AddRange(ObterColunas());
+            grid.ConfigurarGridZebrado();
+            grid.ConfigurarGridSomenteLeitura();
+            grid.Columns.AddRange(ObterColunas());
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -37,16 +37,16 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         public int ObtemNumeroTarefaSelecionado()
         {
-            return gridTarefas.SelecionarNumero<int>();
+            return grid.SelecionarNumero<int>();
         }
 
         public void AtualizarRegistros(List<Tarefa> tarefas)
         {
-            gridTarefas.Rows.Clear();
+            grid.Rows.Clear();
 
             foreach (Tarefa tarefa in tarefas)
             {
-                gridTarefas.Rows.Add(tarefa.Numero, tarefa.Titulo, tarefa.Prioridade,
+                grid.Rows.Add(tarefa.Numero, tarefa.Titulo, tarefa.Prioridade,
                     tarefa.DataCriacao, tarefa.DataConclusao, tarefa.PercentualConcluido);
             }
         }

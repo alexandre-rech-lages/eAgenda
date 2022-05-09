@@ -1,5 +1,6 @@
 ﻿using eAgenda.Dominio.ModuloCompromisso;
 using eAgenda.Dominio.ModuloContato;
+using eAgenda.Dominio.ModuloDespesa;
 using eAgenda.Dominio.ModuloTarefa;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace eAgenda.Infra.Arquivos
             Contatos = new List<Contato>();
 
             Compromissos = new List<Compromisso>();
+
+            Despesas = new List<Despesa>();
         }
 
         public DataContext(ISerializador serializador) : this()
@@ -34,6 +37,8 @@ namespace eAgenda.Infra.Arquivos
 
         public List<Compromisso> Compromissos { get; set; }
 
+        public List<Despesa> Despesas { get; set; }
+
         public void GravarDados()
         {
             serializador.GravarDadosEmArquivo(this);
@@ -48,6 +53,12 @@ namespace eAgenda.Infra.Arquivos
 
             if (ctx.Contatos.Any())
                 this.Contatos.AddRange(ctx.Contatos);
+
+            if (ctx.Compromissos.Any())
+                this.Compromissos.AddRange(ctx.Compromissos);
+
+            if (ctx.Despesas.Any())
+                this.Despesas.AddRange(ctx.Despesas);
         }
     }
 }

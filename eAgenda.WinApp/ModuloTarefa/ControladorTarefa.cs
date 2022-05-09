@@ -28,8 +28,6 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             if (resultado == DialogResult.OK)
             {
-                //repositorioTarefa.Inserir(tela.Tarefa);
-
                 CarregarTarefas();
             }
         }

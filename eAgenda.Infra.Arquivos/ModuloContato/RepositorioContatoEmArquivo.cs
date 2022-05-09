@@ -20,7 +20,7 @@ namespace eAgenda.Infra.Arquivos.ModuloContato
 
         public override AbstractValidator<Contato> ObterValidador()
         {
-            throw new System.NotImplementedException();
+            return new ValidadorContato();
         }
     }
 }

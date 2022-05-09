@@ -1,6 +1,6 @@
-﻿namespace eAgenda.WinApp.ModuloTarefa
+﻿namespace eAgenda.WinApp.ModuloContato
 {
-    partial class TabelaTarefasControl
+    partial class TabelaContatosControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,16 +39,16 @@
             this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(476, 411);
+            this.grid.Size = new System.Drawing.Size(360, 289);
             this.grid.TabIndex = 0;
             // 
-            // TabelaTarefasControl
+            // TabelaContatosControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
-            this.Name = "TabelaTarefasControl";
-            this.Size = new System.Drawing.Size(476, 411);
+            this.Name = "TabelaContatosControl";
+            this.Size = new System.Drawing.Size(360, 289);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 

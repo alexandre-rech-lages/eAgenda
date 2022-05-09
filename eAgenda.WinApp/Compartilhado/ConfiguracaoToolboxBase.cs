@@ -16,6 +16,8 @@
 
         public virtual string TooltipFiltrar { get; }
 
+        public virtual string TooltipAgrupar { get; }
+
 
         public virtual bool InserirHabilitado { get { return true; } }
 
@@ -28,5 +30,7 @@
         public virtual bool AtualizarItensHabilitado { get { return false; } }
 
         public virtual bool FiltrarHabilitado { get { return false; } }
+
+        public virtual bool AgruparHabilitado { get { return false; } }
     }
 }

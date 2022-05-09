@@ -50,7 +50,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 57);
+            this.label2.Location = new System.Drawing.Point(36, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 15);
             this.label2.TabIndex = 1;
@@ -66,7 +66,7 @@
             // 
             // txtTitulo
             // 
-            this.txtTitulo.Location = new System.Drawing.Point(86, 53);
+            this.txtTitulo.Location = new System.Drawing.Point(84, 46);
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(340, 23);
             this.txtTitulo.TabIndex = 3;
@@ -96,7 +96,7 @@
             // 
             this.cmbPrioridades.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPrioridades.FormattingEnabled = true;
-            this.cmbPrioridades.Location = new System.Drawing.Point(86, 89);
+            this.cmbPrioridades.Location = new System.Drawing.Point(84, 75);
             this.cmbPrioridades.Name = "cmbPrioridades";
             this.cmbPrioridades.Size = new System.Drawing.Size(110, 23);
             this.cmbPrioridades.TabIndex = 6;
@@ -104,7 +104,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 93);
+            this.label3.Location = new System.Drawing.Point(12, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 15);
             this.label3.TabIndex = 7;

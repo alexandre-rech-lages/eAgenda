@@ -43,10 +43,13 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnFiltrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAgrupar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.despesasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -67,7 +70,8 @@
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tarefasMenuItem,
             this.contatosMenuItem,
-            this.compromissosMenuItem});
+            this.compromissosMenuItem,
+            this.despesasMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -109,6 +113,8 @@
             this.toolStripSeparator1,
             this.btnFiltrar,
             this.toolStripSeparator3,
+            this.btnAgrupar,
+            this.toolStripSeparator4,
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 24);
             this.toolbox.Name = "toolbox";
@@ -200,6 +206,22 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 41);
             // 
+            // btnAgrupar
+            // 
+            this.btnAgrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAgrupar.Image = global::eAgenda.WinApp.Properties.Resources.outline_table_rows_black_24dp;
+            this.btnAgrupar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnAgrupar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAgrupar.Name = "btnAgrupar";
+            this.btnAgrupar.Padding = new System.Windows.Forms.Padding(5);
+            this.btnAgrupar.Size = new System.Drawing.Size(38, 38);
+            this.btnAgrupar.Click += new System.EventHandler(this.btnAgrupar_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 41);
+            // 
             // labelTipoCadastro
             // 
             this.labelTipoCadastro.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
@@ -230,6 +252,14 @@
             this.panelRegistros.Name = "panelRegistros";
             this.panelRegistros.Size = new System.Drawing.Size(929, 522);
             this.panelRegistros.TabIndex = 3;
+            // 
+            // despesasMenuItem
+            // 
+            this.despesasMenuItem.Name = "despesasMenuItem";
+            this.despesasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.despesasMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.despesasMenuItem.Text = "Despesas";
+            this.despesasMenuItem.Click += new System.EventHandler(this.despesasMenuItem_Click);
             // 
             // TelaPrincipalForm
             // 
@@ -278,5 +308,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
+        private System.Windows.Forms.ToolStripButton btnAgrupar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem despesasMenuItem;
     }
 }

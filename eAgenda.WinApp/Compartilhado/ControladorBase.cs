@@ -14,6 +14,8 @@ namespace eAgenda.WinApp.Compartilhado
 
         public virtual void Filtrar() { }
 
+        public virtual void Agrupar() { }
+
         public abstract UserControl ObtemListagem();
 
         public abstract ConfiguracaoToolboxBase ObtemConfiguracaoToolbox();

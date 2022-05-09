@@ -1,6 +1,6 @@
-﻿namespace eAgenda.WinApp.ModuloTarefa
+﻿namespace eAgenda.WinApp.ModuloDespesa
 {
-    partial class TabelaTarefasControl
+    partial class ListagemDespesasControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,34 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.grid = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
+            this.listDespesas = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // grid
+            // listDespesas
             // 
-            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.Location = new System.Drawing.Point(0, 0);
-            this.grid.Name = "grid";
-            this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(476, 411);
-            this.grid.TabIndex = 0;
+            this.listDespesas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listDespesas.FormattingEnabled = true;
+            this.listDespesas.ItemHeight = 15;
+            this.listDespesas.Location = new System.Drawing.Point(0, 0);
+            this.listDespesas.Name = "listDespesas";
+            this.listDespesas.Size = new System.Drawing.Size(277, 253);
+            this.listDespesas.TabIndex = 0;
             // 
-            // TabelaTarefasControl
+            // ListagemDespesasControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.grid);
-            this.Name = "TabelaTarefasControl";
-            this.Size = new System.Drawing.Size(476, 411);
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
+            this.Controls.Add(this.listDespesas);
+            this.Name = "ListagemDespesasControl";
+            this.Size = new System.Drawing.Size(277, 253);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView grid;
+        private System.Windows.Forms.ListBox listDespesas;
     }
 }
