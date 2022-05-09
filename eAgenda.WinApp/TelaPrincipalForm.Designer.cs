@@ -33,7 +33,6 @@
             this.tarefasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contatosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compromissosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.praDarPauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox = new System.Windows.Forms.ToolStrip();
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
@@ -59,7 +58,7 @@
             this.cadastrosToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(544, 24);
+            this.menu.Size = new System.Drawing.Size(929, 24);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
@@ -68,8 +67,7 @@
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tarefasMenuItem,
             this.contatosMenuItem,
-            this.compromissosMenuItem,
-            this.praDarPauToolStripMenuItem});
+            this.compromissosMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -78,7 +76,7 @@
             // 
             this.tarefasMenuItem.Name = "tarefasMenuItem";
             this.tarefasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.tarefasMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.tarefasMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tarefasMenuItem.Text = "Tarefas";
             this.tarefasMenuItem.Click += new System.EventHandler(this.tarefasMenuItem_Click);
             // 
@@ -86,7 +84,7 @@
             // 
             this.contatosMenuItem.Name = "contatosMenuItem";
             this.contatosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.contatosMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.contatosMenuItem.Size = new System.Drawing.Size(180, 22);
             this.contatosMenuItem.Text = "Contatos";
             this.contatosMenuItem.Click += new System.EventHandler(this.contatosMenuItem_Click);
             // 
@@ -94,15 +92,9 @@
             // 
             this.compromissosMenuItem.Name = "compromissosMenuItem";
             this.compromissosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.compromissosMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.compromissosMenuItem.Size = new System.Drawing.Size(180, 22);
             this.compromissosMenuItem.Text = "Compromissos";
             this.compromissosMenuItem.Click += new System.EventHandler(this.compromissosMenuItem_Click);
-            // 
-            // praDarPauToolStripMenuItem
-            // 
-            this.praDarPauToolStripMenuItem.Name = "praDarPauToolStripMenuItem";
-            this.praDarPauToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.praDarPauToolStripMenuItem.Text = "Pra dar pau";
             // 
             // toolbox
             // 
@@ -120,7 +112,7 @@
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 24);
             this.toolbox.Name = "toolbox";
-            this.toolbox.Size = new System.Drawing.Size(544, 41);
+            this.toolbox.Size = new System.Drawing.Size(929, 41);
             this.toolbox.TabIndex = 1;
             this.toolbox.Text = "toolStrip1";
             // 
@@ -219,9 +211,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelRodape});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 377);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 587);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(544, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(929, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -236,25 +228,24 @@
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRegistros.Location = new System.Drawing.Point(0, 65);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(544, 312);
+            this.panelRegistros.Size = new System.Drawing.Size(929, 522);
             this.panelRegistros.TabIndex = 3;
             // 
             // TelaPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 399);
+            this.ClientSize = new System.Drawing.Size(929, 609);
             this.Controls.Add(this.panelRegistros);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolbox);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
-            this.MinimumSize = new System.Drawing.Size(560, 438);
+            this.MinimumSize = new System.Drawing.Size(945, 648);
             this.Name = "TelaPrincipalForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "e-Agenda 2.0";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.toolbox.ResumeLayout(false);
@@ -281,7 +272,6 @@
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripButton btnAdicionarItens;
         private System.Windows.Forms.ToolStripButton btnAtualizarItens;
-        private System.Windows.Forms.ToolStripMenuItem praDarPauToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel labelRodape;
         private System.Windows.Forms.ToolStripButton btnFiltrar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

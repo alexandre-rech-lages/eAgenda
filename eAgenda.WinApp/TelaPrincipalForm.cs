@@ -33,7 +33,8 @@ namespace eAgenda.WinApp
 
         public static TelaPrincipalForm Instancia
         {
-            get; set;
+            get; 
+            private set;
         }
 
         public void AtualizarRodape(string mensagem)
@@ -115,6 +116,7 @@ namespace eAgenda.WinApp
             ConfigurarToolbox();
 
             ConfigurarListagem();
+
         }
 
         private void ConfigurarToolbox()
@@ -135,6 +137,8 @@ namespace eAgenda.WinApp
 
         private void ConfigurarListagem()
         {
+            AtualizarRodape("");
+
             var listagemControl = controlador.ObtemListagem();
 
             panelRegistros.Controls.Clear();
