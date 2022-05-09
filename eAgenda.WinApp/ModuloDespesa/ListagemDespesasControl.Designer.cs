@@ -28,32 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listDespesas = new System.Windows.Forms.ListBox();
+            this.grid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
             // 
-            // listDespesas
+            // grid
             // 
-            this.listDespesas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listDespesas.FormattingEnabled = true;
-            this.listDespesas.ItemHeight = 15;
-            this.listDespesas.Location = new System.Drawing.Point(0, 0);
-            this.listDespesas.Name = "listDespesas";
-            this.listDespesas.Size = new System.Drawing.Size(277, 253);
-            this.listDespesas.TabIndex = 0;
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid.Location = new System.Drawing.Point(0, 0);
+            this.grid.Name = "grid";
+            this.grid.RowTemplate.Height = 25;
+            this.grid.Size = new System.Drawing.Size(412, 349);
+            this.grid.TabIndex = 0;
             // 
             // ListagemDespesasControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listDespesas);
+            this.Controls.Add(this.grid);
             this.Name = "ListagemDespesasControl";
-            this.Size = new System.Drawing.Size(277, 253);
+            this.Size = new System.Drawing.Size(412, 349);
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listDespesas;
+        private System.Windows.Forms.DataGridView grid;
     }
 }

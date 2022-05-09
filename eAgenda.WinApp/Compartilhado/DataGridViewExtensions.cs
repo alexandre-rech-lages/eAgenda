@@ -60,6 +60,8 @@ namespace eAgenda.WinApp.Compartilhado
             };
         }
 
+       
+
         public static T SelecionarNumero<T>(this DataGridView grid)
         {
             const int firstLine = 0, firstColumn = 0;

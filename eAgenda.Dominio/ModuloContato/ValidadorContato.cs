@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Validators;
 
 namespace eAgenda.Dominio.ModuloContato
 {
@@ -10,15 +11,18 @@ namespace eAgenda.Dominio.ModuloContato
                 .NotNull().NotEmpty();
 
             RuleFor(x => x.Email)
+                .EmailAddress(EmailValidationMode.AspNetCoreCompatible)
                 .NotNull().NotEmpty();
 
             RuleFor(x => x.Telefone)
                 .NotNull().NotEmpty();
 
             RuleFor(x => x.Empresa)
+                .MinimumLength(3)
                 .NotNull().NotEmpty();
 
             RuleFor(x => x.Cargo)
+                .MinimumLength(3)
                 .NotNull().NotEmpty();
         }
     }

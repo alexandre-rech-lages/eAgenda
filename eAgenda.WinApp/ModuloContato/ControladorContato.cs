@@ -100,7 +100,6 @@ namespace eAgenda.WinApp.ModuloContato
             return new ConfiguracaoToolboxContato();
         }
 
-
         private Contato ObtemContatoSelecionado()
         {
             var numero = tabelaContatos.ObtemNumeroContatoSelecionado();

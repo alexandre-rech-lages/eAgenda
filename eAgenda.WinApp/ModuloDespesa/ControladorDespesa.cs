@@ -42,7 +42,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         public override void Editar()
         {
-            Despesa despesaSelecionada = listagemDespesas.SelecionarDespesa();
+            Despesa despesaSelecionada = ObtemDespesaSelecionada();
 
             if (despesaSelecionada == null)
             {
@@ -67,7 +67,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         public override void Excluir()
         {
-            Despesa despesaSelecionada = listagemDespesas.SelecionarDespesa();
+            Despesa despesaSelecionada = ObtemDespesaSelecionada();
 
             if (despesaSelecionada == null)
             {
@@ -86,6 +86,8 @@ namespace eAgenda.WinApp.ModuloDespesa
             }
         }
 
+      
+
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolboxDespesa();
@@ -99,6 +101,15 @@ namespace eAgenda.WinApp.ModuloDespesa
             CarregarDespesas();
 
             return listagemDespesas;
+        }
+
+        private Despesa ObtemDespesaSelecionada()
+        {
+            int numeroSelecionado = listagemDespesas.ObtemNumeroDespesaSelecionada();
+
+            Despesa despesaSelecionada = repositorioDespesa.SelecionarPorNumero(numeroSelecionado);
+
+            return despesaSelecionada;
         }
     }
 }
