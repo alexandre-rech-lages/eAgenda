@@ -9,7 +9,7 @@ namespace eAgenda.WinApp.ModuloDespesa
     public class ControladorDespesa : ControladorBase
     {
         private readonly IRepositorioDespesa repositorioDespesa;
-        private ListagemDespesasControl listagemDespesas;
+        private TabelaDespesasControl tabelaDespesas;
 
 
         public ControladorDespesa(IRepositorioDespesa repositorio)
@@ -37,7 +37,7 @@ namespace eAgenda.WinApp.ModuloDespesa
         {
             List<Despesa> despesas = repositorioDespesa.SelecionarTodos();
 
-            listagemDespesas.AtualizarRegistros(despesas);
+            tabelaDespesas.AtualizarRegistros(despesas);
         }
 
         public override void Editar()
@@ -85,9 +85,7 @@ namespace eAgenda.WinApp.ModuloDespesa
                 CarregarDespesas();
             }
         }
-
       
-
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolboxDespesa();
@@ -95,17 +93,17 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         public override UserControl ObtemListagem()
         {
-            if (listagemDespesas == null)
-                listagemDespesas = new ListagemDespesasControl();
+            if (tabelaDespesas == null)
+                tabelaDespesas = new TabelaDespesasControl();
 
             CarregarDespesas();
 
-            return listagemDespesas;
+            return tabelaDespesas;
         }
 
         private Despesa ObtemDespesaSelecionada()
         {
-            int numeroSelecionado = listagemDespesas.ObtemNumeroDespesaSelecionada();
+            int numeroSelecionado = tabelaDespesas.ObtemNumeroDespesaSelecionada();
 
             Despesa despesaSelecionada = repositorioDespesa.SelecionarPorNumero(numeroSelecionado);
 

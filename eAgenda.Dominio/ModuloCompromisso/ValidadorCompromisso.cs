@@ -10,8 +10,20 @@ namespace eAgenda.Dominio.ModuloCompromisso
             RuleFor(x => x.Assunto)
                .NotNull().NotEmpty();
 
-            RuleFor(x => x.Local)
-               .NotNull().NotEmpty();
+            When(x => x.TipoLocal == TipoLocalizacaoCompromissoEnum.Remoto, () =>
+            {
+                RuleFor(x => x.Link)
+                    .Url()
+                   .NotNull()
+                   .NotEmpty();
+
+            }).Otherwise( () => { 
+
+                RuleFor(x => x.Local)
+                    .NotNull()
+                    .NotEmpty();
+            });               
+
 
             RuleFor(x => x.Data)
                .NotNull().NotEmpty().GreaterThan((x) => DateTime.Now.Date);

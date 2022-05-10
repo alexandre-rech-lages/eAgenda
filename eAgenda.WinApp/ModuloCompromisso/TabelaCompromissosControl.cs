@@ -45,8 +45,8 @@ namespace eAgenda.WinApp.ModuloCompromisso
             foreach (var compromisso in compromissos)
             {
                 grid.Rows.Add(compromisso.Numero, compromisso.Assunto,
-                    compromisso.Data.ToShortDateString(), compromisso.HoraInicio.ToString("hh':'mm':'ss"),
-                    compromisso.Contato.Nome);
+                    compromisso.Data.ToShortDateString(), compromisso.HoraInicio,
+                    compromisso.Contato?.Nome);
             }
         }
 

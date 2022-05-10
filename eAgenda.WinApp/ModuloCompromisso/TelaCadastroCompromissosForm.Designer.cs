@@ -77,7 +77,7 @@
             this.btnGravar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(88, 52);
-            this.btnGravar.TabIndex = 20;
+            this.btnGravar.TabIndex = 11;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -89,7 +89,7 @@
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(88, 52);
-            this.btnCancelar.TabIndex = 19;
+            this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -101,29 +101,31 @@
             this.txtData.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtData.Name = "txtData";
             this.txtData.Size = new System.Drawing.Size(146, 23);
-            this.txtData.TabIndex = 25;
+            this.txtData.TabIndex = 2;
             // 
             // txtHoraInicio
             // 
             this.txtHoraInicio.CalendarMonthBackground = System.Drawing.Color.LightYellow;
-            this.txtHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.txtHoraInicio.CustomFormat = "HH:mm";
+            this.txtHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtHoraInicio.Location = new System.Drawing.Point(75, 113);
             this.txtHoraInicio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtHoraInicio.Name = "txtHoraInicio";
             this.txtHoraInicio.ShowUpDown = true;
             this.txtHoraInicio.Size = new System.Drawing.Size(146, 23);
-            this.txtHoraInicio.TabIndex = 27;
+            this.txtHoraInicio.TabIndex = 3;
             // 
             // txtHoraTermino
             // 
             this.txtHoraTermino.CalendarMonthBackground = System.Drawing.Color.LightYellow;
-            this.txtHoraTermino.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.txtHoraTermino.CustomFormat = "HH:mm";
+            this.txtHoraTermino.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtHoraTermino.Location = new System.Drawing.Point(293, 113);
             this.txtHoraTermino.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtHoraTermino.Name = "txtHoraTermino";
             this.txtHoraTermino.ShowUpDown = true;
             this.txtHoraTermino.Size = new System.Drawing.Size(146, 23);
-            this.txtHoraTermino.TabIndex = 28;
+            this.txtHoraTermino.TabIndex = 4;
             // 
             // checkMarcarContato
             // 
@@ -132,7 +134,7 @@
             this.checkMarcarContato.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkMarcarContato.Name = "checkMarcarContato";
             this.checkMarcarContato.Size = new System.Drawing.Size(277, 19);
-            this.checkMarcarContato.TabIndex = 29;
+            this.checkMarcarContato.TabIndex = 5;
             this.checkMarcarContato.Text = "Deseja marcar um contato neste compromisso?";
             this.checkMarcarContato.UseVisualStyleBackColor = true;
             this.checkMarcarContato.CheckedChanged += new System.EventHandler(this.checkMarcarContato_CheckedChanged);
@@ -141,13 +143,14 @@
             // 
             this.cmbContatos.BackColor = System.Drawing.Color.White;
             this.cmbContatos.DisplayMember = "Nome";
+            this.cmbContatos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbContatos.Enabled = false;
             this.cmbContatos.FormattingEnabled = true;
             this.cmbContatos.Location = new System.Drawing.Point(75, 181);
             this.cmbContatos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbContatos.Name = "cmbContatos";
             this.cmbContatos.Size = new System.Drawing.Size(146, 23);
-            this.cmbContatos.TabIndex = 30;
+            this.cmbContatos.TabIndex = 6;
             // 
             // label2
             // 
@@ -190,7 +193,7 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Size = new System.Drawing.Size(365, 111);
-            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Localização";
             // 
@@ -200,7 +203,7 @@
             this.txtLocal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtLocal.Name = "txtLocal";
             this.txtLocal.Size = new System.Drawing.Size(236, 23);
-            this.txtLocal.TabIndex = 41;
+            this.txtLocal.TabIndex = 11;
             // 
             // txtLink
             // 
@@ -208,7 +211,7 @@
             this.txtLink.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtLink.Name = "txtLink";
             this.txtLink.Size = new System.Drawing.Size(236, 23);
-            this.txtLink.TabIndex = 40;
+            this.txtLink.TabIndex = 9;
             // 
             // rdbPresencial
             // 
@@ -217,25 +220,29 @@
             this.rdbPresencial.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdbPresencial.Name = "rdbPresencial";
             this.rdbPresencial.Size = new System.Drawing.Size(81, 19);
-            this.rdbPresencial.TabIndex = 39;
+            this.rdbPresencial.TabIndex = 10;
             this.rdbPresencial.TabStop = true;
             this.rdbPresencial.Text = "Presencial:";
             this.rdbPresencial.UseVisualStyleBackColor = true;
+            this.rdbPresencial.CheckedChanged += new System.EventHandler(this.rdbPresencial_CheckedChanged);
             // 
             // rdbRemoto
             // 
             this.rdbRemoto.AutoSize = true;
+            this.rdbRemoto.Checked = true;
             this.rdbRemoto.Location = new System.Drawing.Point(24, 33);
             this.rdbRemoto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdbRemoto.Name = "rdbRemoto";
             this.rdbRemoto.Size = new System.Drawing.Size(70, 19);
-            this.rdbRemoto.TabIndex = 38;
+            this.rdbRemoto.TabIndex = 8;
             this.rdbRemoto.TabStop = true;
             this.rdbRemoto.Text = "Remoto:";
             this.rdbRemoto.UseVisualStyleBackColor = true;
+            this.rdbRemoto.CheckedChanged += new System.EventHandler(this.rdbRemoto_CheckedChanged);
             // 
             // txtNumero
             // 
+            this.txtNumero.Enabled = false;
             this.txtNumero.Location = new System.Drawing.Point(75, 20);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(100, 23);
@@ -246,7 +253,7 @@
             this.txtAssunto.Location = new System.Drawing.Point(75, 50);
             this.txtAssunto.Name = "txtAssunto";
             this.txtAssunto.Size = new System.Drawing.Size(365, 23);
-            this.txtAssunto.TabIndex = 40;
+            this.txtAssunto.TabIndex = 1;
             // 
             // TelaCadastroCompromissosForm
             // 

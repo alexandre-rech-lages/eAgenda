@@ -18,7 +18,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         private void CarregarCategorias()
         {
-            var categorias = Enum.GetValues(typeof(CategoriaEnum));
+            var categorias = Enum.GetValues(typeof(CategoriaDespesaEnum));
 
             foreach (var item in categorias)
             {
@@ -28,7 +28,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         private void CarregarFormaPgto()
         {
-            var formas = Enum.GetValues(typeof(FormaPagamentoEnum));
+            var formas = Enum.GetValues(typeof(FormaPgtoDespesaEnum));
 
             foreach (var item in formas)
             {
@@ -64,8 +64,8 @@ namespace eAgenda.WinApp.ModuloDespesa
             despesa.Descricao = txtDescricao.Text;
             despesa.Valor = Convert.ToDecimal(txtValor.Text);
             despesa.Data = txtData.Value;
-            despesa.FormaPagamento = (FormaPagamentoEnum)cmbFormaPgto.SelectedItem;
-            despesa.Categoria = (CategoriaEnum)cmbCategoria.SelectedItem;
+            despesa.FormaPagamento = (FormaPgtoDespesaEnum)cmbFormaPgto.SelectedItem;
+            despesa.Categoria = (CategoriaDespesaEnum)cmbCategoria.SelectedItem;
 
             ValidationResult resultadoValidacao = GravarRegistro(despesa);
 

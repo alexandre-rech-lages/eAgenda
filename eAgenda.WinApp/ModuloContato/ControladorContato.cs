@@ -5,6 +5,8 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloContato
 {
+  
+
     internal class ControladorContato : ControladorBase
     {
         private readonly IRepositorioContato repositorioContato;
@@ -87,8 +89,8 @@ namespace eAgenda.WinApp.ModuloContato
 
         public override UserControl ObtemListagem()
         {
-            if (tabelaContatos == null)
-                tabelaContatos = new TabelaContatosControl();
+            //if (tabelaContatos == null)
+            tabelaContatos = new TabelaContatosControl();
 
             CarregarContatos();
 

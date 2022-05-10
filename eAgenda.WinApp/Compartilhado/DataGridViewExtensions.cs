@@ -70,6 +70,9 @@ namespace eAgenda.WinApp.Compartilhado
 
             object value = grid.SelectedRows[firstLine].Cells[firstColumn].Value;
 
+            if (value == null)
+                return default(T);
+
             return (T)Convert.ChangeType(value, typeof(T));
         }
     }

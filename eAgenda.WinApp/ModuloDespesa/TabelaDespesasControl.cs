@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloDespesa
 {
-    public partial class ListagemDespesasControl : UserControl
+    public partial class TabelaDespesasControl : UserControl
     {
-        public ListagemDespesasControl()
+        public TabelaDespesasControl()
         {
             InitializeComponent();
             grid.ConfigurarGridZebrado();

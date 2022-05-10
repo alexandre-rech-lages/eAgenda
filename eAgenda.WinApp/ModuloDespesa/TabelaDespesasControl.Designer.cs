@@ -1,6 +1,6 @@
 ﻿namespace eAgenda.WinApp.ModuloDespesa
 {
-    partial class ListagemDespesasControl
+    partial class TabelaDespesasControl
     {
         /// <summary> 
         /// Required designer variable.

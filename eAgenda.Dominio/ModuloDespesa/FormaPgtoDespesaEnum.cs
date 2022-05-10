@@ -1,6 +1,6 @@
 ﻿namespace eAgenda.Dominio.ModuloDespesa
 {
-    public enum FormaPagamentoEnum
+    public enum FormaPgtoDespesaEnum
     {
         PIX, Dinheiro, CartaoCredito
     }

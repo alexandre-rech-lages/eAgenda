@@ -10,7 +10,6 @@ namespace eAgenda.WinApp.ModuloCompromisso
     public partial class TelaCadastroCompromissosForm : Form
     {
         private Compromisso compromisso;
-        private readonly ControladorCompromisso controladorCompromissos;
 
         public TelaCadastroCompromissosForm(List<Contato> contatos)
         {
@@ -43,7 +42,16 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
                 txtAssunto.Text = compromisso.Assunto;
 
-                txtLocal.Text = compromisso.Local;
+                if (compromisso.TipoLocal == TipoLocalizacaoCompromissoEnum.Remoto)
+                {
+                    txtLink.Text = compromisso.Link;
+                    rdbRemoto_CheckedChanged(null,null);
+                }
+                else
+                {
+                    txtLocal.Text = compromisso.Local;
+                    rdbPresencial_CheckedChanged(null, null);
+                }
 
                 txtData.Value = compromisso.Data;
 
@@ -61,13 +69,22 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            compromisso.Assunto = txtAssunto.Text;
-            compromisso.Local = txtLocal.Text;
-            compromisso.Link = txtLink.Text;
+            compromisso.Assunto = txtAssunto.Text;                        
             compromisso.Data = txtData.Value;
             compromisso.HoraInicio = txtHoraInicio.Value;
             compromisso.HoraTermino = txtHoraTermino.Value;
             compromisso.Contato = (Contato)cmbContatos.SelectedItem;
+
+            if (rdbRemoto.Checked)
+            {
+                compromisso.TipoLocal = TipoLocalizacaoCompromissoEnum.Remoto;
+                compromisso.Link = txtLink.Text;
+            }
+            else
+            {
+                compromisso.TipoLocal = TipoLocalizacaoCompromissoEnum.Presencial;
+                compromisso.Local = txtLocal.Text;
+            }
 
             var resultadoValidacao = GravarRegistro(compromisso);
 
@@ -95,6 +112,20 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             cmbContatos.Enabled = checkMarcarContato.Checked;
             cmbContatos.SelectedIndex = -1;
+        }
+
+        private void rdbRemoto_CheckedChanged(object sender, EventArgs e)
+        {
+            txtLocal.Text = "";
+            txtLocal.Enabled = false;
+            txtLink.Enabled = true;
+        }
+
+        private void rdbPresencial_CheckedChanged(object sender, EventArgs e)
+        {
+            txtLink.Text = "";
+            txtLink.Enabled = false;
+            txtLocal.Enabled = true;
         }
     }
 }

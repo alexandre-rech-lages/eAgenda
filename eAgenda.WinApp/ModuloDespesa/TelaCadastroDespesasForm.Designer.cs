@@ -66,7 +66,7 @@
             this.txtDescricao.Location = new System.Drawing.Point(112, 47);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(236, 23);
-            this.txtDescricao.TabIndex = 3;
+            this.txtDescricao.TabIndex = 2;
             // 
             // label2
             // 
@@ -82,7 +82,7 @@
             this.txtValor.Location = new System.Drawing.Point(112, 75);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(100, 23);
-            this.txtValor.TabIndex = 5;
+            this.txtValor.TabIndex = 3;
             // 
             // label3
             // 
@@ -108,7 +108,7 @@
             this.txtData.Location = new System.Drawing.Point(112, 103);
             this.txtData.Name = "txtData";
             this.txtData.Size = new System.Drawing.Size(101, 23);
-            this.txtData.TabIndex = 7;
+            this.txtData.TabIndex = 4;
             // 
             // cmbFormaPgto
             // 
@@ -116,7 +116,7 @@
             this.cmbFormaPgto.Location = new System.Drawing.Point(112, 160);
             this.cmbFormaPgto.Name = "cmbFormaPgto";
             this.cmbFormaPgto.Size = new System.Drawing.Size(100, 23);
-            this.cmbFormaPgto.TabIndex = 8;
+            this.cmbFormaPgto.TabIndex = 6;
             // 
             // label5
             // 
@@ -142,7 +142,7 @@
             this.cmbCategoria.Location = new System.Drawing.Point(112, 131);
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(100, 23);
-            this.cmbCategoria.TabIndex = 10;
+            this.cmbCategoria.TabIndex = 5;
             // 
             // btnCancelar
             // 
@@ -150,7 +150,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(273, 287);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 42);
-            this.btnCancelar.TabIndex = 12;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -160,7 +160,7 @@
             this.btnGravar.Location = new System.Drawing.Point(192, 287);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 42);
-            this.btnGravar.TabIndex = 13;
+            this.btnGravar.TabIndex = 7;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);

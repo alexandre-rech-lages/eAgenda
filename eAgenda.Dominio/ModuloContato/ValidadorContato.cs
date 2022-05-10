@@ -1,10 +1,12 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
+using System;
 
 namespace eAgenda.Dominio.ModuloContato
 {
+   
     public class ValidadorContato : AbstractValidator<Contato>
-    {
+    {       
         public ValidadorContato()
         {
             RuleFor(x => x.Nome)
@@ -13,9 +15,9 @@ namespace eAgenda.Dominio.ModuloContato
             RuleFor(x => x.Email)
                 .EmailAddress(EmailValidationMode.AspNetCoreCompatible)
                 .NotNull().NotEmpty();
-
+            
             RuleFor(x => x.Telefone)
-                .NotNull().NotEmpty();
+                .Telefone();                
 
             RuleFor(x => x.Empresa)
                 .MinimumLength(3)
@@ -25,5 +27,6 @@ namespace eAgenda.Dominio.ModuloContato
                 .MinimumLength(3)
                 .NotNull().NotEmpty();
         }
+
     }
 }

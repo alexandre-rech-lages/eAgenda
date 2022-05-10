@@ -16,9 +16,9 @@ namespace eAgenda.Dominio.ModuloDespesa
 
         public DateTime Data { get; set; }
 
-        public FormaPagamentoEnum FormaPagamento { get; set; }
+        public FormaPgtoDespesaEnum FormaPagamento { get; set; }
 
-        public CategoriaEnum Categoria { get; set; }
+        public CategoriaDespesaEnum Categoria { get; set; }
 
         public override void Atualizar(Despesa registro)
         {

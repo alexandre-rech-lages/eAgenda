@@ -5,9 +5,12 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloContato
 {
+    
+
     public partial class TabelaContatosControl : UserControl
     {
-        Subro.Controls.DataGridViewGrouper gridContatosAgrupados;
+
+        Subro.Controls.DataGridViewGrouper agrupadorContatos;
         private AgrupamentoContatoEnum tipoAgrupamento;
 
         public TabelaContatosControl()
@@ -15,7 +18,7 @@ namespace eAgenda.WinApp.ModuloContato
             InitializeComponent();
 
             grid.ConfigurarGridSomenteLeitura();
-            grid.ConfigurarGridZebrado();
+            //grid.ConfigurarGridZebrado();
             grid.Columns.AddRange(ObterColunas());
 
             tipoAgrupamento = AgrupamentoContatoEnum.NaoAgrupar;
@@ -50,19 +53,19 @@ namespace eAgenda.WinApp.ModuloContato
 
             grid.DataSource = contatos;
 
-            gridContatosAgrupados = new Subro.Controls.DataGridViewGrouper(grid);
-
+            agrupadorContatos = new Subro.Controls.DataGridViewGrouper(grid);
+            
             AgruparContatos();
-        }
+        }       
 
         public void DesagruparContatos()
         {
-            if (gridContatosAgrupados == null)
+            if (agrupadorContatos == null)
                 return;
 
             var campos = new string[] { "Cargo", "Empresa" };
 
-            gridContatosAgrupados.RemoveGrouping();
+            agrupadorContatos.RemoveGrouping();
             grid.RowHeadersVisible = true;
 
             foreach (var campo in campos)
@@ -101,13 +104,13 @@ namespace eAgenda.WinApp.ModuloContato
 
         private void AgruparContatosPor(string campo)
         {
-            if (gridContatosAgrupados == null)
+            if (agrupadorContatos == null)
                 return;
 
-            gridContatosAgrupados.RemoveGrouping();
-            gridContatosAgrupados.SetGroupOn(campo);
-            gridContatosAgrupados.Options.ShowGroupName = false;
-            gridContatosAgrupados.Options.GroupSortOrder = SortOrder.None;
+            agrupadorContatos.RemoveGrouping();
+            agrupadorContatos.SetGroupOn(campo);
+            agrupadorContatos.Options.ShowGroupName = false;
+            agrupadorContatos.Options.GroupSortOrder = SortOrder.None;
 
             foreach (DataGridViewColumn item in grid.Columns)
                 if (item.DataPropertyName == campo)

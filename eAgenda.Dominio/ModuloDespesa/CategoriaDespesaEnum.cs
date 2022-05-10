@@ -1,6 +1,6 @@
 ﻿namespace eAgenda.Dominio.ModuloDespesa
 {
-    public enum CategoriaEnum
+    public enum CategoriaDespesaEnum
     {
         Saude, Mercado, Moradia, Alimentacao, Lazer, Gasolina
     }
