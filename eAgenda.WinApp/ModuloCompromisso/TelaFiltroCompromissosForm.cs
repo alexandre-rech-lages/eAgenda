@@ -1,4 +1,5 @@
 ﻿using eAgenda.Dominio.ModuloCompromisso;
+using System;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloCompromisso
@@ -23,6 +24,25 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 else
                     return StatusCompromissoEnum.Todos;
             }
+        }
+
+        public DateTime DataInicial => txtDataInicial.Value;
+
+        public DateTime DataFinal => txtDataFinal.Value;
+
+        private void rdbTodosCompromissos_CheckedChanged(object sender, EventArgs e)
+        {
+            groupCompromissoFuturos.Enabled = false;
+        }
+
+        private void rdbCompromissosPassados_CheckedChanged(object sender, EventArgs e)
+        {
+            groupCompromissoFuturos.Enabled = false;
+        }
+
+        private void rdbCompromissosFuturos_CheckedChanged(object sender, EventArgs e)
+        {
+            groupCompromissoFuturos.Enabled = true;
         }
     }
 }

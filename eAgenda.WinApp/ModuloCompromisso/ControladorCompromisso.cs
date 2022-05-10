@@ -1,6 +1,7 @@
 ﻿using eAgenda.Dominio.ModuloCompromisso;
 using eAgenda.Dominio.ModuloContato;
 using eAgenda.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -17,9 +18,6 @@ namespace eAgenda.WinApp.ModuloCompromisso
             this.repositorioCompromisso = repositorioCompromisso;
             this.repositorioContato = repositorioContato;
         }
-
-        public StatusCompromissoEnum StatusSelecioando { get; private set; }
-
 
         public override void Inserir()
         {
@@ -92,9 +90,11 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             if (telaFiltro.ShowDialog() == DialogResult.OK)
             {
-                StatusSelecioando = telaFiltro.StatusSelecionado;
+                var statusSelecionado = telaFiltro.StatusSelecionado;
+                var dataInicial = telaFiltro.DataInicial.Date;
+                var dataFinal = telaFiltro.DataFinal.Date;
 
-                CarregarCompromissos();
+                CarregarCompromissosComFiltro(statusSelecionado, dataInicial, dataFinal);
             }
         }
 
@@ -121,25 +121,40 @@ namespace eAgenda.WinApp.ModuloCompromisso
             return repositorioCompromisso.SelecionarPorNumero(numero);
         }
 
-        private void CarregarCompromissos()
+        private void CarregarCompromissosComFiltro(StatusCompromissoEnum statusSelecionado, DateTime dataInicial, DateTime dataFinal)
         {
-            List<Compromisso> compromissos = repositorioCompromisso.SelecionarTodos(StatusSelecioando);
-
             string tipoCompromisso;
+            List<Compromisso> compromissos;
 
-            switch (StatusSelecioando)
+            switch (statusSelecionado)
             {
-                case StatusCompromissoEnum.Futuros: tipoCompromisso = "futuro(s)"; break;
+                case StatusCompromissoEnum.Futuros:
+                    compromissos = repositorioCompromisso.SelecionarCompromissosFuturos(dataInicial, dataFinal);
+                    tipoCompromisso = "futuro(s)"; 
+                    break;
 
-                case StatusCompromissoEnum.Passados: tipoCompromisso = "passado(s)"; break;
+                case StatusCompromissoEnum.Passados:
+                    compromissos = repositorioCompromisso.SelecionarCompromissosPassados(DateTime.Now);
+                    tipoCompromisso = "passado(s)";
+                    break;
 
-                default: tipoCompromisso = ""; break;
+                default:
+                    compromissos = repositorioCompromisso.SelecionarTodos();
+                    tipoCompromisso = ""; break;
             }
 
             tabelaCompromissos.AtualizarRegistros(compromissos);
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {compromissos.Count} compromisso(s) {tipoCompromisso}");
+        }
 
+        private void CarregarCompromissos()
+        {
+            List<Compromisso> compromissos = repositorioCompromisso.SelecionarTodos();
+
+            tabelaCompromissos.AtualizarRegistros(compromissos);
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {compromissos.Count} compromisso(s)");
         }
     }
 }

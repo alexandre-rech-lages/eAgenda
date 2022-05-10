@@ -6,6 +6,7 @@ namespace eAgenda.Dominio.ModuloCompromisso
 {
     public class Compromisso : EntidadeBase<Compromisso>
     {
+        private DateTime _date;
         public Compromisso()
         {
             Data = DateTime.Now;
@@ -32,7 +33,7 @@ namespace eAgenda.Dominio.ModuloCompromisso
         public TipoLocalizacaoCompromissoEnum TipoLocal { get; set; }
 
         public string Link { get; set; }
-        public DateTime Data { get; set; }
+        public DateTime Data { get { return _date.Date; } set { _date = value; } }
         public DateTime HoraInicio { get; set; }
         public DateTime HoraTermino { get; set; }
         public Contato Contato { get; set; }

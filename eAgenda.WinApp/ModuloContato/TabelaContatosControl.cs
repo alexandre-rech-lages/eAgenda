@@ -18,7 +18,7 @@ namespace eAgenda.WinApp.ModuloContato
             InitializeComponent();
 
             grid.ConfigurarGridSomenteLeitura();
-            //grid.ConfigurarGridZebrado();
+            grid.ConfigurarGridZebrado();
             grid.Columns.AddRange(ObterColunas());
 
             tipoAgrupamento = AgrupamentoContatoEnum.NaoAgrupar;

@@ -26,7 +26,7 @@ namespace eAgenda.Dominio.ModuloCompromisso
 
 
             RuleFor(x => x.Data)
-               .NotNull().NotEmpty().GreaterThan((x) => DateTime.Now.Date);
+               .NotNull().NotEmpty().GreaterThanOrEqualTo((x) => DateTime.Now.Date);
 
             RuleFor(x => x.HoraInicio).LessThan(x => x.HoraTermino)
                 .WithMessage("Horário de ínicio deve ser menor que Horário de Términio");

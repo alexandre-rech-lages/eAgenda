@@ -1,5 +1,6 @@
 ﻿using eAgenda.Dominio.ModuloCompromisso;
 using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,8 @@ namespace eAgenda.Infra.Arquivos.ModuloCompromisso
     {
         public RepositorioCompromissoEmArquivo(DataContext dataContext) : base(dataContext)
         {
-
+            if (dataContext.Compromissos.Count > 0)
+                contador = dataContext.Compromissos.Max(x => x.Numero);
         }
 
         public override List<Compromisso> ObterRegistros()
@@ -20,30 +22,21 @@ namespace eAgenda.Infra.Arquivos.ModuloCompromisso
         public override AbstractValidator<Compromisso> ObterValidador()
         {
             return new ValidadorCompromisso();
+        }       
+
+        public List<Compromisso> SelecionarCompromissosFuturos(DateTime dataInicial, DateTime dataFinal)
+        {
+            return ObterRegistros()
+                .Where(x => x.Data >= dataInicial)
+                .Where(x => x.Data <= dataFinal)
+                .ToList();
         }
 
-        public List<Compromisso> SelecionarTodos(StatusCompromissoEnum status)
+        public List<Compromisso> SelecionarCompromissosPassados(DateTime hoje)
         {
-            switch (status)
-            {
-                case StatusCompromissoEnum.Todos: return SelecionarTodos();
-
-                case StatusCompromissoEnum.Futuros: return SelecionarCompromissosFuturos();
-
-                case StatusCompromissoEnum.Passados: return SelecionarCompromissosPassados();
-
-                default: return SelecionarTodos();
-            }
-        }
-
-        private List<Compromisso> SelecionarCompromissosPassados()
-        {
-            return ObterRegistros().ToList();
-        }
-
-        private List<Compromisso> SelecionarCompromissosFuturos()
-        {
-            return ObterRegistros().ToList();
+            return ObterRegistros()
+                .Where(x => x.Data < hoje)
+                .ToList();
         }
     }
 }
