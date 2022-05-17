@@ -14,7 +14,8 @@
 		'49 9 99999999',
 		'FLAMENGO',
 		'ARTILHEIRO'
-	)	
+	); 
+	select Scope_Identity();
 
 --Atualizando um registro da tabela
 	UPDATE [TBCONTATO]	
@@ -55,3 +56,5 @@
 		[TBCONTATO]
 	WHERE 
 		[NUMERO] = 1
+
+select count(*) from TBContato
