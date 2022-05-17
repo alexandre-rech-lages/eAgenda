@@ -27,5 +27,10 @@ namespace eAgenda.Dominio.ModuloContato
         public override void Atualizar(Contato registro)
         {
         }
+
+        public override string ToString()
+        {
+            return Nome + " - " + Email;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using eAgenda.Dominio.ModuloContato;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 namespace eAgenda.ConsoleApp
 {
@@ -7,6 +8,17 @@ namespace eAgenda.ConsoleApp
     {
         static void Main(string[] args)
         {
+            List<Contato> contatos = SelecionarTodosContatos();
+
+            foreach (var item in contatos)
+            {
+                Console.WriteLine(item);
+            }
+
+            int numero = contatos[0].Numero;
+
+            Contato contatoEncontrado = SelecionarContatoPorNumero(numero);
+
             var contato = ObterContato("Bruno Henrique", "11111111111");
 
             InserirContato(contato);
@@ -17,6 +29,135 @@ namespace eAgenda.ConsoleApp
             EditarContato(contato);
 
             ExcluirContato(contato.Numero);
+        }
+
+        private static Contato SelecionarContatoPorNumero(int numeroPesquisado)
+        {
+            #region abrir a conexão com o banco de dados
+            string enderecoBanco =
+                "Data Source=(LocalDB)\\MSSqlLocalDB;" +
+                "Initial Catalog=eAgendaDb;" +
+                "Integrated Security=True;" +
+                "Pooling=False";
+
+            SqlConnection conexaoComBanco = new SqlConnection();
+            conexaoComBanco.ConnectionString = enderecoBanco;
+            conexaoComBanco.Open();
+            #endregion
+
+            #region  criar um comando 
+            SqlCommand comandoSelecao = new SqlCommand();
+            comandoSelecao.Connection = conexaoComBanco;
+            string sql = @"SELECT 
+		                        [NUMERO], 
+		                        [NOME], 
+		                        [EMAIL],
+		                        [TELEFONE],
+		                        [EMPRESA],
+		                        [CARGO]
+	                        FROM 
+		                        [TBCONTATO]
+		                    WHERE
+                                [NUMERO] = @NUMERO";
+
+            comandoSelecao.CommandText = sql;
+
+            #endregion
+
+            comandoSelecao.Parameters.AddWithValue("NUMERO", numeroPesquisado);
+
+            //executar o comando
+            SqlDataReader leitorContato = comandoSelecao.ExecuteReader();
+
+            Contato contato = null;
+            if (leitorContato.Read())
+            {
+                int numero = Convert.ToInt32(leitorContato["NUMERO"]);
+                string nome = Convert.ToString(leitorContato["NOME"]);
+                string email = Convert.ToString(leitorContato["EMAIL"]);
+                string telefone = Convert.ToString(leitorContato["TELEFONE"]);
+                string empresa = Convert.ToString(leitorContato["EMPRESA"]);
+                string cargo = Convert.ToString(leitorContato["CARGO"]);
+
+                contato = new Contato
+                {
+                    Numero = numero,
+                    Nome = nome,
+                    Telefone = telefone,
+                    Email = email,
+                    Cargo = cargo,
+                    Empresa = empresa
+                };
+            }
+            
+            //fechar a conexão
+            conexaoComBanco.Close();
+
+            return contato;
+        }
+
+        private static List<Contato> SelecionarTodosContatos()
+        {
+            #region abrir a conexão com o banco de dados
+            string enderecoBanco =
+                "Data Source=(LocalDB)\\MSSqlLocalDB;" +
+                "Initial Catalog=eAgendaDb;" +
+                "Integrated Security=True;" +
+                "Pooling=False";
+
+            SqlConnection conexaoComBanco = new SqlConnection();
+            conexaoComBanco.ConnectionString = enderecoBanco;
+            conexaoComBanco.Open();
+            #endregion
+
+            #region  criar um comando 
+            SqlCommand comandoSelecao = new SqlCommand();
+            comandoSelecao.Connection = conexaoComBanco;
+            string sql = @"SELECT 
+		                        [NUMERO], 
+		                        [NOME], 
+		                        [EMAIL],
+		                        [TELEFONE],
+		                        [EMPRESA],
+		                        [CARGO]
+	                        FROM 
+		                        [TBCONTATO]";
+
+            comandoSelecao.CommandText = sql;
+
+            #endregion
+
+            //executar o comando
+            SqlDataReader leitorContato = comandoSelecao.ExecuteReader();
+
+            List<Contato> contatos = new List<Contato>();
+
+            while (leitorContato.Read())
+            {
+                int numero = Convert.ToInt32(leitorContato["NUMERO"]);
+                string nome = Convert.ToString(leitorContato["NOME"]);
+                string email = Convert.ToString(leitorContato["EMAIL"]);
+                string telefone = Convert.ToString(leitorContato["TELEFONE"]);
+                string empresa = Convert.ToString(leitorContato["EMPRESA"]);
+                string cargo = Convert.ToString(leitorContato["CARGO"]);
+
+                var contato = new Contato
+                {
+                    Numero = numero,
+                    Nome = nome,
+                    Telefone = telefone,
+                    Email = email,
+                    Cargo = cargo,
+                    Empresa = empresa
+                };
+
+                contatos.Add(contato);
+            }
+
+            //fechar a conexão
+            conexaoComBanco.Close();
+
+            return contatos;
         }
 
         private static void ExcluirContato(int numero)
