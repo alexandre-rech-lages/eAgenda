@@ -30,7 +30,7 @@
 --Excluindo um registro da tabela
 	DELETE FROM [TBCONTATO]
 		WHERE 
-			[NUMERO] = 2
+			[NUMERO] = 4
 
 --Retornando todos os registros da tabela
 	SELECT 

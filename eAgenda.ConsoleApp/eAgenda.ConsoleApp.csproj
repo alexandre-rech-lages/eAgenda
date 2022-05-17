@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\eAgenda.Dominio\eAgenda.Dominio.csproj" />
     <ProjectReference Include="..\eAgenda.Infra.Arquivos\eAgenda.Infra.Arquivos.csproj" />
   </ItemGroup>
