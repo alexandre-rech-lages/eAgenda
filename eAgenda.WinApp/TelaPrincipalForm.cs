@@ -3,6 +3,7 @@ using eAgenda.Infra.Arquivos.ModuloCompromisso;
 using eAgenda.Infra.Arquivos.ModuloContato;
 using eAgenda.Infra.Arquivos.ModuloDespesa;
 using eAgenda.Infra.Arquivos.ModuloTarefa;
+using eAgenda.Infra.BancoDados.ModuloContato;
 using eAgenda.WinApp.Compartilhado;
 using eAgenda.WinApp.ModuloCompromisso;
 using eAgenda.WinApp.ModuloContato;
@@ -164,8 +165,9 @@ namespace eAgenda.WinApp
 
         private void InicializarControladores()
         {
-            var repositorioTarefa = new RepositorioTarefaEmArquivo(contextoDados);
-            var repositorioContato = new RepositorioContatoEmArquivo(contextoDados);
+            var repositorioContato = new RepositorioContatoEmBancoDados();
+
+            var repositorioTarefa = new RepositorioTarefaEmArquivo(contextoDados);            
             var repositorioCompromisso = new RepositorioCompromissoEmArquivo(contextoDados);
             var repositorioDespesa = new RepositorioDespesaEmArquivo(contextoDados);
 

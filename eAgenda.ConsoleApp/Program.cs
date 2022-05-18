@@ -1,6 +1,7 @@
 ﻿using eAgenda.Dominio.ModuloContato;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 namespace eAgenda.ConsoleApp
 {
@@ -244,7 +245,7 @@ namespace eAgenda.ConsoleApp
         }
 
         private static void InserirContato(Contato novoContato)
-        {
+        {            
             #region abrir a conexão com o banco de dados
             string enderecoBanco =
                 "Data Source=(LocalDB)\\MSSqlLocalDB;" +

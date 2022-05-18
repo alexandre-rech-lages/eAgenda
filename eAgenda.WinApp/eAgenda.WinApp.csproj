@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\eAgenda.Dominio\eAgenda.Dominio.csproj" />
     <ProjectReference Include="..\eAgenda.Infra.Arquivos\eAgenda.Infra.Arquivos.csproj" />
+    <ProjectReference Include="..\eAgenda.Infra.BancoDados\eAgenda.Infra.BancoDados.csproj" />
   </ItemGroup>
 
   <ItemGroup>
