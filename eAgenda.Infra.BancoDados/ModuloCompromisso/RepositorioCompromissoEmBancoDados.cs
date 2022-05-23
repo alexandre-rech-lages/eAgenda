@@ -19,7 +19,7 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
               "Pooling=False";
 
         private const string sqlInserir =
-            @"INSERT INTO [TBCOMPROMISSO]
+           @"INSERT INTO [TBCOMPROMISSO]
                 (
                     [LOCAL],       
                     [DATA], 
@@ -40,8 +40,25 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
                     @LINK
                 ); SELECT SCOPE_IDENTITY();";
 
+        private const string sqlEditar =
+           @" UPDATE [TBCOMPROMISSO]
+                    SET 
+                        [LOCAL] = @LOCAL, 
+                        [DATA] = @DATA, 
+                        [ASSUNTO] = @ASSUNTO,
+                        [HORAINICIO] = @HORAINICIO, 
+                        [HORATERMINO] = @HORATERMINO,
+                        [CONTATO_NUMERO] = @CONTATO_NUMERO,
+                        [LINK] = @LINK
+
+                    WHERE [NUMERO] = @NUMERO";
+
+        private const string sqlExcluir =
+           @"DELETE FROM [TBCOMPROMISSO] 
+                WHERE [NUMERO] = @NUMERO";
+
         private const string sqlSelecionarTodos =
-            @"SELECT 
+           @"SELECT 
                 CP.[NUMERO],       
                 CP.[DATA],
                 CP.[ASSUNTO],
@@ -60,6 +77,77 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
                 [TBCONTATO] AS CT
             ON
                 CT.NUMERO = CP.CONTATO_NUMERO";
+
+        private const string sqlSelecionarPorNumero =
+           @"SELECT 
+                CP.[NUMERO],       
+                CP.[DATA],
+                CP.[ASSUNTO],
+                CP.[LOCAL],             
+                CP.[HORAINICIO],                    
+                CP.[HORATERMINO],                                
+                CP.[CONTATO_NUMERO],
+                CP.[LINK],
+                CT.[NOME],       
+                CT.[EMAIL],             
+                CT.[TELEFONE],                    
+                CT.[CARGO], 
+                CT.[EMPRESA] 
+            FROM
+                [TBCOMPROMISSO] AS CP LEFT JOIN 
+                [TBCONTATO] AS CT
+            ON
+                CT.NUMERO = CP.CONTATO_NUMERO
+            WHERE 
+                CP.[NUMERO] = @NUMERO";
+
+
+        private const string sqlSelecionarCompromissosPassados =
+            @"SELECT 
+                CP.[NUMERO],       
+                CP.[DATA],
+                CP.[ASSUNTO],
+                CP.[LOCAL],             
+                CP.[HORAINICIO],                    
+                CP.[HORATERMINO],                                
+                CP.[CONTATO_NUMERO],
+                CP.[LINK],
+                CT.[NOME],       
+                CT.[EMAIL],             
+                CT.[TELEFONE],                    
+                CT.[CARGO], 
+                CT.[EMPRESA] 
+            FROM
+                [TBCOMPROMISSO] AS CP LEFT JOIN 
+                [TBCONTATO] AS CT
+            ON
+                CT.NUMERO = CP.CONTATO_NUMERO
+            WHERE 
+                CP.[DATA] <= @DATA";
+
+        private const string sqlSelecionarCompromissosFuturos =
+           @"SELECT 
+                CP.[NUMERO],       
+                CP.[DATA],
+                CP.[ASSUNTO],
+                CP.[LOCAL],             
+                CP.[HORAINICIO],                    
+                CP.[HORATERMINO],                                
+                CP.[CONTATO_NUMERO],
+                CP.[LINK],
+                CT.[NOME],       
+                CT.[EMAIL],             
+                CT.[TELEFONE],
+                CT.[CARGO], 
+                CT.[EMPRESA] 
+            FROM
+                [TBCOMPROMISSO] AS CP LEFT JOIN 
+                [TBCONTATO] AS CT
+            ON
+                CT.NUMERO = CP.CONTATO_NUMERO
+            WHERE 
+                CP.[DATA] BETWEEN @DATAINICIAL AND @DATAFINAL
+                --CP.[DATA] >= @DATAINICIAL AND CP.[DATA] <= @DATAFINAL";
 
         public ValidationResult Inserir(Compromisso novoRegistro)
         {
@@ -100,27 +188,116 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
 
         public ValidationResult Editar(Compromisso registro)
         {
-            throw new NotImplementedException();
+            var validador = new ValidadorCompromisso();
+
+            var resultadoValidacao = validador.Validate(registro);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
+
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
+
+            ConfigurarParametrosCompromisso(registro, comandoEdicao);
+
+            conexaoComBanco.Open();
+            comandoEdicao.ExecuteNonQuery();
+            conexaoComBanco.Close();
+
+            return resultadoValidacao;
         }
 
         public ValidationResult Excluir(Compromisso registro)
         {
-            throw new NotImplementedException();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoExclusao = new SqlCommand(sqlExcluir, conexaoComBanco);
+
+            comandoExclusao.Parameters.AddWithValue("NUMERO", registro.Numero);
+
+            conexaoComBanco.Open();
+            int numeroRegistrosExcluidos = comandoExclusao.ExecuteNonQuery();
+
+            var resultadoValidacao = new ValidationResult();
+
+            if (numeroRegistrosExcluidos == 0)
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não foi possível remover o registro"));
+
+            conexaoComBanco.Close();
+
+            return resultadoValidacao;
         }       
 
         public List<Compromisso> SelecionarCompromissosFuturos(DateTime dataInicial, DateTime dataFinal)
         {
-            throw new NotImplementedException();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarCompromissosFuturos, conexaoComBanco);
+
+            comandoSelecao.Parameters.AddWithValue("DATAINICIAL", dataInicial);
+            comandoSelecao.Parameters.AddWithValue("DATAFINAL", dataFinal);
+
+            conexaoComBanco.Open();
+            SqlDataReader leitorCompromisso = comandoSelecao.ExecuteReader();
+
+            List<Compromisso> compromissos = new List<Compromisso>();
+
+            while (leitorCompromisso.Read())
+            {
+                Compromisso compromisso = ConverterParaCompromisso(leitorCompromisso);
+
+                compromissos.Add(compromisso);
+            }
+
+            conexaoComBanco.Close();
+
+            return compromissos;
         }
 
         public List<Compromisso> SelecionarCompromissosPassados(DateTime dataDeHoje)
         {
-            throw new NotImplementedException();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarCompromissosPassados, conexaoComBanco);
+
+            comandoSelecao.Parameters.AddWithValue("DATA", dataDeHoje);
+
+            conexaoComBanco.Open();
+            SqlDataReader leitorCompromisso = comandoSelecao.ExecuteReader();
+
+            List<Compromisso> compromissos = new List<Compromisso>();
+
+            while (leitorCompromisso.Read())
+            {
+                Compromisso compromisso = ConverterParaCompromisso(leitorCompromisso);
+
+                compromissos.Add(compromisso);
+            }
+
+            conexaoComBanco.Close();
+
+            return compromissos;
         }
 
         public Compromisso SelecionarPorNumero(int numero)
         {
-            throw new NotImplementedException();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNumero, conexaoComBanco);
+
+            comandoSelecao.Parameters.AddWithValue("NUMERO", numero);
+
+            conexaoComBanco.Open();
+            SqlDataReader leitorCompromisso = comandoSelecao.ExecuteReader();
+
+            Compromisso compromisso = null;
+            if (leitorCompromisso.Read())
+                compromisso = ConverterParaCompromisso(leitorCompromisso);
+
+            conexaoComBanco.Close();
+
+            return compromisso;
         }
 
         public List<Compromisso> SelecionarTodos()
