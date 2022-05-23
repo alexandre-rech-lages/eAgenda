@@ -1,4 +1,5 @@
 ﻿using eAgenda.Dominio.Compartilhado;
+using System;
 
 namespace eAgenda.Dominio.ModuloContato
 {
@@ -28,9 +29,27 @@ namespace eAgenda.Dominio.ModuloContato
         {
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Contato contato &&
+                   Numero == contato.Numero &&
+                   Nome == contato.Nome &&
+                   Email == contato.Email &&
+                   Telefone == contato.Telefone &&
+                   Empresa == contato.Empresa &&
+                   Cargo == contato.Cargo;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Numero, Nome, Email, Telefone, Empresa, Cargo);
+        }
+
         public override string ToString()
         {
             return Nome + " - " + Email;
         }
+
+
     }
 }

@@ -8,6 +8,6 @@ namespace eAgenda.Dominio.ModuloCompromisso
     {
         List<Compromisso> SelecionarCompromissosFuturos(DateTime dataInicial, DateTime dataFinal);
 
-        List<Compromisso> SelecionarCompromissosPassados(DateTime hoje);
+        List<Compromisso> SelecionarCompromissosPassados(DateTime dataDeHoje);
     }
 }

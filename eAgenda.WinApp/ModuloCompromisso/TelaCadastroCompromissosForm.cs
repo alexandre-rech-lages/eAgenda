@@ -44,20 +44,20 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
                 if (compromisso.TipoLocal == TipoLocalizacaoCompromissoEnum.Remoto)
                 {
-                    txtLink.Text = compromisso.Link;
-                    rdbRemoto_CheckedChanged(null,null);
+                    rdbRemoto.Checked = true;
+                    txtLink.Text = compromisso.Link;                     
                 }
                 else
                 {
-                    txtLocal.Text = compromisso.Local;
-                    rdbPresencial_CheckedChanged(null, null);
+                    rdbPresencial.Checked = true;
+                    txtLocal.Text = compromisso.Local;                    
                 }
 
                 txtData.Value = compromisso.Data;
 
-                txtHoraInicio.Value = compromisso.HoraInicio;
+                txtHoraInicio.Value = compromisso.Data + compromisso.HoraInicio;
 
-                txtHoraTermino.Value = compromisso.HoraTermino;
+                txtHoraTermino.Value = compromisso.Data + compromisso.HoraTermino;
 
                 cmbContatos.Enabled = compromisso.Contato != null;
 
@@ -71,8 +71,8 @@ namespace eAgenda.WinApp.ModuloCompromisso
         {
             compromisso.Assunto = txtAssunto.Text;                        
             compromisso.Data = txtData.Value;
-            compromisso.HoraInicio = txtHoraInicio.Value;
-            compromisso.HoraTermino = txtHoraTermino.Value;
+            compromisso.HoraInicio = txtHoraInicio.Value.TimeOfDay;
+            compromisso.HoraTermino = txtHoraTermino.Value.TimeOfDay;
             compromisso.Contato = (Contato)cmbContatos.SelectedItem;
 
             if (rdbRemoto.Checked)
@@ -116,16 +116,27 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         private void rdbRemoto_CheckedChanged(object sender, EventArgs e)
         {
+            ConfigurarCamposLocalRemoto();
+        }      
+
+        private void rdbPresencial_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigurarCamposLocalPresencial();
+        }
+
+        private void ConfigurarCamposLocalRemoto()
+        {
             txtLocal.Text = "";
             txtLocal.Enabled = false;
             txtLink.Enabled = true;
         }
 
-        private void rdbPresencial_CheckedChanged(object sender, EventArgs e)
+        private void ConfigurarCamposLocalPresencial()
         {
             txtLink.Text = "";
             txtLink.Enabled = false;
             txtLocal.Enabled = true;
         }
+
     }
 }

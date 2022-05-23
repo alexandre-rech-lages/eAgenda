@@ -166,8 +166,10 @@ namespace eAgenda.WinApp
         private void InicializarControladores()
         {
             var repositorioContato = new RepositorioContatoEmArquivo(contextoDados);
-            var repositorioTarefa = new RepositorioTarefaEmArquivo(contextoDados);
             var repositorioCompromisso = new RepositorioCompromissoEmArquivo(contextoDados);
+
+            var repositorioTarefa = new RepositorioTarefaEmArquivo(contextoDados);
+            
             var repositorioDespesa = new RepositorioDespesaEmArquivo(contextoDados);
 
             controladores = new Dictionary<string, ControladorBase>();
