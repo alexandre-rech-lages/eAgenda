@@ -81,6 +81,8 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
             {
                 tarefaSelecionada.AdicionarItem(item);
             }
+
+            tarefaSelecionada.CalcularPercentualConcluido();
         }
 
         public void AtualizarItens(Tarefa tarefaSelecionada,
@@ -96,6 +98,7 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
                 tarefaSelecionada.MarcarPendente(item);
             }
 
+            tarefaSelecionada.CalcularPercentualConcluido();
         }
 
         public List<Tarefa> SelecionarTodos(StatusTarefaEnum status)
@@ -139,5 +142,7 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
         {
             return new ValidadorTarefa();
         }
+
+      
     }
 }

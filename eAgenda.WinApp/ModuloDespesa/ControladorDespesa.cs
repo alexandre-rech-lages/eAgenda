@@ -53,7 +53,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
             TelaCadastroDespesasForm tela = new TelaCadastroDespesasForm();
 
-            tela.Despesa = despesaSelecionada;
+            tela.Despesa = despesaSelecionada.Clonar();
 
             tela.GravarRegistro = repositorioDespesa.Editar;
 

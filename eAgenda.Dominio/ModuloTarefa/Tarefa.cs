@@ -29,20 +29,21 @@ namespace eAgenda.Dominio.ModuloTarefa
         public DateTime DataCriacao { get; set; }
         public DateTime? DataConclusao { get; set; }
         public List<ItemTarefa> Itens { get { return itens; } }
+        public decimal PercentualConcluido { get; set; }
 
-        public decimal PercentualConcluido
+        public void CalcularPercentualConcluido()
         {
-            get
+            if (itens.Count == 0)
             {
-                if (itens.Count == 0)
-                    return 0;
-
-                int qtdConcluidas = itens.Count(x => x.Concluido);
-
-                var percentualConcluido = (qtdConcluidas / (decimal)itens.Count()) * 100;
-
-                return Math.Round(percentualConcluido, 2);
+                PercentualConcluido = 0;
+                return;
             }
+
+            int qtdConcluidas = itens.Count(x => x.Concluido);
+
+            var percentualConcluido = (qtdConcluidas / (decimal)itens.Count()) * 100;
+
+            PercentualConcluido = Math.Round(percentualConcluido, 2);
         }
 
         public override string ToString()
@@ -58,10 +59,19 @@ namespace eAgenda.Dominio.ModuloTarefa
             return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual}, Prioridade: {Prioridade}";
         }
 
+        public Tarefa Clonar()
+        {
+            return MemberwiseClone() as Tarefa;
+        }
+
         public void AdicionarItem(ItemTarefa item)
         {
             if (Itens.Exists(x => x.Equals(item)) == false)
+            {
+                item.Tarefa = this;
                 itens.Add(item);
+                DataConclusao = null;
+            }
         }
 
         public void ConcluirItem(ItemTarefa item)
@@ -70,8 +80,9 @@ namespace eAgenda.Dominio.ModuloTarefa
 
             itemTarefa?.Concluir();
 
-            if (PercentualConcluido == 100)
+            if (itens.All(x =>x.Concluido))
                 DataConclusao = DateTime.Now;
+            
         }
 
         public void MarcarPendente(ItemTarefa item)
@@ -83,7 +94,9 @@ namespace eAgenda.Dominio.ModuloTarefa
 
         public override void Atualizar(Tarefa registro)
         {
-            this.Titulo = registro.Titulo;
+            Numero = registro.Numero;
+            Titulo = registro.Titulo;
+            Prioridade = registro.Prioridade;
         }
     }
 }

@@ -24,9 +24,14 @@ namespace eAgenda.Dominio.ModuloContato
         public string Empresa { get; set; }
         public string Cargo { get; set; }
 
-
         public override void Atualizar(Contato registro)
         {
+            Numero = registro.Numero;
+            Nome = registro.Nome;
+            Email = registro.Email;
+            Telefone = registro.Telefone;
+            Empresa = registro.Empresa;
+            Cargo = registro.Cargo;
         }
 
         public override bool Equals(object obj)
@@ -50,6 +55,9 @@ namespace eAgenda.Dominio.ModuloContato
             return Nome + " - " + Email;
         }
 
-
+        public Contato Clonar()
+        {
+            return MemberwiseClone() as Contato;
+        }
     }
 }

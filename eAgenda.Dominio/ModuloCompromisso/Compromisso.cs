@@ -17,14 +17,14 @@ namespace eAgenda.Dominio.ModuloCompromisso
         }
 
         public Compromisso(string assunto, string local, string link, DateTime data,
-             TimeSpan horaInicio, TimeSpan horaFim, Contato contato)
+             TimeSpan horaInicio, TimeSpan horaTermino, Contato contato)
         {
             Assunto = assunto;
             Local = local;
             Link = link;
             Data = data;
             HoraInicio = horaInicio;
-            HoraTermino = horaFim;
+            HoraTermino = horaTermino;
             Contato = contato;
         }
 
@@ -39,15 +39,14 @@ namespace eAgenda.Dominio.ModuloCompromisso
             {
                 _compromissoEnum = value;
 
-                if (_compromissoEnum == TipoLocalizacaoCompromissoEnum.Presencial)
+                switch (_compromissoEnum)
                 {
-                    Link = null;
-                }
-                else
-                {
-                    Local = null;
-                }
+                    case TipoLocalizacaoCompromissoEnum.Remoto: Link = null; break;
+                    case TipoLocalizacaoCompromissoEnum.Presencial: Local = null; break;
 
+                    default:
+                        break;
+                }
             }
         }
 
@@ -58,10 +57,16 @@ namespace eAgenda.Dominio.ModuloCompromisso
         public TimeSpan HoraTermino { get; set; }
         public Contato Contato { get; set; }
 
-
-
         public override void Atualizar(Compromisso registro)
         {
+            Numero = registro.Numero;
+            Assunto = registro.Assunto;
+            Local = registro.Local;
+            Link = registro.Link;
+            Data = registro.Data;
+            HoraInicio = registro.HoraInicio;
+            HoraTermino = registro.HoraTermino;
+            Contato = registro.Contato;
         }
 
         public override bool Equals(object obj)
@@ -76,6 +81,11 @@ namespace eAgenda.Dominio.ModuloCompromisso
                    HoraInicio.Equals(compromisso.HoraInicio) &&
                    HoraTermino.Equals(compromisso.HoraTermino) &&
                    EqualityComparer<Contato>.Default.Equals(Contato, compromisso.Contato);
+        }
+
+        public Compromisso Clonar()
+        {
+            return MemberwiseClone() as Compromisso;
         }
 
         public override int GetHashCode()

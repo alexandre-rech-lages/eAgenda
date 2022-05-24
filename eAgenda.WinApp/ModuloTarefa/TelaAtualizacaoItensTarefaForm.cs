@@ -54,5 +54,10 @@ namespace eAgenda.WinApp.ModuloTarefa
                     .ToList();
             }
         }
+
+        private void btnGravar_Click(object sender, System.EventArgs e)
+        {
+            tarefa.CalcularPercentualConcluido();
+        }
     }
 }

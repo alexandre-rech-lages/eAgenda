@@ -44,7 +44,7 @@ namespace eAgenda.WinApp.ModuloContato
 
             TelaCadastroContatosForm tela = new TelaCadastroContatosForm();
 
-            tela.Contato = contatoSelecionado;
+            tela.Contato = contatoSelecionado.Clonar();
 
             tela.GravarRegistro = repositorioContato.Editar;
 

@@ -45,7 +45,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             TelaCadastroTarefasForm tela = new TelaCadastroTarefasForm();
 
-            tela.Tarefa = tarefaSelecionada;
+            tela.Tarefa = tarefaSelecionada.Clonar();
 
             tela.GravarRegistro = repositorioTarefa.Editar;
 

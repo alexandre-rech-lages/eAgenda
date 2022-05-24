@@ -51,7 +51,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             TelaCadastroCompromissosForm tela = new TelaCadastroCompromissosForm(contatos);
 
-            tela.Compromisso = compromissoSelecionado;
+            tela.Compromisso = compromissoSelecionado.Clonar();
 
             tela.GravarRegistro = repositorioCompromisso.Editar;
 
