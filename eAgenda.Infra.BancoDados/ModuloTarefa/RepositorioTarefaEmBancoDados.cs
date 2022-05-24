@@ -311,17 +311,17 @@ namespace eAgenda.Infra.BancoDados.ModuloTarefa
             conexaoComBanco.Open();
 
             foreach (var item in itens)
-            {
-                if (item.Numero > 0)
-                    continue;
+            {               
+                bool itemAdicionado = tarefaSelecionada.AdicionarItem(item);
 
-                tarefaSelecionada.AdicionarItem(item);
+                if (itemAdicionado)
+                {
+                    SqlCommand comandoInsercao = new SqlCommand(sqlInserirItensTarefa, conexaoComBanco);
 
-                SqlCommand comandoInsercao = new SqlCommand(sqlInserirItensTarefa, conexaoComBanco);
-
-                ConfigurarParametrosItemTarefa(item, comandoInsercao);
-                var id = comandoInsercao.ExecuteScalar();
-                item.Numero = Convert.ToInt32(id);
+                    ConfigurarParametrosItemTarefa(item, comandoInsercao);
+                    var id = comandoInsercao.ExecuteScalar();
+                    item.Numero = Convert.ToInt32(id);
+                }
             }
 
             conexaoComBanco.Close();

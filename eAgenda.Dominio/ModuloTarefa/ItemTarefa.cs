@@ -28,5 +28,18 @@ namespace eAgenda.Dominio.ModuloTarefa
         {
             Concluido = false;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ItemTarefa tarefa &&
+                   Numero == tarefa.Numero &&
+                   Titulo == tarefa.Titulo &&
+                   Concluido == tarefa.Concluido;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Numero, Titulo, Concluido);
+        }
     }
 }

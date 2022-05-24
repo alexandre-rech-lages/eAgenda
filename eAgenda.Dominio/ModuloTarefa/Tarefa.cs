@@ -64,14 +64,17 @@ namespace eAgenda.Dominio.ModuloTarefa
             return MemberwiseClone() as Tarefa;
         }
 
-        public void AdicionarItem(ItemTarefa item)
+        public bool AdicionarItem(ItemTarefa item)
         {
             if (Itens.Exists(x => x.Equals(item)) == false)
             {
                 item.Tarefa = this;
                 itens.Add(item);
                 DataConclusao = null;
+                return true;
             }
+
+            return false;
         }
 
         public void ConcluirItem(ItemTarefa item)
