@@ -5,6 +5,7 @@ using eAgenda.Infra.Arquivos.ModuloDespesa;
 using eAgenda.Infra.Arquivos.ModuloTarefa;
 using eAgenda.Infra.BancoDados.ModuloCompromisso;
 using eAgenda.Infra.BancoDados.ModuloContato;
+using eAgenda.Infra.BancoDados.ModuloTarefa;
 using eAgenda.WinApp.Compartilhado;
 using eAgenda.WinApp.ModuloCompromisso;
 using eAgenda.WinApp.ModuloContato;
@@ -168,8 +169,7 @@ namespace eAgenda.WinApp
         {
             var repositorioContato = new RepositorioContatoEmBancoDados();
             var repositorioCompromisso = new RepositorioCompromissoEmBancoDados();
-
-            var repositorioTarefa = new RepositorioTarefaEmArquivo(contextoDados);
+            var repositorioTarefa = new RepositorioTarefaEmBancoDados();
             
             var repositorioDespesa = new RepositorioDespesaEmArquivo(contextoDados);
 
