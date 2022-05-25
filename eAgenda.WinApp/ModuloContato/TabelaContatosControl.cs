@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloContato
 {
-    
+
 
     public partial class TabelaContatosControl : UserControl
     {
@@ -54,9 +54,9 @@ namespace eAgenda.WinApp.ModuloContato
             grid.DataSource = contatos;
 
             agrupadorContatos = new Subro.Controls.DataGridViewGrouper(grid);
-            
+
             AgruparContatos();
-        }       
+        }
 
         public void DesagruparContatos()
         {

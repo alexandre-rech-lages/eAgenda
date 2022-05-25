@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloDespesa
 {
-    public partial class TabelaDespesasControl : UserControl
+    public partial class TabelaCategoriasDespesaControl : UserControl
     {
-        public TabelaDespesasControl()
+        public TabelaCategoriasDespesaControl()
         {
             InitializeComponent();
             grid.ConfigurarGridZebrado();
@@ -21,27 +21,24 @@ namespace eAgenda.WinApp.ModuloDespesa
            {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Numero", HeaderText = "Número"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Descricao", HeaderText = "Descrição"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Descricao", HeaderText = "Descrição"}
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Valor", HeaderText = "Valor"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Data", HeaderText = "Data"}
            };
 
             return colunas;
         }
 
-        internal void AtualizarRegistros(List<Despesa> despesas)
+        internal void AtualizarRegistros(List<CategoriaDespesa> categorias)
         {
             grid.Rows.Clear();
 
-            foreach (Despesa despesa in despesas)
+            foreach (var categoria in categorias)
             {
-                grid.Rows.Add(despesa.Numero, despesa.Descricao, despesa.Valor, despesa.Data);
+                grid.Rows.Add(categoria.Numero, categoria.Titulo);
             }
         }
 
-        internal int ObtemNumeroDespesaSelecionada()
+        internal int ObtemNumeroCategoriaDespesaSelecionada()
         {
             return grid.SelecionarNumero<int>();
         }

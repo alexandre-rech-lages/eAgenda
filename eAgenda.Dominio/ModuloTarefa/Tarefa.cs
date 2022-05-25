@@ -83,9 +83,9 @@ namespace eAgenda.Dominio.ModuloTarefa
 
             itemTarefa?.Concluir();
 
-            if (itens.All(x =>x.Concluido))
+            if (itens.All(x => x.Concluido))
                 DataConclusao = DateTime.Now;
-            
+
         }
 
         public void MarcarPendente(ItemTarefa item)

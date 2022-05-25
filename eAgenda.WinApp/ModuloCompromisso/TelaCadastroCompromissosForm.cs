@@ -45,12 +45,12 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 if (compromisso.TipoLocal == TipoLocalizacaoCompromissoEnum.Remoto)
                 {
                     rdbRemoto.Checked = true;
-                    txtLink.Text = compromisso.Link;                     
+                    txtLink.Text = compromisso.Link;
                 }
                 else
                 {
                     rdbPresencial.Checked = true;
-                    txtLocal.Text = compromisso.Local;                    
+                    txtLocal.Text = compromisso.Local;
                 }
 
                 txtData.Value = compromisso.Data;
@@ -69,7 +69,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            compromisso.Assunto = txtAssunto.Text;                        
+            compromisso.Assunto = txtAssunto.Text;
             compromisso.Data = txtData.Value;
             compromisso.HoraInicio = txtHoraInicio.Value.TimeOfDay;
             compromisso.HoraTermino = txtHoraTermino.Value.TimeOfDay;
@@ -117,7 +117,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
         private void rdbRemoto_CheckedChanged(object sender, EventArgs e)
         {
             ConfigurarCamposLocalRemoto();
-        }      
+        }
 
         private void rdbPresencial_CheckedChanged(object sender, EventArgs e)
         {

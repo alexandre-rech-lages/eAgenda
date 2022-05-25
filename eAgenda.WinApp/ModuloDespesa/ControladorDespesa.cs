@@ -1,6 +1,5 @@
 ﻿using eAgenda.Dominio.ModuloDespesa;
 using eAgenda.WinApp.Compartilhado;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -8,18 +7,21 @@ namespace eAgenda.WinApp.ModuloDespesa
 {
     public class ControladorDespesa : ControladorBase
     {
+        private readonly IRepositorioCategoriaDespesa repositorioCategoria;
         private readonly IRepositorioDespesa repositorioDespesa;
         private TabelaDespesasControl tabelaDespesas;
 
 
-        public ControladorDespesa(IRepositorioDespesa repositorio)
+        public ControladorDespesa(IRepositorioDespesa repositorio, IRepositorioCategoriaDespesa repositorioCategoria)
         {
             repositorioDespesa = repositorio;
+            this.repositorioCategoria = repositorioCategoria;
         }
 
         public override void Inserir()
         {
-            TelaCadastroDespesasForm tela = new TelaCadastroDespesasForm();
+            var categorias = repositorioCategoria.SelecionarTodos();
+            TelaCadastroDespesasForm tela = new TelaCadastroDespesasForm(categorias);
 
             tela.Despesa = new Despesa();
 
@@ -51,7 +53,8 @@ namespace eAgenda.WinApp.ModuloDespesa
                 return;
             }
 
-            TelaCadastroDespesasForm tela = new TelaCadastroDespesasForm();
+            var categorias = repositorioCategoria.SelecionarTodos();
+            TelaCadastroDespesasForm tela = new TelaCadastroDespesasForm(categorias);
 
             tela.Despesa = despesaSelecionada.Clonar();
 
@@ -64,6 +67,8 @@ namespace eAgenda.WinApp.ModuloDespesa
                 CarregarDespesas();
             }
         }
+
+
 
         public override void Excluir()
         {
@@ -85,7 +90,7 @@ namespace eAgenda.WinApp.ModuloDespesa
                 CarregarDespesas();
             }
         }
-      
+
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolboxDespesa();

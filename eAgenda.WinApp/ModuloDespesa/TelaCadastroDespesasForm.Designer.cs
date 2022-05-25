@@ -38,10 +38,11 @@
             this.txtData = new System.Windows.Forms.DateTimePicker();
             this.cmbFormaPgto = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listCategorias = new System.Windows.Forms.CheckedListBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -113,7 +114,7 @@
             // cmbFormaPgto
             // 
             this.cmbFormaPgto.FormattingEnabled = true;
-            this.cmbFormaPgto.Location = new System.Drawing.Point(112, 160);
+            this.cmbFormaPgto.Location = new System.Drawing.Point(113, 132);
             this.cmbFormaPgto.Name = "cmbFormaPgto";
             this.cmbFormaPgto.Size = new System.Drawing.Size(100, 23);
             this.cmbFormaPgto.TabIndex = 6;
@@ -121,33 +122,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 164);
+            this.label5.Location = new System.Drawing.Point(19, 136);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 15);
             this.label5.TabIndex = 9;
             this.label5.Text = "Forma de Pgto:";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(45, 134);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Categoria:";
-            // 
-            // cmbCategoria
-            // 
-            this.cmbCategoria.FormattingEnabled = true;
-            this.cmbCategoria.Location = new System.Drawing.Point(112, 131);
-            this.cmbCategoria.Name = "cmbCategoria";
-            this.cmbCategoria.Size = new System.Drawing.Size(100, 23);
-            this.cmbCategoria.TabIndex = 5;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(273, 287);
+            this.btnCancelar.Location = new System.Drawing.Point(273, 399);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 42);
             this.btnCancelar.TabIndex = 8;
@@ -157,7 +141,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(192, 287);
+            this.btnGravar.Location = new System.Drawing.Point(192, 399);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 42);
             this.btnGravar.TabIndex = 7;
@@ -165,15 +149,34 @@
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.listCategorias);
+            this.groupBox1.Location = new System.Drawing.Point(22, 167);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(326, 211);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Categorias";
+            // 
+            // listCategorias
+            // 
+            this.listCategorias.CheckOnClick = true;
+            this.listCategorias.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listCategorias.FormattingEnabled = true;
+            this.listCategorias.Location = new System.Drawing.Point(3, 19);
+            this.listCategorias.Name = "listCategorias";
+            this.listCategorias.Size = new System.Drawing.Size(320, 189);
+            this.listCategorias.TabIndex = 0;
+            // 
             // TelaCadastroDespesasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 341);
+            this.ClientSize = new System.Drawing.Size(360, 453);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.cmbCategoria);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbFormaPgto);
             this.Controls.Add(this.txtData);
@@ -192,6 +195,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Controle de Despesas";
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,9 +213,9 @@
         private System.Windows.Forms.DateTimePicker txtData;
         private System.Windows.Forms.ComboBox cmbFormaPgto;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cmbCategoria;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGravar;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckedListBox listCategorias;
     }
 }

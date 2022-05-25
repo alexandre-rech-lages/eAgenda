@@ -60,7 +60,7 @@ namespace eAgenda.WinApp.Compartilhado
             };
         }
 
-       
+
 
         public static T SelecionarNumero<T>(this DataGridView grid)
         {

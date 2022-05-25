@@ -1,28 +1,29 @@
 ﻿using eAgenda.Dominio.ModuloDespesa;
 using FluentValidation.Results;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloDespesa
 {
     public partial class TelaCadastroDespesasForm : Form
     {
-        public TelaCadastroDespesasForm()
+
+        public TelaCadastroDespesasForm(List<CategoriaDespesa> categorias)
         {
             InitializeComponent();
 
             CarregarFormaPgto();
 
-            CarregarCategorias();
+            CarregarCategorias(categorias);
         }
 
-        private void CarregarCategorias()
+        private void CarregarCategorias(List<CategoriaDespesa> categorias)
         {
-            var categorias = Enum.GetValues(typeof(CategoriaDespesaEnum));
-
             foreach (var item in categorias)
             {
-                cmbCategoria.Items.Add(item);
+                listCategorias.Items.Add(item);
             }
         }
 
@@ -55,7 +56,22 @@ namespace eAgenda.WinApp.ModuloDespesa
                 txtValor.Text = despesa.Valor.ToString();
                 txtData.Value = despesa.Data;
                 cmbFormaPgto.SelectedItem = despesa.FormaPagamento;
-                cmbCategoria.SelectedItem = despesa.Categoria;
+
+                #region seleção de várias categorias
+                int i = 0;
+
+                for (int j = 0; j < listCategorias.Items.Count; j++)
+                {
+                    var categoria = (CategoriaDespesa)listCategorias.Items[j];
+
+                    if (despesa.Categorias.Contains(categoria))
+                        listCategorias.SetItemChecked(i, true);
+
+                    i++;
+                }
+                #endregion
+
+                //cmbCategoria.SelectedItem = despesa.Categoria;
             }
         }
 
@@ -65,7 +81,16 @@ namespace eAgenda.WinApp.ModuloDespesa
             despesa.Valor = Convert.ToDecimal(txtValor.Text);
             despesa.Data = txtData.Value;
             despesa.FormaPagamento = (FormaPgtoDespesaEnum)cmbFormaPgto.SelectedItem;
-            despesa.Categoria = (CategoriaDespesaEnum)cmbCategoria.SelectedItem;
+
+            #region seleção de várias categorias
+
+            var categorias = listCategorias.CheckedItems.Cast<CategoriaDespesa>().ToList();
+
+            despesa.AtribuirCategorias(categorias);
+
+            #endregion
+
+            //despesa.Categoria = (CategoriaDespesaEnum)cmbCategoria.SelectedItem;
 
             ValidationResult resultadoValidacao = GravarRegistro(despesa);
 

@@ -3,9 +3,6 @@ using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace eAgenda.Infra.BancoDados.ModuloContato
 {
@@ -36,7 +33,7 @@ namespace eAgenda.Infra.BancoDados.ModuloContato
                     @CARGO
                 );SELECT SCOPE_IDENTITY();";
 
-        private const string sqlEditar = 
+        private const string sqlEditar =
             @"UPDATE [TBCONTATO]	
 		        SET
 			        [NOME] = @NOME,
@@ -47,12 +44,12 @@ namespace eAgenda.Infra.BancoDados.ModuloContato
 		        WHERE
 			        [NUMERO] = @NUMERO";
 
-        private const string sqlExcluir = 
+        private const string sqlExcluir =
             @"DELETE FROM [TBCONTATO]
 		        WHERE
 			        [NUMERO] = @NUMERO";
 
-        private const string sqlSelecionarTodos = 
+        private const string sqlSelecionarTodos =
             @"SELECT 
 		            [NUMERO], 
 		            [NOME], 
@@ -63,7 +60,7 @@ namespace eAgenda.Infra.BancoDados.ModuloContato
 	            FROM 
 		            [TBCONTATO]";
 
-        private const string sqlSelecionarPorNumero = 
+        private const string sqlSelecionarPorNumero =
             @"SELECT 
 		            [NUMERO], 
 		            [NOME], 
@@ -87,7 +84,7 @@ namespace eAgenda.Infra.BancoDados.ModuloContato
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
 
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);            
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoInsercao = new SqlCommand(sqlInserir, conexaoComBanco);
 
@@ -180,8 +177,8 @@ namespace eAgenda.Infra.BancoDados.ModuloContato
             SqlDataReader leitorContato = comandoSelecao.ExecuteReader();
 
             Contato contato = null;
-            if (leitorContato.Read())            
-                contato = ConverterParaContato(leitorContato);            
+            if (leitorContato.Read())
+                contato = ConverterParaContato(leitorContato);
 
             conexaoComBanco.Close();
 

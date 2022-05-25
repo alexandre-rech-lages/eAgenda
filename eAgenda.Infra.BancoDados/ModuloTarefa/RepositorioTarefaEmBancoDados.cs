@@ -311,7 +311,7 @@ namespace eAgenda.Infra.BancoDados.ModuloTarefa
             conexaoComBanco.Open();
 
             foreach (var item in itens)
-            {               
+            {
                 bool itemAdicionado = tarefaSelecionada.AdicionarItem(item);
 
                 if (itemAdicionado)
@@ -430,7 +430,7 @@ namespace eAgenda.Infra.BancoDados.ModuloTarefa
 
             return itemTarefa;
         }
-        
+
         #endregion
     }
 }

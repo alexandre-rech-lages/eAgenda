@@ -4,9 +4,6 @@ using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace eAgenda.Infra.BancoDados.ModuloCompromisso
 {
@@ -227,7 +224,7 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
             conexaoComBanco.Close();
 
             return resultadoValidacao;
-        }       
+        }
 
         public List<Compromisso> SelecionarCompromissosFuturos(DateTime dataInicial, DateTime dataFinal)
         {

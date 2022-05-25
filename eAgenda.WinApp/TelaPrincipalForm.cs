@@ -1,8 +1,5 @@
 ﻿using eAgenda.Infra.Arquivos;
-using eAgenda.Infra.Arquivos.ModuloCompromisso;
-using eAgenda.Infra.Arquivos.ModuloContato;
 using eAgenda.Infra.Arquivos.ModuloDespesa;
-using eAgenda.Infra.Arquivos.ModuloTarefa;
 using eAgenda.Infra.BancoDados.ModuloCompromisso;
 using eAgenda.Infra.BancoDados.ModuloContato;
 using eAgenda.Infra.BancoDados.ModuloTarefa;
@@ -16,7 +13,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace eAgenda.WinApp
-{   
+{
     public partial class TelaPrincipalForm : Form
     {
         private ControladorBase controlador;
@@ -68,6 +65,11 @@ namespace eAgenda.WinApp
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
+        private void categoriasMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
+
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();
@@ -103,6 +105,11 @@ namespace eAgenda.WinApp
             controlador.Agrupar();
         }
 
+        private void btnVisualizar_Click(object sender, EventArgs e)
+        {
+            controlador.Visualizar();
+        }
+
         private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
         {
             btnInserir.Enabled = configuracao.InserirHabilitado;
@@ -112,6 +119,7 @@ namespace eAgenda.WinApp
             btnAtualizarItens.Enabled = configuracao.AtualizarItensHabilitado;
             btnFiltrar.Enabled = configuracao.FiltrarHabilitado;
             btnAgrupar.Enabled = configuracao.AgruparHabilitado;
+            btnVisualizar.Enabled = configuracao.VisualizarHabilitado;
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
@@ -123,6 +131,7 @@ namespace eAgenda.WinApp
             btnAtualizarItens.ToolTipText = configuracao.TooltipAtualizarItens;
             btnFiltrar.ToolTipText = configuracao.TooltipFiltrar;
             btnAgrupar.ToolTipText = configuracao.TooltipAgrupar;
+            btnVisualizar.ToolTipText = configuracao.TooltipVisualizar;
         }
 
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
@@ -170,7 +179,8 @@ namespace eAgenda.WinApp
             var repositorioContato = new RepositorioContatoEmBancoDados();
             var repositorioCompromisso = new RepositorioCompromissoEmBancoDados();
             var repositorioTarefa = new RepositorioTarefaEmBancoDados();
-            
+
+            var repositorioCategoriaDespesa = new RepositorioCategoriaDespesaEmArquivo(contextoDados);
             var repositorioDespesa = new RepositorioDespesaEmArquivo(contextoDados);
 
             controladores = new Dictionary<string, ControladorBase>();
@@ -178,7 +188,8 @@ namespace eAgenda.WinApp
             controladores.Add("Tarefas", new ControladorTarefa(repositorioTarefa));
             controladores.Add("Contatos", new ControladorContato(repositorioContato));
             controladores.Add("Compromissos", new ControladorCompromisso(repositorioCompromisso, repositorioContato));
-            controladores.Add("Despesas", new ControladorDespesa(repositorioDespesa));
+            controladores.Add("Despesas", new ControladorDespesa(repositorioDespesa, repositorioCategoriaDespesa));
+            controladores.Add("Categorias", new ControladorCategoriaDespesa(repositorioCategoriaDespesa));
         }
 
 

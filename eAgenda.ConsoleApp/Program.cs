@@ -1,7 +1,6 @@
 ﻿using eAgenda.Dominio.ModuloContato;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 namespace eAgenda.ConsoleApp
 {
@@ -90,7 +89,7 @@ namespace eAgenda.ConsoleApp
                     Empresa = empresa
                 };
             }
-            
+
             //fechar a conexão
             conexaoComBanco.Close();
 
@@ -180,7 +179,7 @@ namespace eAgenda.ConsoleApp
             comandoExclusao.Connection = conexaoComBanco;
             string sql = @"	DELETE FROM [TBCONTATO]
 		                        WHERE
-			                        [NUMERO] = @NUMERO"; 
+			                        [NUMERO] = @NUMERO";
 
             comandoExclusao.CommandText = sql;
 
@@ -222,7 +221,7 @@ namespace eAgenda.ConsoleApp
 			                        [EMPRESA] = @EMPRESA,
 			                        [CARGO] = @CARGO
 		                        WHERE
-			                        [NUMERO] = @NUMERO"; 
+			                        [NUMERO] = @NUMERO";
 
             comandoEdicao.CommandText = sql;
 
@@ -245,7 +244,7 @@ namespace eAgenda.ConsoleApp
         }
 
         private static void InserirContato(Contato novoContato)
-        {            
+        {
             #region abrir a conexão com o banco de dados
             string enderecoBanco =
                 "Data Source=(LocalDB)\\MSSqlLocalDB;" +

@@ -19,7 +19,7 @@ namespace eAgenda.Dominio.ModuloDespesa
                 .NotNull()
                 .NotEmpty();
 
-            RuleFor(x => x.Categoria)
+            RuleFor(x => x.Categorias)
                 .NotNull()
                 .NotEmpty();
         }

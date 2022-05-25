@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloContato
 {
-  
+
 
     internal class ControladorContato : ControladorBase
     {

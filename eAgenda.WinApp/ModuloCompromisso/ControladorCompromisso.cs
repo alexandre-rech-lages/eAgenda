@@ -130,7 +130,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
             {
                 case StatusCompromissoEnum.Futuros:
                     compromissos = repositorioCompromisso.SelecionarCompromissosFuturos(dataInicial, dataFinal);
-                    tipoCompromisso = "futuro(s)"; 
+                    tipoCompromisso = "futuro(s)";
                     break;
 
                 case StatusCompromissoEnum.Passados:

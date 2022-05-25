@@ -143,6 +143,6 @@ namespace eAgenda.Infra.Arquivos.ModuloTarefa
             return new ValidadorTarefa();
         }
 
-      
+
     }
 }

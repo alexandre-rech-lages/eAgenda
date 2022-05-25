@@ -22,7 +22,7 @@ namespace eAgenda.Infra.Arquivos.ModuloCompromisso
         public override AbstractValidator<Compromisso> ObterValidador()
         {
             return new ValidadorCompromisso();
-        }       
+        }
 
         public List<Compromisso> SelecionarCompromissosFuturos(DateTime dataInicial, DateTime dataFinal)
         {

@@ -17,12 +17,13 @@ namespace eAgenda.Dominio.ModuloCompromisso
                    .NotNull()
                    .NotEmpty();
 
-            }).Otherwise( () => { 
+            }).Otherwise(() =>
+            {
 
                 RuleFor(x => x.Local)
                     .NotNull()
                     .NotEmpty();
-            });               
+            });
 
 
             RuleFor(x => x.Data)

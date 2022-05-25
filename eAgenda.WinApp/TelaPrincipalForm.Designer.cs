@@ -33,6 +33,9 @@
             this.tarefasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contatosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compromissosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.despesasSubMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.despesasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categoriasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox = new System.Windows.Forms.ToolStrip();
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
@@ -43,13 +46,14 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnFiltrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnVisualizar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAgrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
-            this.despesasMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -71,7 +75,7 @@
             this.tarefasMenuItem,
             this.contatosMenuItem,
             this.compromissosMenuItem,
-            this.despesasMenuItem});
+            this.despesasSubMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -80,7 +84,7 @@
             // 
             this.tarefasMenuItem.Name = "tarefasMenuItem";
             this.tarefasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.tarefasMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tarefasMenuItem.Size = new System.Drawing.Size(173, 22);
             this.tarefasMenuItem.Text = "Tarefas";
             this.tarefasMenuItem.Click += new System.EventHandler(this.tarefasMenuItem_Click);
             // 
@@ -88,7 +92,7 @@
             // 
             this.contatosMenuItem.Name = "contatosMenuItem";
             this.contatosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.contatosMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contatosMenuItem.Size = new System.Drawing.Size(173, 22);
             this.contatosMenuItem.Text = "Contatos";
             this.contatosMenuItem.Click += new System.EventHandler(this.contatosMenuItem_Click);
             // 
@@ -96,9 +100,33 @@
             // 
             this.compromissosMenuItem.Name = "compromissosMenuItem";
             this.compromissosMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.compromissosMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.compromissosMenuItem.Size = new System.Drawing.Size(173, 22);
             this.compromissosMenuItem.Text = "Compromissos";
             this.compromissosMenuItem.Click += new System.EventHandler(this.compromissosMenuItem_Click);
+            // 
+            // despesasSubMenuItem
+            // 
+            this.despesasSubMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.despesasMenuItem,
+            this.categoriasMenuItem});
+            this.despesasSubMenuItem.Name = "despesasSubMenuItem";
+            this.despesasSubMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.despesasSubMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.despesasSubMenuItem.Text = "Despesas";
+            // 
+            // despesasMenuItem
+            // 
+            this.despesasMenuItem.Name = "despesasMenuItem";
+            this.despesasMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.despesasMenuItem.Text = "Despesas";
+            this.despesasMenuItem.Click += new System.EventHandler(this.despesasMenuItem_Click);
+            // 
+            // categoriasMenuItem
+            // 
+            this.categoriasMenuItem.Name = "categoriasMenuItem";
+            this.categoriasMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.categoriasMenuItem.Text = "Categorias";
+            this.categoriasMenuItem.Click += new System.EventHandler(this.categoriasMenuItem_Click);
             // 
             // toolbox
             // 
@@ -113,6 +141,8 @@
             this.toolStripSeparator1,
             this.btnFiltrar,
             this.toolStripSeparator3,
+            this.btnVisualizar,
+            this.toolStripSeparator5,
             this.btnAgrupar,
             this.toolStripSeparator4,
             this.labelTipoCadastro});
@@ -206,6 +236,22 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 41);
             // 
+            // btnVisualizar
+            // 
+            this.btnVisualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnVisualizar.Image = global::eAgenda.WinApp.Properties.Resources.pageview_FILL0_wght300_GRAD0_opsz24;
+            this.btnVisualizar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnVisualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVisualizar.Name = "btnVisualizar";
+            this.btnVisualizar.Padding = new System.Windows.Forms.Padding(5);
+            this.btnVisualizar.Size = new System.Drawing.Size(38, 38);
+            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 41);
+            // 
             // btnAgrupar
             // 
             this.btnAgrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -252,14 +298,6 @@
             this.panelRegistros.Name = "panelRegistros";
             this.panelRegistros.Size = new System.Drawing.Size(929, 522);
             this.panelRegistros.TabIndex = 3;
-            // 
-            // despesasMenuItem
-            // 
-            this.despesasMenuItem.Name = "despesasMenuItem";
-            this.despesasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.despesasMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.despesasMenuItem.Text = "Despesas";
-            this.despesasMenuItem.Click += new System.EventHandler(this.despesasMenuItem_Click);
             // 
             // TelaPrincipalForm
             // 
@@ -310,6 +348,10 @@
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
         private System.Windows.Forms.ToolStripButton btnAgrupar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem despesasSubMenuItem;
         private System.Windows.Forms.ToolStripMenuItem despesasMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem categoriasMenuItem;
+        private System.Windows.Forms.ToolStripButton btnVisualizar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }
