@@ -19,9 +19,8 @@ namespace eAgenda.WinApp
     {
         private ControladorBase controlador;
         private Dictionary<string, ControladorBase> controladores;
-        private DataContext contextoDados;
 
-        public TelaPrincipalForm(DataContext contextoDados)
+        public TelaPrincipalForm()
         {
             InitializeComponent();
 
@@ -29,8 +28,6 @@ namespace eAgenda.WinApp
 
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
-
-            this.contextoDados = contextoDados;
 
             InicializarControladores();
         }
@@ -179,11 +176,7 @@ namespace eAgenda.WinApp
         {
             var repositorioContato = new RepositorioContatoEmBancoDados();
             var repositorioCompromisso = new RepositorioCompromissoEmBancoDados();
-            var repositorioTarefa = new RepositorioTarefaEmBancoDados();
-
-            //var repositorioCategoria = new RepositorioCategoriaEmArquivo(contextoDados);
-            //var repositorioDespesa = new RepositorioDespesaEmArquivo(contextoDados);
-            
+            var repositorioTarefa = new RepositorioTarefaEmBancoDados();            
             var repositorioCategoria = new RepositorioCategoriaEmBancoDados();
             var repositorioDespesa = new RepositorioDespesaEmBancoDados();
 
