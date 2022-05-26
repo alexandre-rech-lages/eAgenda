@@ -4,6 +4,5 @@
     [Descricao] VARCHAR(300) NOT NULL, 
     [Valor] NUMERIC NOT NULL, 
     [Data] DATETIME NOT NULL, 
-    [FormaPagamento] INT NOT NULL, 
-    [Categoria_Numero] INT NOT NULL
+    [FormaPagamento] INT NOT NULL 
 )

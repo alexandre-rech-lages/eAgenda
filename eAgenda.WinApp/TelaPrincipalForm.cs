@@ -2,6 +2,7 @@
 using eAgenda.Infra.Arquivos.ModuloDespesa;
 using eAgenda.Infra.BancoDados.ModuloCompromisso;
 using eAgenda.Infra.BancoDados.ModuloContato;
+using eAgenda.Infra.BancoDados.ModuloDespesa;
 using eAgenda.Infra.BancoDados.ModuloTarefa;
 using eAgenda.WinApp.Compartilhado;
 using eAgenda.WinApp.ModuloCompromisso;
@@ -180,8 +181,11 @@ namespace eAgenda.WinApp
             var repositorioCompromisso = new RepositorioCompromissoEmBancoDados();
             var repositorioTarefa = new RepositorioTarefaEmBancoDados();
 
-            var repositorioCategoriaDespesa = new RepositorioCategoriaDespesaEmArquivo(contextoDados);
-            var repositorioDespesa = new RepositorioDespesaEmArquivo(contextoDados);
+            //var repositorioCategoriaDespesa = new RepositorioCategoriaDespesaEmArquivo(contextoDados);
+            //var repositorioDespesa = new RepositorioDespesaEmArquivo(contextoDados);
+            
+            var repositorioCategoriaDespesa = new RepositorioCategoriaDespesaEmBancoDados();
+            var repositorioDespesa = new RepositorioDespesaEmBancoDados();
 
             controladores = new Dictionary<string, ControladorBase>();
 
