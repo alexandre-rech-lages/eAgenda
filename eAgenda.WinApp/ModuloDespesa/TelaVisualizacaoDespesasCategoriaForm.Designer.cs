@@ -85,7 +85,7 @@
             this.listDespesas.Size = new System.Drawing.Size(518, 297);
             this.listDespesas.TabIndex = 0;
             // 
-            // TelaVisualizacaoCategoriaDespesaForm
+            // TelaVisualizacaoCategoriaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -97,7 +97,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TelaVisualizacaoCategoriaDespesaForm";
+            this.Name = "TelaVisualizacaoCategoriaForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

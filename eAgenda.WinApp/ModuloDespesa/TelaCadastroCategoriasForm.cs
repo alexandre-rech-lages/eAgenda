@@ -17,7 +17,7 @@ namespace eAgenda.WinApp.ModuloDespesa
         public Func<Categoria, ValidationResult> GravarRegistro { get; set; }
 
 
-        public Categoria CategoriaDespesa
+        public Categoria Categoria
         {
             get
             {

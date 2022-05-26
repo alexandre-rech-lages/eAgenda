@@ -7,71 +7,71 @@ namespace eAgenda.WinApp.ModuloDespesa
 {
     public class ControladorCategoria : ControladorBase
     {
-        private readonly IRepositorioCategoria repositorioCategoriaDespesa;
-        private TabelaCategoriasControl tabelaCategoriasDespesa;
+        private readonly IRepositorioCategoria repositorioCategoria;
+        private TabelaCategoriasControl tabelaCategorias;
 
 
         public ControladorCategoria(IRepositorioCategoria repositorio)
         {
-            repositorioCategoriaDespesa = repositorio;
+            repositorioCategoria = repositorio;
         }
 
         public override void Inserir()
         {
             TelaCadastroCategoriasForm tela = new TelaCadastroCategoriasForm();
 
-            tela.CategoriaDespesa = new Categoria();
+            tela.Categoria = new Categoria();
 
-            tela.GravarRegistro = repositorioCategoriaDespesa.Inserir;
+            tela.GravarRegistro = repositorioCategoria.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                CarregarCategoriaDespesas();
+                CarregarCategorias();
             }
         }
 
-        private void CarregarCategoriaDespesas()
+        private void CarregarCategorias()
         {
-            List<Categoria> CategoriaDespesas = repositorioCategoriaDespesa.SelecionarTodos();
+            List<Categoria> Categorias = repositorioCategoria.SelecionarTodos();
 
-            tabelaCategoriasDespesa.AtualizarRegistros(CategoriaDespesas);
+            tabelaCategorias.AtualizarRegistros(Categorias);
         }
 
         public override void Editar()
         {
-            Categoria categoriaDespesaSelecionada = ObtemCategoriaDespesaSelecionada();
+            Categoria categoriaDespesaSelecionada = ObtemCategoriaSelecionada();
 
             if (categoriaDespesaSelecionada == null)
             {
-                MessageBox.Show("Selecione uma Categoria de Despesa primeiro",
-                    "Edição de Categoria de Despesas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione uma Categoria primeiro",
+                    "Edição de Categoria", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaCadastroCategoriasForm tela = new TelaCadastroCategoriasForm();
 
-            tela.CategoriaDespesa = categoriaDespesaSelecionada.Clonar();
+            tela.Categoria = categoriaDespesaSelecionada.Clonar();
 
-            tela.GravarRegistro = repositorioCategoriaDespesa.Editar;
+            tela.GravarRegistro = repositorioCategoria.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                CarregarCategoriaDespesas();
+                CarregarCategorias();
             }
         }
 
         public override void Visualizar()
         {
-            Categoria categoriaDespesaSelecionada = ObtemCategoriaDespesaSelecionada();
+            Categoria categoriaDespesaSelecionada = ObtemCategoriaSelecionada();
 
             if (categoriaDespesaSelecionada == null)
             {
-                MessageBox.Show("Selecione uma Categoria de Despesa primeiro",
-                    "Visualização de Categoria de Despesas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione uma Categoria primeiro",
+                    "Visualização de Categoria", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -83,22 +83,22 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         public override void Excluir()
         {
-            Categoria CategoriaDespesaSelecionada = ObtemCategoriaDespesaSelecionada();
+            Categoria CategoriaSelecionada = ObtemCategoriaSelecionada();
 
-            if (CategoriaDespesaSelecionada == null)
+            if (CategoriaSelecionada == null)
             {
-                MessageBox.Show("Selecione uma Categoria de Despesa primeiro",
-                "Exclusão de Categorias de Despesas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione uma Categoria primeiro",
+                "Exclusão de Categorias", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir a Categoria de Despesa?",
-                "Exclusão de Categorias de Despesas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir a Categoria?",
+                "Exclusão de Categorias", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
             {
-                repositorioCategoriaDespesa.Excluir(CategoriaDespesaSelecionada);
-                CarregarCategoriaDespesas();
+                repositorioCategoria.Excluir(CategoriaSelecionada);
+                CarregarCategorias();
             }
         }
 
@@ -109,21 +109,21 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         public override UserControl ObtemListagem()
         {
-            if (tabelaCategoriasDespesa == null)
-                tabelaCategoriasDespesa = new TabelaCategoriasControl();
+            if (tabelaCategorias == null)
+                tabelaCategorias = new TabelaCategoriasControl();
 
-            CarregarCategoriaDespesas();
+            CarregarCategorias();
 
-            return tabelaCategoriasDespesa;
+            return tabelaCategorias;
         }
 
-        private Categoria ObtemCategoriaDespesaSelecionada()
+        private Categoria ObtemCategoriaSelecionada()
         {
-            int numeroSelecionado = tabelaCategoriasDespesa.ObtemNumeroCategoriaDespesaSelecionada();
+            int numeroSelecionado = tabelaCategorias.ObtemNumeroCategoriaSelecionada();
 
-            Categoria CategoriaDespesaSelecionada = repositorioCategoriaDespesa.SelecionarPorNumero(numeroSelecionado);
+            Categoria CategoriaSelecionada = repositorioCategoria.SelecionarPorNumero(numeroSelecionado);
 
-            return CategoriaDespesaSelecionada;
+            return CategoriaSelecionada;
         }
     }
 }

@@ -8,9 +8,9 @@
     <Property Name="NewName" Value="Numero" />
   </Operation>
   <Operation Name="Rename Refactor" Key="bb44bbf3-48d4-4a73-936c-e23b85e7e479" ChangeDateTime="05/25/2022 14:23:14">
-    <Property Name="ElementName" Value="[dbo].[TBCategoriaDespesa].[Id]" />
+    <Property Name="ElementName" Value="[dbo].[TBCategoria].[Id]" />
     <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[TBCategoriaDespesa]" />
+    <Property Name="ParentElementName" Value="[dbo].[TBCategoria]" />
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Numero" />
   </Operation>

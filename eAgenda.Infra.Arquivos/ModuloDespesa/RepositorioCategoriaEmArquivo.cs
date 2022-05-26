@@ -20,7 +20,7 @@ namespace eAgenda.Infra.Arquivos.ModuloDespesa
 
         public override AbstractValidator<Categoria> ObterValidador()
         {
-            return new ValidadorCategoriaDespesa();
+            return new ValidadorCategoria();
         }
     }
 }

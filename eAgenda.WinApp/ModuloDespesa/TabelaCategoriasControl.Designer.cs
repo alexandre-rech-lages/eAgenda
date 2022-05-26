@@ -42,12 +42,12 @@
             this.grid.Size = new System.Drawing.Size(150, 150);
             this.grid.TabIndex = 1;
             // 
-            // TabelaCategoriasDespesaControl
+            // TabelaCategoriasControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
-            this.Name = "TabelaCategoriasDespesaControl";
+            this.Name = "TabelaCategoriasControl";
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 

@@ -90,7 +90,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
             #endregion
 
-            //despesa.Categoria = (CategoriaDespesaEnum)cmbCategoria.SelectedItem;
+            //despesa.Categoria = (CategoriaEnum)cmbCategoria.SelectedItem;
 
             ValidationResult resultadoValidacao = GravarRegistro(despesa);
 

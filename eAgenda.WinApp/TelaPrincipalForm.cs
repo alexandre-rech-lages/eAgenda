@@ -181,10 +181,10 @@ namespace eAgenda.WinApp
             var repositorioCompromisso = new RepositorioCompromissoEmBancoDados();
             var repositorioTarefa = new RepositorioTarefaEmBancoDados();
 
-            //var repositorioCategoriaDespesa = new RepositorioCategoriaDespesaEmArquivo(contextoDados);
+            //var repositorioCategoria = new RepositorioCategoriaEmArquivo(contextoDados);
             //var repositorioDespesa = new RepositorioDespesaEmArquivo(contextoDados);
             
-            var repositorioCategoriaDespesa = new RepositorioCategoriaEmBancoDados();
+            var repositorioCategoria = new RepositorioCategoriaEmBancoDados();
             var repositorioDespesa = new RepositorioDespesaEmBancoDados();
 
             controladores = new Dictionary<string, ControladorBase>();
@@ -192,8 +192,8 @@ namespace eAgenda.WinApp
             controladores.Add("Tarefas", new ControladorTarefa(repositorioTarefa));
             controladores.Add("Contatos", new ControladorContato(repositorioContato));
             controladores.Add("Compromissos", new ControladorCompromisso(repositorioCompromisso, repositorioContato));
-            controladores.Add("Despesas", new ControladorDespesa(repositorioDespesa, repositorioCategoriaDespesa));
-            controladores.Add("Categorias", new ControladorCategoria(repositorioCategoriaDespesa));
+            controladores.Add("Despesas", new ControladorDespesa(repositorioDespesa, repositorioCategoria));
+            controladores.Add("Categorias", new ControladorCategoria(repositorioCategoria));
         }
 
 

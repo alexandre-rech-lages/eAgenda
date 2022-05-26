@@ -38,7 +38,7 @@ namespace eAgenda.WinApp.ModuloDespesa
             }
         }
 
-        internal int ObtemNumeroCategoriaDespesaSelecionada()
+        internal int ObtemNumeroCategoriaSelecionada()
         {
             return grid.SelecionarNumero<int>();
         }

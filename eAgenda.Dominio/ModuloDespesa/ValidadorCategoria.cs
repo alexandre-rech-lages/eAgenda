@@ -2,9 +2,9 @@
 
 namespace eAgenda.Dominio.ModuloDespesa
 {
-    public class ValidadorCategoriaDespesa : AbstractValidator<Categoria>
+    public class ValidadorCategoria : AbstractValidator<Categoria>
     {
-        public ValidadorCategoriaDespesa()
+        public ValidadorCategoria()
         {
             RuleFor(x => x.Titulo)
                 .NotNull()

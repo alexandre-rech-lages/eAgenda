@@ -61,7 +61,7 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
 
         public ValidationResult Inserir(Categoria novoCategoria)
         {
-            var validador = new ValidadorCategoriaDespesa();
+            var validador = new ValidadorCategoria();
 
             var resultadoValidacao = validador.Validate(novoCategoria);
 
@@ -72,7 +72,7 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
 
             SqlCommand comandoInsercao = new SqlCommand(sqlInserir, conexaoComBanco);
 
-            ConfigurarParametrosCategoriaDespesa(novoCategoria, comandoInsercao);
+            ConfigurarParametrosCategoria(novoCategoria, comandoInsercao);
 
             conexaoComBanco.Open();
             var id = comandoInsercao.ExecuteScalar();
@@ -85,7 +85,7 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
 
         public ValidationResult Editar(Categoria categoria)
         {
-            var validador = new ValidadorCategoriaDespesa();
+            var validador = new ValidadorCategoria();
 
             var resultadoValidacao = validador.Validate(categoria);
 
@@ -96,7 +96,7 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
 
             SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
 
-            ConfigurarParametrosCategoriaDespesa(categoria, comandoEdicao);
+            ConfigurarParametrosCategoria(categoria, comandoEdicao);
 
             conexaoComBanco.Open();
             comandoEdicao.ExecuteNonQuery();
@@ -133,13 +133,13 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarTodos, conexaoComBanco);
 
             conexaoComBanco.Open();
-            SqlDataReader leitorCategoriaDespesa = comandoSelecao.ExecuteReader();
+            SqlDataReader leitorCategoria = comandoSelecao.ExecuteReader();
 
             List<Categoria> categorias = new List<Categoria>();
 
-            while (leitorCategoriaDespesa.Read())
+            while (leitorCategoria.Read())
             {
-                Categoria categoria = ConverterParaCategoriaDespesa(leitorCategoriaDespesa);
+                Categoria categoria = ConverterParaCategoria(leitorCategoria);
 
                 categorias.Add(categoria);
             }
@@ -158,21 +158,21 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
             comandoSelecao.Parameters.AddWithValue("NUMERO", numero);
 
             conexaoComBanco.Open();
-            SqlDataReader leitorCategoriaDespesa = comandoSelecao.ExecuteReader();
+            SqlDataReader leitorCategoria = comandoSelecao.ExecuteReader();
 
             Categoria categoria = null;
-            if (leitorCategoriaDespesa.Read())
-                categoria = ConverterParaCategoriaDespesa(leitorCategoriaDespesa);
+            if (leitorCategoria.Read())
+                categoria = ConverterParaCategoria(leitorCategoria);
 
             conexaoComBanco.Close();
 
             return categoria;
         }
 
-        private Categoria ConverterParaCategoriaDespesa(SqlDataReader leitorCategoriaDespesa)
+        private Categoria ConverterParaCategoria(SqlDataReader leitorCategoria)
         {
-            var numero = Convert.ToInt32(leitorCategoriaDespesa["NUMERO"]);
-            var titulo = Convert.ToString(leitorCategoriaDespesa["TITULO"]);
+            var numero = Convert.ToInt32(leitorCategoria["NUMERO"]);
+            var titulo = Convert.ToString(leitorCategoria["TITULO"]);
           
             var categoria = new Categoria
             {
@@ -184,7 +184,7 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
         }
 
 
-        private void ConfigurarParametrosCategoriaDespesa(Categoria categoria, SqlCommand comando)
+        private void ConfigurarParametrosCategoria(Categoria categoria, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("NUMERO", categoria.Numero);
             comando.Parameters.AddWithValue("TITULO", categoria.Titulo);
