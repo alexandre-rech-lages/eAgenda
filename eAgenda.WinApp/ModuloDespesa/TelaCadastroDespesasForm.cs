@@ -39,7 +39,11 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         private Despesa despesa;
 
-        public Func<Despesa, ValidationResult> GravarRegistro { get; set; }
+        //public Func<Despesa, ValidationResult> GravarRegistro { get; set; }
+
+        public Func<Despesa, List<Categoria>, ValidationResult> InserirRegistro { get; set; }
+
+        public Func<Despesa, List<Categoria>, List<Categoria>, ValidationResult> EditarRegistro { get; set; }
 
         public Despesa Despesa
         {
@@ -84,15 +88,19 @@ namespace eAgenda.WinApp.ModuloDespesa
 
             #region seleção de várias categorias
 
-            var categorias = listCategorias.CheckedItems.Cast<Categoria>().ToList();
-
-            despesa.AtribuirCategorias(categorias);
+            //var categorias = listCategorias.CheckedItems.Cast<Categoria>().ToList();
+            //despesa.AtribuirCategorias(categorias);
 
             #endregion
 
             //despesa.Categoria = (CategoriaEnum)cmbCategoria.SelectedItem;
 
-            ValidationResult resultadoValidacao = GravarRegistro(despesa);
+            ValidationResult resultadoValidacao = null;
+
+            if (despesa.Numero == 0)
+                resultadoValidacao = InserirRegistro(despesa, CategoriasMarcadas);
+            else
+                resultadoValidacao = EditarRegistro(despesa, CategoriasMarcadas, CategoriasDesmarcadas);
 
             if (resultadoValidacao.IsValid == false)
             {
@@ -101,6 +109,27 @@ namespace eAgenda.WinApp.ModuloDespesa
                 TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
+            }
+        }
+
+        public List<Categoria> CategoriasMarcadas
+        {
+            get
+            {
+                return listCategorias.CheckedItems
+                    .Cast<Categoria>()
+                    .ToList();
+            }
+        }
+
+        public List<Categoria> CategoriasDesmarcadas
+        {
+            get
+            {
+                return listCategorias.Items
+                    .Cast<Categoria>()
+                    .Except(CategoriasMarcadas)
+                    .ToList();
             }
         }
     }

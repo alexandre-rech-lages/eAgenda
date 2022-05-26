@@ -25,7 +25,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
             tela.Despesa = new Despesa();
 
-            tela.GravarRegistro = repositorioDespesa.Inserir;
+            tela.InserirRegistro = repositorioDespesa.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -58,7 +58,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
             tela.Despesa = despesaSelecionada.Clonar();
 
-            tela.GravarRegistro = repositorioDespesa.Editar;
+            tela.EditarRegistro = repositorioDespesa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 

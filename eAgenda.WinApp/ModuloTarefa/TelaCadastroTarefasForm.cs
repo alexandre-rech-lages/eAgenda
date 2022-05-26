@@ -29,6 +29,7 @@ namespace eAgenda.WinApp.ModuloTarefa
         }
 
         public Func<Tarefa, ValidationResult> GravarRegistro { get; set; }
+        
 
         public Tarefa Tarefa
         {
