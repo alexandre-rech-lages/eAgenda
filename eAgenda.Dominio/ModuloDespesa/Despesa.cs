@@ -9,7 +9,7 @@ namespace eAgenda.Dominio.ModuloDespesa
         public Despesa()
         {
             Data = DateTime.Now;
-            Categorias = new List<CategoriaDespesa>();
+            Categorias = new List<Categoria>();
         }
 
         public string Descricao { get; set; }
@@ -20,7 +20,7 @@ namespace eAgenda.Dominio.ModuloDespesa
 
         public FormaPgtoDespesaEnum FormaPagamento { get; set; }
 
-        public List<CategoriaDespesa> Categorias { get; set; }
+        public List<Categoria> Categorias { get; set; }
 
         public override void Atualizar(Despesa registro)
         {
@@ -41,7 +41,7 @@ namespace eAgenda.Dominio.ModuloDespesa
             return MemberwiseClone() as Despesa;
         }
 
-        public void AtribuirCategorias(List<CategoriaDespesa> categorias)
+        public void AtribuirCategorias(List<Categoria> categorias)
         {
             foreach (var categoria in categorias)
             {

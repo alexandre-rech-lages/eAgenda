@@ -2,7 +2,7 @@
 
 namespace eAgenda.Dominio.ModuloDespesa
 {
-    public class ValidadorCategoriaDespesa : AbstractValidator<CategoriaDespesa>
+    public class ValidadorCategoriaDespesa : AbstractValidator<Categoria>
     {
         public ValidadorCategoriaDespesa()
         {

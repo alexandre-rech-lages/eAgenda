@@ -7,12 +7,12 @@ namespace eAgenda.WinApp.ModuloDespesa
 {
     public class ControladorDespesa : ControladorBase
     {
-        private readonly IRepositorioCategoriaDespesa repositorioCategoria;
+        private readonly IRepositorioCategoria repositorioCategoria;
         private readonly IRepositorioDespesa repositorioDespesa;
         private TabelaDespesasControl tabelaDespesas;
 
 
-        public ControladorDespesa(IRepositorioDespesa repositorio, IRepositorioCategoriaDespesa repositorioCategoria)
+        public ControladorDespesa(IRepositorioDespesa repositorio, IRepositorioCategoria repositorioCategoria)
         {
             repositorioDespesa = repositorio;
             this.repositorioCategoria = repositorioCategoria;

@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloDespesa
 {
-    public partial class TelaVisualizacaoCategoriaDespesaForm : Form
+    public partial class TelaVisualizacaoDespesasCategoriaForm : Form
     {
-        public TelaVisualizacaoCategoriaDespesaForm(CategoriaDespesa categoriaDespesaSelecionada)
+        public TelaVisualizacaoDespesasCategoriaForm(Categoria categoriaDespesaSelecionada)
         {
             InitializeComponent();
             labelTituloTarefa.Text = categoriaDespesaSelecionada.Titulo;

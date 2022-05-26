@@ -10,7 +10,7 @@ namespace eAgenda.WinApp.ModuloDespesa
     public partial class TelaCadastroDespesasForm : Form
     {
 
-        public TelaCadastroDespesasForm(List<CategoriaDespesa> categorias)
+        public TelaCadastroDespesasForm(List<Categoria> categorias)
         {
             InitializeComponent();
 
@@ -19,7 +19,7 @@ namespace eAgenda.WinApp.ModuloDespesa
             CarregarCategorias(categorias);
         }
 
-        private void CarregarCategorias(List<CategoriaDespesa> categorias)
+        private void CarregarCategorias(List<Categoria> categorias)
         {
             foreach (var item in categorias)
             {
@@ -62,7 +62,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
                 for (int j = 0; j < listCategorias.Items.Count; j++)
                 {
-                    var categoria = (CategoriaDespesa)listCategorias.Items[j];
+                    var categoria = (Categoria)listCategorias.Items[j];
 
                     if (despesa.Categorias.Contains(categoria))
                         listCategorias.SetItemChecked(i, true);
@@ -84,7 +84,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
             #region seleção de várias categorias
 
-            var categorias = listCategorias.CheckedItems.Cast<CategoriaDespesa>().ToList();
+            var categorias = listCategorias.CheckedItems.Cast<Categoria>().ToList();
 
             despesa.AtribuirCategorias(categorias);
 

@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloDespesa
 {
-    public partial class TabelaCategoriasDespesaControl : UserControl
+    public partial class TabelaCategoriasControl : UserControl
     {
-        public TabelaCategoriasDespesaControl()
+        public TabelaCategoriasControl()
         {
             InitializeComponent();
             grid.ConfigurarGridZebrado();
@@ -28,7 +28,7 @@ namespace eAgenda.WinApp.ModuloDespesa
             return colunas;
         }
 
-        internal void AtualizarRegistros(List<CategoriaDespesa> categorias)
+        internal void AtualizarRegistros(List<Categoria> categorias)
         {
             grid.Rows.Clear();
 

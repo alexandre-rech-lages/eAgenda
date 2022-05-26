@@ -23,7 +23,7 @@ namespace eAgenda.Infra.Arquivos
 
             Despesas = new List<Despesa>();
 
-            CategoriaDespesas = new List<CategoriaDespesa>();
+            Categorias = new List<Categoria>();
         }
 
         public DataContext(ISerializador serializador) : this()
@@ -41,7 +41,7 @@ namespace eAgenda.Infra.Arquivos
 
         public List<Despesa> Despesas { get; set; }
 
-        public List<CategoriaDespesa> CategoriaDespesas { get; set; }
+        public List<Categoria> Categorias { get; set; }
 
         public void GravarDados()
         {
@@ -64,8 +64,8 @@ namespace eAgenda.Infra.Arquivos
             if (ctx.Despesas.Any())
                 this.Despesas.AddRange(ctx.Despesas);
 
-            if (ctx.CategoriaDespesas.Any())
-                this.CategoriaDespesas.AddRange(ctx.CategoriaDespesas);
+            if (ctx.Categorias.Any())
+                this.Categorias.AddRange(ctx.Categorias);
         }
     }
 }

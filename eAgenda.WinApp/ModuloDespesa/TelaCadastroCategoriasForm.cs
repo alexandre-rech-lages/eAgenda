@@ -5,19 +5,19 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloDespesa
 {
-    public partial class TelaCadastroCategoriasDespesaForm : Form
+    public partial class TelaCadastroCategoriasForm : Form
     {
-        private CategoriaDespesa categoriaDespesa;
+        private Categoria categoriaDespesa;
 
-        public TelaCadastroCategoriasDespesaForm()
+        public TelaCadastroCategoriasForm()
         {
             InitializeComponent();
         }
 
-        public Func<CategoriaDespesa, ValidationResult> GravarRegistro { get; set; }
+        public Func<Categoria, ValidationResult> GravarRegistro { get; set; }
 
 
-        public CategoriaDespesa CategoriaDespesa
+        public Categoria CategoriaDespesa
         {
             get
             {

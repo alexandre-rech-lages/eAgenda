@@ -2,7 +2,7 @@
 
 namespace eAgenda.Dominio.ModuloDespesa
 {
-    public interface IRepositorioCategoriaDespesa : IRepositorio<CategoriaDespesa>
+    public interface IRepositorioCategoria : IRepositorio<Categoria>
     {
     }
 }

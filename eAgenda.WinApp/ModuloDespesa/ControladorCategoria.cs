@@ -5,22 +5,22 @@ using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloDespesa
 {
-    public class ControladorCategoriaDespesa : ControladorBase
+    public class ControladorCategoria : ControladorBase
     {
-        private readonly IRepositorioCategoriaDespesa repositorioCategoriaDespesa;
-        private TabelaCategoriasDespesaControl tabelaCategoriasDespesa;
+        private readonly IRepositorioCategoria repositorioCategoriaDespesa;
+        private TabelaCategoriasControl tabelaCategoriasDespesa;
 
 
-        public ControladorCategoriaDespesa(IRepositorioCategoriaDespesa repositorio)
+        public ControladorCategoria(IRepositorioCategoria repositorio)
         {
             repositorioCategoriaDespesa = repositorio;
         }
 
         public override void Inserir()
         {
-            TelaCadastroCategoriasDespesaForm tela = new TelaCadastroCategoriasDespesaForm();
+            TelaCadastroCategoriasForm tela = new TelaCadastroCategoriasForm();
 
-            tela.CategoriaDespesa = new CategoriaDespesa();
+            tela.CategoriaDespesa = new Categoria();
 
             tela.GravarRegistro = repositorioCategoriaDespesa.Inserir;
 
@@ -34,14 +34,14 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         private void CarregarCategoriaDespesas()
         {
-            List<CategoriaDespesa> CategoriaDespesas = repositorioCategoriaDespesa.SelecionarTodos();
+            List<Categoria> CategoriaDespesas = repositorioCategoriaDespesa.SelecionarTodos();
 
             tabelaCategoriasDespesa.AtualizarRegistros(CategoriaDespesas);
         }
 
         public override void Editar()
         {
-            CategoriaDespesa categoriaDespesaSelecionada = ObtemCategoriaDespesaSelecionada();
+            Categoria categoriaDespesaSelecionada = ObtemCategoriaDespesaSelecionada();
 
             if (categoriaDespesaSelecionada == null)
             {
@@ -50,7 +50,7 @@ namespace eAgenda.WinApp.ModuloDespesa
                 return;
             }
 
-            TelaCadastroCategoriasDespesaForm tela = new TelaCadastroCategoriasDespesaForm();
+            TelaCadastroCategoriasForm tela = new TelaCadastroCategoriasForm();
 
             tela.CategoriaDespesa = categoriaDespesaSelecionada.Clonar();
 
@@ -66,7 +66,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         public override void Visualizar()
         {
-            CategoriaDespesa categoriaDespesaSelecionada = ObtemCategoriaDespesaSelecionada();
+            Categoria categoriaDespesaSelecionada = ObtemCategoriaDespesaSelecionada();
 
             if (categoriaDespesaSelecionada == null)
             {
@@ -75,7 +75,7 @@ namespace eAgenda.WinApp.ModuloDespesa
                 return;
             }
 
-            TelaVisualizacaoCategoriaDespesaForm tela = new TelaVisualizacaoCategoriaDespesaForm(categoriaDespesaSelecionada);
+            TelaVisualizacaoDespesasCategoriaForm tela = new TelaVisualizacaoDespesasCategoriaForm(categoriaDespesaSelecionada);
 
             tela.ShowDialog();
         }
@@ -83,7 +83,7 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         public override void Excluir()
         {
-            CategoriaDespesa CategoriaDespesaSelecionada = ObtemCategoriaDespesaSelecionada();
+            Categoria CategoriaDespesaSelecionada = ObtemCategoriaDespesaSelecionada();
 
             if (CategoriaDespesaSelecionada == null)
             {
@@ -104,24 +104,24 @@ namespace eAgenda.WinApp.ModuloDespesa
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            return new ConfiguracaoToolboxCategoriaDespesa();
+            return new ConfiguracaoToolboxCategoria();
         }
 
         public override UserControl ObtemListagem()
         {
             if (tabelaCategoriasDespesa == null)
-                tabelaCategoriasDespesa = new TabelaCategoriasDespesaControl();
+                tabelaCategoriasDespesa = new TabelaCategoriasControl();
 
             CarregarCategoriaDespesas();
 
             return tabelaCategoriasDespesa;
         }
 
-        private CategoriaDespesa ObtemCategoriaDespesaSelecionada()
+        private Categoria ObtemCategoriaDespesaSelecionada()
         {
             int numeroSelecionado = tabelaCategoriasDespesa.ObtemNumeroCategoriaDespesaSelecionada();
 
-            CategoriaDespesa CategoriaDespesaSelecionada = repositorioCategoriaDespesa.SelecionarPorNumero(numeroSelecionado);
+            Categoria CategoriaDespesaSelecionada = repositorioCategoriaDespesa.SelecionarPorNumero(numeroSelecionado);
 
             return CategoriaDespesaSelecionada;
         }

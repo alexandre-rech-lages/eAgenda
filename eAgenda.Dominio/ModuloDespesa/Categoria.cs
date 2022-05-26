@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace eAgenda.Dominio.ModuloDespesa
 {
-    public class CategoriaDespesa : EntidadeBase<CategoriaDespesa>
+    public class Categoria : EntidadeBase<Categoria>
     {
-        public CategoriaDespesa()
+        public Categoria()
         {
             Despesas = new List<Despesa>();
         }
@@ -15,7 +15,7 @@ namespace eAgenda.Dominio.ModuloDespesa
 
         public List<Despesa> Despesas { get; set; }
 
-        public override void Atualizar(CategoriaDespesa registro)
+        public override void Atualizar(Categoria registro)
         {
             Titulo = registro.Titulo;
         }
@@ -27,7 +27,7 @@ namespace eAgenda.Dominio.ModuloDespesa
 
         public override bool Equals(object obj)
         {
-            return obj is CategoriaDespesa despesa &&
+            return obj is Categoria despesa &&
                    Numero == despesa.Numero &&
                    Titulo == despesa.Titulo;
         }
@@ -37,9 +37,9 @@ namespace eAgenda.Dominio.ModuloDespesa
             return HashCode.Combine(Numero, Titulo);
         }
 
-        public CategoriaDespesa Clonar()
+        public Categoria Clonar()
         {
-            return MemberwiseClone() as CategoriaDespesa;
+            return MemberwiseClone() as Categoria;
         }
 
         public void RegistrarDespesa(Despesa despesa)
