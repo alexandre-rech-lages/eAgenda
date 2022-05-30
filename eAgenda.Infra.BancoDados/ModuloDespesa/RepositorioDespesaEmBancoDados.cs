@@ -181,7 +181,8 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
 
             foreach (var categoria in categoriasMarcadas)
             {
-                AdicionarCategoria(despesa, categoria);
+                if (despesa.Categorias.Contains(categoria) == false)
+                    AdicionarCategoria(despesa, categoria);
             }
 
             return resultadoValidacao;
@@ -304,7 +305,7 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
             {
                 var categoria = ConverterParaCategoria(leitorCategoria);
 
-                despesa.Categorias.Add(categoria);
+                despesa.AtribuirCategoria(categoria);
             }
 
             conexaoComBanco.Close();

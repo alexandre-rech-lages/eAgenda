@@ -39,16 +39,14 @@ namespace eAgenda.Dominio.ModuloDespesa
         public Despesa Clonar()
         {
             return MemberwiseClone() as Despesa;
-        }
+        }      
 
-        public void AtribuirCategorias(List<Categoria> categorias)
+        public void AtribuirCategoria(Categoria categoria)
         {
-            foreach (var categoria in categorias)
+            if (Categorias.Contains(categoria) == false)
             {
+                Categorias.Add(categoria);
                 categoria.RegistrarDespesa(this);
-
-                if (Categorias.Contains(categoria) == false)
-                    Categorias.Add(categoria);
             }
         }
     }

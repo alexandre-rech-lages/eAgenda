@@ -41,8 +41,8 @@ namespace eAgenda.Dominio.ModuloCompromisso
 
                 switch (_compromissoEnum)
                 {
-                    case TipoLocalizacaoCompromissoEnum.Remoto: Link = null; break;
-                    case TipoLocalizacaoCompromissoEnum.Presencial: Local = null; break;
+                    case TipoLocalizacaoCompromissoEnum.Presencial: Link = null; break;
+                    case TipoLocalizacaoCompromissoEnum.Remoto: Local = null; break;
 
                     default:
                         break;

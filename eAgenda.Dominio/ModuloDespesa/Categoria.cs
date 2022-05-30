@@ -45,7 +45,10 @@ namespace eAgenda.Dominio.ModuloDespesa
         public void RegistrarDespesa(Despesa despesa)
         {
             if (Despesas.Contains(despesa) == false)
+            {
                 Despesas.Add(despesa);
+                despesa.AtribuirCategoria(this);
+            }
         }
     }
 }

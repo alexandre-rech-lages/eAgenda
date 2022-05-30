@@ -57,6 +57,22 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
 		        WHERE
                     [NUMERO] = @NUMERO";
 
+        private const string sqlSelecionarDespesasDaCategoria =
+        @"SELECT 
+	                D.[NUMERO], 
+		            D.[DESCRICAO], 
+		            D.[VALOR],
+		            D.[DATA],
+		            D.[FORMAPAGAMENTO]
+
+                FROM 
+	                TBDESPESA AS D INNER JOIN TBDESPESA_TBCATEGORIA AS DC 
+                ON 
+	                D.NUMERO = DC.DESPESA_NUMERO
+                WHERE 
+	                DC.CATEGORIA_NUMERO = @CATEGORIA_NUMERO";
+
+
         #endregion
 
         public ValidationResult Inserir(Categoria novoCategoria)
@@ -166,7 +182,50 @@ namespace eAgenda.Infra.BancoDados.ModuloDespesa
 
             conexaoComBanco.Close();
 
+            CarregarDespesas(ref categoria);
+
             return categoria;
+        }
+
+        private void CarregarDespesas(ref Categoria categoria)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarDespesasDaCategoria, conexaoComBanco);
+
+            comandoSelecao.Parameters.AddWithValue("CATEGORIA_NUMERO", categoria.Numero);
+
+            conexaoComBanco.Open();
+            SqlDataReader leitorDespesa = comandoSelecao.ExecuteReader();
+
+            while (leitorDespesa.Read())
+            {
+                Despesa despesa = ConverterParaDespesa(leitorDespesa);
+
+                categoria.RegistrarDespesa(despesa);
+            }
+
+            conexaoComBanco.Close();
+        }
+
+        private Despesa ConverterParaDespesa(SqlDataReader leitorDespesa)
+        {
+            var numero = Convert.ToInt32(leitorDespesa["NUMERO"]);
+            var descricao = Convert.ToString(leitorDespesa["DESCRICAO"]);
+            var valor = Convert.ToDecimal(leitorDespesa["VALOR"]);
+            var data = Convert.ToDateTime(leitorDespesa["DATA"]);
+            var formaPgto = (FormaPgtoDespesaEnum)leitorDespesa["FORMAPAGAMENTO"];
+
+            var despesa = new Despesa
+            {
+                Numero = numero,
+                Descricao = descricao,
+                Valor = valor,
+                Data = data,
+                FormaPagamento = formaPgto
+            };
+
+            return despesa;
         }
 
         private Categoria ConverterParaCategoria(SqlDataReader leitorCategoria)

@@ -4,6 +4,7 @@ using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace eAgenda.Infra.BancoDados.ModuloCompromisso
 {
@@ -98,7 +99,6 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
             WHERE 
                 CP.[NUMERO] = @NUMERO";
 
-
         private const string sqlSelecionarCompromissosPassados =
             @"SELECT 
                 CP.[NUMERO],       
@@ -146,6 +146,18 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
                 CP.[DATA] BETWEEN @DATAINICIAL AND @DATAFINAL
                 --CP.[DATA] >= @DATAINICIAL AND CP.[DATA] <= @DATAFINAL";
 
+        private const string sqlVerificarHorarioOcupado =
+           @"SELECT
+	            COUNT(*)
+            FROM 
+	            TBCOMPROMISSO
+            WHERE 
+                [DATA] = @DATA 
+            AND                 
+                @HORA_INICIO_DESEJADO BETWEEN HORAINICIO AND HORATERMINO 
+            OR                 
+                @HORA_TERMINO_DESEJADO BETWEEN HORAINICIO AND HORATERMINO";
+
         public ValidationResult Inserir(Compromisso novoRegistro)
         {
             var validador = new ValidadorCompromisso();
@@ -154,6 +166,14 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
 
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
+
+            int horarioOcupado = VerificarHorarioOcupado(novoRegistro.Data, novoRegistro.HoraInicio, novoRegistro.HoraTermino);
+
+            if (horarioOcupado > 0)
+            {
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Nesta data e horário já tem um compromisso agendado"));
+                return resultadoValidacao;
+            }
 
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
@@ -169,20 +189,7 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
 
             return resultadoValidacao;
         }
-
-        private void ConfigurarParametrosCompromisso(Compromisso compromisso, SqlCommand comando)
-        {
-            comando.Parameters.AddWithValue("NUMERO", compromisso.Numero);
-            comando.Parameters.AddWithValue("ASSUNTO", compromisso.Assunto);
-            comando.Parameters.AddWithValue("LOCAL", string.IsNullOrEmpty(compromisso.Local) ? DBNull.Value : compromisso.Local);
-            comando.Parameters.AddWithValue("LINK", string.IsNullOrEmpty(compromisso.Link) ? DBNull.Value : compromisso.Link);
-            comando.Parameters.AddWithValue("DATA", compromisso.Data);
-            comando.Parameters.AddWithValue("HORAINICIO", compromisso.HoraInicio.Ticks);
-            comando.Parameters.AddWithValue("HORATERMINO", compromisso.HoraTermino.Ticks);
-
-            comando.Parameters.AddWithValue("CONTATO_NUMERO", compromisso.Contato == null ? DBNull.Value : compromisso.Contato.Numero);
-        }
-
+        
         public ValidationResult Editar(Compromisso registro)
         {
             var validador = new ValidadorCompromisso();
@@ -191,6 +198,20 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
 
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
+
+            int horarioOcupado = VerificarHorarioOcupado(registro.Data, registro.HoraInicio, registro.HoraTermino);
+
+            var x = SelecionarPorNumero(registro.Numero);
+
+            var teste = registro.HoraInicio >= x.HoraInicio && registro.HoraTermino <= x.HoraTermino;
+
+            //var teste2 = SelecionarTodos().Exists(a => registro.HoraInicio <= a.HoraInicio && registro.HoraTermino >= a.HoraTermino);
+
+            if (horarioOcupado > 0 && !teste)
+            {
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Nesta data e horário já tem um compromisso agendado"));
+                return resultadoValidacao;
+            }
 
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
@@ -320,6 +341,19 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
             return compromissos;
         }
 
+        private void ConfigurarParametrosCompromisso(Compromisso compromisso, SqlCommand comando)
+        {
+            comando.Parameters.AddWithValue("NUMERO", compromisso.Numero);
+            comando.Parameters.AddWithValue("ASSUNTO", compromisso.Assunto);
+            comando.Parameters.AddWithValue("LOCAL", string.IsNullOrEmpty(compromisso.Local) ? DBNull.Value : compromisso.Local);
+            comando.Parameters.AddWithValue("LINK", string.IsNullOrEmpty(compromisso.Link) ? DBNull.Value : compromisso.Link);
+            comando.Parameters.AddWithValue("DATA", compromisso.Data);
+            comando.Parameters.AddWithValue("HORAINICIO", compromisso.HoraInicio.Ticks);
+            comando.Parameters.AddWithValue("HORATERMINO", compromisso.HoraTermino.Ticks);
+
+            comando.Parameters.AddWithValue("CONTATO_NUMERO", compromisso.Contato == null ? DBNull.Value : compromisso.Contato.Numero);
+        }
+
         private Compromisso ConverterParaCompromisso(SqlDataReader leitorCompromisso)
         {
             var numero = Convert.ToInt32(leitorCompromisso["NUMERO"]);
@@ -372,6 +406,28 @@ namespace eAgenda.Infra.BancoDados.ModuloCompromisso
             }
 
             return compromisso;
+        }
+        
+        private int VerificarHorarioOcupado(DateTime data, TimeSpan horaInicioDesejado, TimeSpan horaTerminoDesejado)
+        {
+            TimeSpan umSegundo = new TimeSpan(0, 0, 1);
+            horaInicioDesejado = horaInicioDesejado.Add(umSegundo);
+            horaTerminoDesejado = horaTerminoDesejado.Subtract(umSegundo);
+
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlVerificarHorarioOcupado, conexaoComBanco);
+
+            //stackoverflow.com/questions/8503825/what-is-the-correct-sql-type-to-store-a-net-timespan-with-values-240000
+            comandoSelecao.Parameters.AddWithValue("DATA", data);
+            comandoSelecao.Parameters.AddWithValue("HORA_INICIO_DESEJADO", horaInicioDesejado.Ticks);
+            comandoSelecao.Parameters.AddWithValue("HORA_TERMINO_DESEJADO", horaTerminoDesejado.Ticks);
+
+            conexaoComBanco.Open();
+            var quantidadeDeRegistros = Convert.ToInt32(comandoSelecao.ExecuteScalar());            
+            conexaoComBanco.Close();
+
+            return quantidadeDeRegistros;
         }
     }
 }
