@@ -5,6 +5,16 @@ namespace eAgenda.Dominio.ModuloTarefa
     [Serializable]
     public class ItemTarefa
     {
+
+        public ItemTarefa()
+        {
+        }
+
+        public ItemTarefa(string titulo)
+        {
+            this.Titulo = titulo;
+        }
+
         public int Numero { get; set; }
 
         public string Titulo { get; set; }

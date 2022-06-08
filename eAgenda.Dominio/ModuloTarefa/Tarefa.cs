@@ -8,17 +8,17 @@ namespace eAgenda.Dominio.ModuloTarefa
     [Serializable]
     public class Tarefa : EntidadeBase<Tarefa>
     {
-        private List<ItemTarefa> itens = new List<ItemTarefa>();
+        private List<ItemTarefa> itens;
 
         public Tarefa()
         {
             Prioridade = PrioridadeTarefaEnum.Baixa;
             DataCriacao = DateTime.Now;
+            itens = new List<ItemTarefa>();
         }
 
-        public Tarefa(int n, string t) : this()
+        public Tarefa(string t) : this()
         {
-            Numero = n;
             Titulo = t;
             DataConclusao = null;
         }
@@ -52,7 +52,7 @@ namespace eAgenda.Dominio.ModuloTarefa
 
             if (DataConclusao.HasValue)
             {
-                return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual}, Prioridade: {Prioridade} " +
+                return $"Número: {Numero}, Título: {Titulo}, Percentual: {percentual}, Prioridade: {Prioridade}, " +
                     $"Concluída: {DataConclusao.Value.ToShortDateString()}";
             }
 
@@ -84,7 +84,7 @@ namespace eAgenda.Dominio.ModuloTarefa
             itemTarefa?.Concluir();
 
             if (itens.All(x => x.Concluido))
-                DataConclusao = DateTime.Now;
+                DataConclusao = DateTime.Now.Date;
 
         }
 
@@ -100,6 +100,22 @@ namespace eAgenda.Dominio.ModuloTarefa
             Numero = registro.Numero;
             Titulo = registro.Titulo;
             Prioridade = registro.Prioridade;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Tarefa tarefa &&
+                   Numero == tarefa.Numero &&
+                   Titulo == tarefa.Titulo &&
+                   Prioridade == tarefa.Prioridade &&
+                   DataCriacao.Date == tarefa.DataCriacao.Date &&
+                   DataConclusao?.Date == tarefa.DataConclusao?.Date &&
+                   PercentualConcluido == tarefa.PercentualConcluido;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Numero, Titulo, Prioridade, DataCriacao, DataConclusao, PercentualConcluido);
         }
     }
 }

@@ -227,7 +227,8 @@ namespace eAgenda.Infra.BancoDados.ModuloTarefa
 
             conexaoComBanco.Close();
 
-            CarregarItensTarefa(tarefa);
+            if (tarefa != null)
+                CarregarItensTarefa(tarefa);
 
             return tarefa;
         }
