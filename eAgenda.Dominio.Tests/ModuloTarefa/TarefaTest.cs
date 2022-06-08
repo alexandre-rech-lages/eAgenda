@@ -10,7 +10,7 @@ namespace eAgenda.Dominio.ModuloTarefa.Tests
         public void Deve_adicionar_itens_na_tarefa()
         {
             //arrange
-            var t = new Tarefa();
+            var tarefa = new Tarefa();
 
             var item01 = new ItemTarefa("Item 01");
             var item02 = new ItemTarefa("Item 02");
@@ -18,13 +18,13 @@ namespace eAgenda.Dominio.ModuloTarefa.Tests
             var item04 = new ItemTarefa("Item 04");
 
             //action
-            t.AdicionarItem(item01);
-            t.AdicionarItem(item02);
-            t.AdicionarItem(item03);
-            t.AdicionarItem(item04);
+            tarefa.AdicionarItem(item01);
+            tarefa.AdicionarItem(item02);
+            tarefa.AdicionarItem(item03);
+            tarefa.AdicionarItem(item04);
 
             //assert
-            Assert.AreEqual(4, t.Itens.Count);
+            Assert.AreEqual(4, tarefa.Itens.Count);
         }
 
         [TestMethod]
@@ -97,13 +97,12 @@ namespace eAgenda.Dominio.ModuloTarefa.Tests
 
             t.ConcluirItem(item01);
             t.ConcluirItem(item02);
-            t.ConcluirItem(item03);
 
             //action
             t.CalcularPercentualConcluido();
 
             //assert
-            Assert.AreEqual(75, t.PercentualConcluido);
+            Assert.AreEqual(50, t.PercentualConcluido);
         }
 
         [TestMethod]

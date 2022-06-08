@@ -8,7 +8,8 @@ namespace eAgenda.Dominio.ModuloTarefa
         public ValidadorTarefa()
         {
             RuleFor(x => x.Titulo)
-                .NotNull().NotEmpty();
+                .NotNull().WithMessage("O campo título é obrigatório")
+                .NotEmpty().WithMessage("O campo título é obrigatório");
 
             RuleFor(x => x.DataCriacao)
                 .NotEqual(DateTime.MinValue)
